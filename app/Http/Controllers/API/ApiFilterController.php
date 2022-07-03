@@ -77,7 +77,7 @@ class ApiFilterController extends Controller
                 //filter resualt
                 $filterResualt = Cars::where('manger_accept', 2)->when(request()->query('without_picture'), function ($query) {
                     return $query->where('picture', json_encode(['defualt.png']));
-                })->ignoreRequest('without_picture')->filter()->paginate($per_page, ['car_id', 'ar_title', 'ar_desc', 'phone_number', 'picture', 'is_special', 'price', 'manger_accept', 'governorate_id', 'created_at']);
+                })->ignoreRequest(['without_picture'])->filter()->paginate($per_page, ['car_id', 'ar_title', 'ar_desc', 'phone_number', 'picture', 'is_special', 'price', 'manger_accept', 'governorate_id', 'created_at']);
                 //count ads
                 $count = Cars::where('manger_accept', 2)->filter()->count();
                 //get the filters
@@ -95,7 +95,7 @@ class ApiFilterController extends Controller
                 //filter resualt
                 $filterResualt = Cars::where('manger_accept', 2)->when(request()->query('without_picture'), function ($query) {
                     return $query->where('picture', json_encode(['defualt.png']));
-                })->ignoreRequest('without_picture')->filter()->paginate($per_page, ['car_id', 'en_title', 'en_desc', 'phone_number', 'picture', 'is_special', 'price', 'manger_accept', 'governorate_id', 'created_at']);
+                })->ignoreRequest(['without_picture'])->filter()->paginate($per_page, ['car_id', 'en_title', 'en_desc', 'phone_number', 'picture', 'is_special', 'price', 'manger_accept', 'governorate_id', 'created_at']);
                 //count ads
                 $count = Cars::where('manger_accept', 2)->filter()->count();
                 //get the filters
