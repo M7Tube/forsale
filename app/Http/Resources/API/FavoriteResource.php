@@ -1,0 +1,127 @@
+<?php
+
+namespace App\Http\Resources\API;
+
+use Illuminate\Http\Resources\Json\JsonResource;
+
+class FavoriteResource extends JsonResource
+{
+    /**
+     * Transform the resource into an array.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
+     */
+    public function toArray($request)
+    {
+        if ($this->car_id != 0) {
+            if (request('lang') == 'ar') {
+                return [
+                    'favorite_id' => $this->favorite_id,
+                    'user' => ($this->user->first_name ?? null) . ' ' . ($this->user->last_name ?? null),
+                    'created_at' => $this->created_at,
+                    'ad' => [
+                        'id' => $this->car->car_id ?? null,
+                        'title' => $this->car->ar_title ?? null,
+                        'desc' => $this->car->ar_desc ?? null,
+                        'phone_number' => $this->car->phone_number ?? null,
+                        'picture' =>  'https://waseetco.com/storage/app/img/' . ($this->car->picture ?? null),
+                        'is_special' => $this->car->is_special ?? null,
+                        'price' => $this->car->price ?? null,
+                        'governorate' => $this->car->governorate->ar_name ?? null,
+                        'created_at' => $this->car->created_at ?? null,
+                    ]
+                ];
+            } else if (request('lang') == 'en') {
+                return [
+                    'favorite_id' => $this->favorite_id,
+                    'user' => ($this->user->first_name ?? null) . ' ' . ($this->user->last_name ?? null),
+                    'created_at' => $this->created_at,
+                    'ad' => [
+                        'id' => $this->car->car_id ?? null,
+                        'title' => $this->car->en_title ?? null,
+                        'desc' => $this->car->en_desc ?? null,
+                        'phone_number' => $this->car->phone_number ?? null,
+                        'picture' =>  'https://waseetco.com/storage/app/img/' . ($this->car->picture ?? null),
+                        'is_special' => $this->car->is_special ?? null,
+                        'price' => $this->car->price ?? null,
+                        'governorate' => $this->car->governorate->en_name ?? null,
+                        'created_at' => $this->car->created_at ?? null,
+                    ]
+                ];
+            }
+        } else if ($this->real_estate_id != 0) {
+            if (request('lang') == 'ar') {
+                return [
+                    'favorite_id' => $this->favorite_id,
+                    'user' => ($this->user->first_name ?? null) . ' ' . ($this->user->last_name ?? null),
+                    'created_at' => $this->created_at,
+                    'ad' => [
+                        'id' => $this->real_estate->real_estate_id,
+                        'title' => $this->real_estate->ar_title,
+                        'desc' => $this->real_estate->ar_desc,
+                        'phone_number' => $this->real_estate->phone_number,
+                        'picture' => 'https://waseetco.com/storage/app/img/' . ($this->real_estate->picture ?? null),
+                        'is_special' => $this->real_estate->is_special,
+                        'price' => $this->real_estate->price,
+                        'governorate' => $this->real_estate->governorate->ar_name,
+                        'created_at' => $this->real_estate->created_at,
+                    ]
+                ];
+            } else if (request('lang') == 'en') {
+                return [
+                    'favorite_id' => $this->favorite_id,
+                    'user' => ($this->user->first_name ?? null) . ' ' . ($this->user->last_name ?? null),
+                    'created_at' => $this->created_at,
+                    'ad' => [
+                        'id' => $this->real_estate->real_estate_id,
+                        'title' => $this->real_estate->en_title,
+                        'desc' => $this->real_estate->en_desc,
+                        'phone_number' => $this->real_estate->phone_number,
+                        'picture' => 'https://waseetco.com/storage/app/img/' . ($this->real_estate->picture ?? null),
+                        'is_special' => $this->real_estate->is_special,
+                        'price' => $this->real_estate->price,
+                        'governorate' => $this->real_estate->governorate->en_name,
+                        'created_at' => $this->real_estate->created_at,
+                    ]
+                ];
+            }
+        } else if ($this->job_id != 0) {
+            if (request('lang') == 'ar') {
+                return [
+                    'favorite_id' => $this->favorite_id,
+                    'user' => ($this->user->first_name ?? null) . ' ' . ($this->user->last_name ?? null),
+                    'created_at' => $this->created_at,
+                    'ad' => [
+                        'id' => $this->job->job_id,
+                        'title' => $this->job->ar_title,
+                        'desc' => $this->job->ar_desc,
+                        'phone_number' => $this->job->phone_number,
+                        'picture' => 'https://waseetco.com/storage/app/img/' . ($this->job->picture ?? null),
+                        'is_special' => $this->job->is_special,
+                        'price' => $this->job->salary,
+                        'governorate' => $this->job->governorate->ar_name,
+                        'created_at' => $this->job->created_at
+                    ]
+                ];
+            } else if (request('lang') == 'en') {
+                return [
+                    'favorite_id' => $this->favorite_id,
+                    'user' => ($this->user->first_name ?? null) . ' ' . ($this->user->last_name ?? null),
+                    'created_at' => $this->created_at,
+                    'ad' => [
+                        'id' => $this->job->job_id,
+                        'title' => $this->job->en_title,
+                        'desc' => $this->job->en_desc,
+                        'phone_number' => $this->job->phone_number,
+                        'picture' => 'https://waseetco.com/storage/app/img/' . ($this->job->picture ?? null),
+                        'is_special' => $this->job->is_special,
+                        'price' => $this->job->salary,
+                        'governorate' => $this->job->governorate->en_name,
+                        'created_at' => $this->job->created_at
+                    ]
+                ];
+            }
+        }
+    }
+}
