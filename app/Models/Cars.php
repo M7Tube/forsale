@@ -25,24 +25,24 @@ class Cars extends Model
         'phone_number',
         'manger_accept',
         'isPhone_visable',
-        'price',//
-        'picture',//
-        'is_special',//
+        'price', // range filter (static)
+        'picture', // with-without picture filter (static)
+        'is_special', // is_spcial filter (static)
         'watch_count',
-        'manufacturing_year',//
-        'kilometrag',//
-        'car_type_id',//
-        'car_status_id',//
-        'ros_id',//
-        'motion_vector_id',//
-        'user_id',//
-        'cof_id',//
-        'continent_id',//
-        'rental_time_id',//
-        'color_id',//
-        'governorate_id',//
-        'ad_type_id',//
-        'ad_statuse_id',//
+        'manufacturing_year', // range filter (static)
+        'kilometrag', // range filter (static)
+        'car_type_id', // from (getAddNewAdInfo) link (multiselect)
+        'car_status_id', // from (getAddNewAdInfo) link (multiselect)
+        'ros_id', // from (getAddNewAdInfo) link (multiselect)
+        'motion_vector_id', // from (getAddNewAdInfo) link (multiselect)
+        'user_id',
+        'cof_id', // from (getAddNewAdInfo) link (multiselect)
+        'continent_id', // from (getAddNewAdInfo) link (multiselect)
+        'rental_time_id', // from (getAddNewAdInfo) link (multiselect)
+        'color_id', // from (getAddNewAdInfo) link (multiselect)
+        'governorate_id', // from (getAddNewAdInfo) link (multiselect)
+        'ad_type_id',
+        'ad_statuse_id', // from (getAddNewAdInfo) link (multiselect)
     ];
 
     public function reRender()

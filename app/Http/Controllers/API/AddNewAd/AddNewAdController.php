@@ -29,6 +29,7 @@ use App\Http\Resources\API\RentalTimeResource;
 use App\Http\Resources\API\YearsOfExperienceResource;
 use App\Models\Ad;
 use App\Models\AdStatus;
+use App\Models\AdType;
 use App\Models\ApartmentStatus;
 use App\Models\AppSettings;
 use App\Models\Area;
@@ -52,6 +53,7 @@ use App\Models\RentalTime;
 use App\Models\RentOrSale;
 use App\Models\YearsOfExperience;
 use Database\Seeders\RealEstateMainCategorySeeder;
+use Image;
 
 class AddNewAdController extends Controller
 {
@@ -253,47 +255,53 @@ class AddNewAdController extends Controller
     //
     public function AddNewAd(Request $request, $category)
     {
-
-        if ($category == 1) { //cars
+        if ($request->category == 1) { //cars
             $request->validate([
                 'ar_title' => ['required', 'string', 'max:144'],
                 'en_title' => ['required', 'string', 'max:144'],
                 'ar_desc' => ['required', 'string', 'max:1440'],
                 'en_desc' => ['required', 'string', 'max:1440'],
-                'phone_number' => ['integer'],
-                'isPhone_visable' => ['required_with:phone_number', 'boolean'],
-                'price' => ['integer'],
-                // 'picture' => ['required'],
-                'is_special' => ['required', 'boolean'],
-                'manufacturing_year' => ['integer'],
-                'kilometrag' => ['integer'],
+                'picture.*' => ['required', 'mimes:jpg,png,jpeg'],
                 'car_type_id' => ['integer', 'exists:car_types,car_type_id'],
                 'car_status_id' => ['integer', 'exists:car_statuses,car_status_id'],
-                'ros_id' => ['required', 'integer', 'exists:rent_or_sales,ros_id'],
+                'ros_id' => ['integer', 'exists:rent_or_sales,ros_id'],
                 'motion_vector_id' => ['integer', 'exists:motion_vectors,motion_vector_id'],
-                'user_id' => ['required', 'integer', 'exists:users,user_id'],
                 'cof_id' => ['integer', 'exists:country_of_manufactures,cof_id'],
                 'continent_id' => ['integer', 'exists:continent_of_origins,continent_id'],
                 'rental_time_id' => ['integer', 'exists:rental_times,rental_time_id'],
-                'color_id' => ['integer', 'exists:colors,color_id'],
+                'color_id' =>  ['integer', 'exists:colors,color_id'],
                 'governorate_id' => ['integer', 'exists:governorates,governorate_id'],
-                'ad_type_id' => ['required', 'integer'], //, 'exists:ad_types,ad_type_id'
-                'ad_statuse_id' => ['required', 'integer', 'exists:ad_statuses,ad_statuse_id'],
+                'ad_type_id' => ['integer', 'exists:ad_types,ad_type_id'],
+                'ad_statuse_id' => ['integer', 'exists:ad_statuses,ad_statuse_id'],
             ]);
-            $ad = Cars::Create([
-                'ar_title' => $request->ar_title ?? '',
-                'en_title' => $request->en_title ?? '',
-                'ar_desc' => $request->ar_desc ?? '',
-                'en_desc' => $request->en_desc ?? '',
-                'phone_number' => $request->phone_number ?? '',
-                'manger_accept' => AppSettings::all()->first()['defualt_manger_accept'] ?? '',
-                'isPhone_visable' => $request->isPhone_visable ?? '',
-                'price' => $request->price ?? '',
-                'picture' => $request->picture ?? '',
-                'is_special' => $request->is_special ?? '',
-                'watch_count' => 0 ?? '',
-                'manufacturing_year' => $request->manufacturing_year ?? '',
-                'kilometrag' => $request->kilometrag ?? '',
+            $listOfPicture = [];
+            foreach ($request->file('picture') as $pic) {
+                $name = $pic->getClientOriginalName() . time() . '.jpg';
+                $img = Image::make($pic)->resize(1024, 640)->encode('jpg', 100)->interlace()->insert(storage_path('app/img/watermark.png'), 'bottom')->save(storage_path('app/img/' . $name));
+                array_push($listOfPicture, $name);
+            }
+            $is_spcial = AdType::where('user_id', $request->user_id)->where('ad_type_id', $request->ad_type_id)->first();
+
+            $checkAdType = AdType::where('user_id', $request->user_id)->where('ad_type_id', $request->ad_type_id)->first();
+            if ($checkAdType->count <= 0) {
+                return response()->json([
+                    __('message') => __('Your Ads Is Over')
+                ], 404);
+            }
+            $car = Cars::Create([
+                'ar_title' => $request->ar_title ?? null,
+                'en_title' => $request->en_title ?? null,
+                'ar_desc' => $request->ar_desc ?? null,
+                'en_desc' => $request->en_desc ?? null,
+                'phone_number' => $request->phone_number ?? null,
+                'manger_accept' =>  AppSettings::all()->first()['defualt_manger_accept'] ?? 1,
+                'isPhone_visable' => $request->isPhone_visable ?? 0,
+                'price' => $request->price ?? null,
+                'picture' => $listOfPicture != [] ? json_encode($listOfPicture) : json_encode(['defualt.png']),
+                'is_special' => $is_spcial->is_spcial ?? 0,
+                'watch_count' => 0 ?? 0,
+                'manufacturing_year' =>  $request->manufacturing_year ?? null,
+                'kilometrag' =>  $request->kilometrag ?? null,
                 'car_type_id' => $request->car_type_id ?? 0,
                 'car_status_id' => $request->car_status_id ?? 0,
                 'ros_id' => $request->ros_id ?? 0,
@@ -307,77 +315,251 @@ class AddNewAdController extends Controller
                 'ad_type_id' => $request->ad_type_id ?? 0,
                 'ad_statuse_id' => $request->ad_statuse_id ?? 0,
             ]);
-            if ($ad) {
-                return $this->success('ad', $ad);
+            if ($car) {
+                AdType::where('user_id', $request->user_id)->where('ad_type_id', $request->ad_type_id)->decrement('count');
+                return $this->success('ad', $car);
             } else {
                 return $this->fails();
             }
-        } else if ($category == 2) { //real estate
+        } elseif ($request->category == 2) { //real estate
             $request->validate([
                 'ar_title' => ['required', 'string', 'max:144'],
                 'en_title' => ['required', 'string', 'max:144'],
                 'ar_desc' => ['required', 'string', 'max:1440'],
                 'en_desc' => ['required', 'string', 'max:1440'],
-                'phone_number' => ['integer'],
-                'isPhone_visable' => ['required_with:phone_number', 'boolean'],
-                'price' => ['integer'],
-                // 'picture' => ['required'],
-                'is_special' => ['required', 'boolean'],
-                'apartment_size' => ['integer'],
-                'land_size' => ['integer'],
-                'building_size' => ['integer'],
-                'floor' => ['integer'],
-                'room_count' => ['integer'],
-                'elevator' => ['boolean'],
-                'user_id' => ['required', 'integer', 'exists:users,user_id'],
-                'governorate_id' => ['integer', 'exists:governorates,governorate_id'],
-                'ad_type_id' => ['required', 'integer', 'exists:ad_types,ad_type_id'],
-                'ad_statuse_id' => ['required', 'integer', 'exists:ad_statuses,ad_statuse_id'],
-                'REMC_id' => ['integer', 'exists:real_estate_main_categories,REMC_id'],
-                'apartment_status_id' => ['integer', 'exists:apartment_statuses,apartment_status_id'],
-                'building_statuse_id' => ['integer', 'exists:building_statuses,building_statuse_id'],
-                'CAAT_id' => ['integer', 'exists:commercial_and_artificial_types,CAAT_id'],
-                'land_type_id' => ['integer', 'exists:land_types,land_type_id'],
-                'area_id' => ['integer', 'exists:areas,area_id'],
-                'neighborhood_id' => ['integer', 'exists:neighborhoods,neighborhood_id'],
+                'picture.*' => ['required', 'mimes:jpg,png,jpeg'],
+                'REMC_id' => ['required', 'integer', 'exists:real_estate_main_categories,REMC_id'],
             ]);
-            $ad = RealEstate::Create([
-                'en_title' => $request->en_title ?? '',
+            $listOfPicture = ['defualt.png'];
+            foreach ($request->picture as $pic) {
+                $name = $pic->getClientOriginalName();
+                array_push($listOfPicture, $name);
+                $pic->storeAs('img', $name);
+            }
+            $is_spcial = AdType::where('user_id', $request->user_id)->where('ad_type_id', $request->ad_type_id)->first();
+
+            $checkAdType = AdType::where('user_id', $request->user_id)->where('ad_type_id', $request->ad_type_id)->first();
+            if ($checkAdType->count <= 0) {
+                return response()->json([
+                    __('message') => __('Your Ads Is Over')
+                ], 404);
+            }
+            $real_estate = RealEstate::Create([
+                'en_title' => $request->en_title ?? null,
+                'ar_title' => $request->ar_title ?? null,
+                'ar_desc' => $request->ar_desc ?? null,
+                'en_desc' => $request->en_desc ?? null,
+                'phone_number' => $request->phone_number ?? null,
+                'manger_accept' => AppSettings::all()->first()['defualt_manger_accept'] ?? 1,
+                'isPhone_visable' => $request->isPhone_visable ?? 0,
+                'price' => $request->price ?? null,
+                'picture' => $listOfPicture != [] ? json_encode($listOfPicture) : json_encode(['defualt.png']),
+                'is_special' => $is_spcial->is_spcial ?? 0,
+                'watch_count' => 0 ?? 0,
+                'apartment_size' => $request->apartment_size ?? 0,
+                'land_size' => $request->land_size ?? 0,
+                'building_size' => $request->building_size ?? 0,
+                'floor' => $request->floor ?? 0,
+                'room_count' => $request->room_count ?? 0,
+                'elevator' => $request->elevator ?? 0,
+                'user_id' => $request->user_id ?? 0,
+                'ros_id' => $request->ros_id ?? 0,
+                'REMC_id' => $request->REMC_id ?? 0,
+                'apartment_status_id' => $request->apartment_status_id ?? 0,
+                'building_statuse_id' => $request->building_statuse_id ?? 0,
+                'CAAT_id' => $request->CAAT_id ?? 0,
+                'land_type_id' => $request->land_type_id ?? 0,
+                'governorate_id' => $request->governorate_id ?? 0,
+                'area_id' => $request->area_id ?? 0,
+                'neighborhood_id' => $request->neighborhood_id ?? 0,
+                'ad_type_id' => $request->ad_type_id ?? 0,
+                'ad_statuse_id' => $request->ad_statuse_id ?? 0,
+            ]);
+            if ($real_estate) {
+                AdType::where('user_id', $request->user_id)->where('ad_type_id', $request->ad_type_id)->decrement('count');
+                return redirect()->route('website.ad', [app()->getLocale(), 'category' => 2, 'id' => $real_estate->real_estate_id]);
+            }
+        } elseif ($request->category == 3) { //jobs
+            $request->validate([
+                'ar_title' => ['required', 'string', 'max:144'],
+                'en_title' => ['required', 'string', 'max:144'],
+                'ar_desc' => ['required', 'string', 'max:1440'],
+                'en_desc' => ['required', 'string', 'max:1440'],
+                'phone_number' => ['required', 'string'],
+                'isPhone_visable' => ['required', 'boolean'],
+                'salary' => ['required', 'integer'],
+                'picture.*' => ['required', 'mimes:jpg,png,jpeg'],
+            ]);
+            $listOfPicture = ['defualt.png'];
+            foreach ($request->picture as $pic) {
+                $name = $pic->getClientOriginalName();
+                array_push($listOfPicture, $name);
+                $pic->storeAs('img', $name);
+            }
+            $is_spcial = AdType::where('user_id', $request->user_id)->where('ad_type_id', $request->ad_type_id)->first();
+
+            $checkAdType = AdType::where('user_id', $request->user_id)->where('ad_type_id', $request->ad_type_id)->first();
+            if ($checkAdType->count <= 0) {
+                return response()->json([
+                    __('message') => __('Your Ads Is Over')
+                ], 404);
+            }
+            $jobs = Jobs::Create([
                 'ar_title' => $request->ar_title ?? '',
+                'en_title' => $request->en_title ?? '',
                 'ar_desc' => $request->ar_desc ?? '',
                 'en_desc' => $request->en_desc ?? '',
                 'phone_number' => $request->phone_number ?? '',
                 'manger_accept' => AppSettings::all()->first()['defualt_manger_accept'] ?? '',
-                'isPhone_visable' => $request->isPhone_visable ?? '',
-                'price' => $request->price ?? '',
-                'picture' => $request->picture ?? '',
-                'is_special' => $request->is_special ?? '',
-                'watch_count' => 0 ?? '',
-                'apartment_size' => $request->apartment_size ?? '',
-                'land_size' => $request->land_size ?? '',
-                'building_size' => $request->building_size ?? '',
-                'floor' => $request->floor ?? '',
-                'room_count' => $request->room_count ?? '',
-                'elevator' => $request->elevator ?? '',
-                'user_id' => $request->user_id ?? '',
-                'REMC_id' => $request->REMC_id ?? '',
-                'apartment_status_id' => $request->apartment_status_id ?? '',
-                'building_statuse_id' => $request->building_statuse_id ?? '',
-                'CAAT_id' => $request->CAAT_id ?? '',
-                'land_type_id' => $request->land_type_id ?? '',
-                'governorate_id' => $request->governorate_id ?? '',
-                'area_id' => $request->area_id ?? '',
-                'neighborhood_id' => $request->neighborhood_id ?? '',
-                'ad_type_id' => $request->ad_type_id ?? '',
-                'ad_statuse_id' => $request->ad_statuse_id ?? '',
+                'isPhone_visable' => $request->isPhone_visable ?? 0,
+                'qualification' => $request->qualification ?? '',
+                'age' => $request->age ?? 0,
+                'salary' => $request->salary ?? 0,
+                'work_hour' => $request->work_hour ?? 0,
+                'extra_work_hour' => $request->extra_work_hour ?? 0,
+                'work_hour_rent' => $request->work_hour_rent ?? 0,
+                'driving_license' => $request->driving_license ?? 0,
+                'picture' => $listOfPicture != [] ? json_encode($listOfPicture) : json_encode(['defualt.png']),
+                'is_special' => $is_spcial->is_spcial ?? '',
+                'watch_count' => 0 ?? 0,
+                'user_id' => $request->user_id ?? 0,
+                'governorate_id' => $request->governorate_id ?? 0,
+                'area_id' => $request->area_id ?? 0,
+                'jobs_categorie_id' => $request->jobs_categorie_id ?? 0,
+                'lang_id' => $request->lang_id ?? 0,
+                'YOE_id' => $request->YOE_id ?? 0,
+                'ad_type_id' => $request->ad_type_id ?? 0,
+                'ad_statuse_id' => $request->ad_statuse_id ?? 0,
             ]);
-        } else if ($category == 3) { //jobs
-            $request->validate([
-                'ad_type_id' => ['required', 'integer', 'exists:ad_types,ad_type_id'],
-            ]);
-        } else {
-            $this->fails();
+            if ($jobs) {
+                AdType::where('user_id', $request->user_id)->where('ad_type_id', $request->ad_type_id)->decrement('count');
+                return redirect()->route('website.ad', [app()->getLocale(), 'category' => 3, 'id' => $jobs->job_id]);
+            }
         }
+        // if ($category == 1) { //cars
+        //     $request->validate([
+        //         'ar_title' => ['required', 'string', 'max:144'],
+        //         'en_title' => ['required', 'string', 'max:144'],
+        //         'ar_desc' => ['required', 'string', 'max:1440'],
+        //         'en_desc' => ['required', 'string', 'max:1440'],
+        //         'phone_number' => ['integer'],
+        //         'isPhone_visable' => ['required_with:phone_number', 'boolean'],
+        //         'price' => ['integer'],
+        //         // 'picture' => ['required'],
+        //         'is_special' => ['required', 'boolean'],
+        //         'manufacturing_year' => ['integer'],
+        //         'kilometrag' => ['integer'],
+        //         'car_type_id' => ['integer', 'exists:car_types,car_type_id'],
+        //         'car_status_id' => ['integer', 'exists:car_statuses,car_status_id'],
+        //         'ros_id' => ['required', 'integer', 'exists:rent_or_sales,ros_id'],
+        //         'motion_vector_id' => ['integer', 'exists:motion_vectors,motion_vector_id'],
+        //         'user_id' => ['required', 'integer', 'exists:users,user_id'],
+        //         'cof_id' => ['integer', 'exists:country_of_manufactures,cof_id'],
+        //         'continent_id' => ['integer', 'exists:continent_of_origins,continent_id'],
+        //         'rental_time_id' => ['integer', 'exists:rental_times,rental_time_id'],
+        //         'color_id' => ['integer', 'exists:colors,color_id'],
+        //         'governorate_id' => ['integer', 'exists:governorates,governorate_id'],
+        //         'ad_type_id' => ['required', 'integer'], //, 'exists:ad_types,ad_type_id'
+        //         'ad_statuse_id' => ['required', 'integer', 'exists:ad_statuses,ad_statuse_id'],
+        //     ]);
+        //     $ad = Cars::Create([
+        //         'ar_title' => $request->ar_title ?? '',
+        //         'en_title' => $request->en_title ?? '',
+        //         'ar_desc' => $request->ar_desc ?? '',
+        //         'en_desc' => $request->en_desc ?? '',
+        //         'phone_number' => $request->phone_number ?? '',
+        //         'manger_accept' => AppSettings::all()->first()['defualt_manger_accept'] ?? '',
+        //         'isPhone_visable' => $request->isPhone_visable ?? '',
+        //         'price' => $request->price ?? '',
+        //         'picture' => $request->picture ?? '',
+        //         'is_special' => $request->is_special ?? '',
+        //         'watch_count' => 0 ?? '',
+        //         'manufacturing_year' => $request->manufacturing_year ?? '',
+        //         'kilometrag' => $request->kilometrag ?? '',
+        //         'car_type_id' => $request->car_type_id ?? 0,
+        //         'car_status_id' => $request->car_status_id ?? 0,
+        //         'ros_id' => $request->ros_id ?? 0,
+        //         'motion_vector_id' => $request->motion_vector_id ?? 0,
+        //         'user_id' => $request->user_id ?? 0,
+        //         'cof_id' => $request->cof_id ?? 0,
+        //         'continent_id' => $request->continent_id ?? 0,
+        //         'rental_time_id' => $request->rental_time_id ?? 0,
+        //         'color_id' => $request->color_id ?? 0,
+        //         'governorate_id' => $request->governorate_id ?? 0,
+        //         'ad_type_id' => $request->ad_type_id ?? 0,
+        //         'ad_statuse_id' => $request->ad_statuse_id ?? 0,
+        //     ]);
+        //     if ($ad) {
+        //         return $this->success('ad', $ad);
+        //     } else {
+        //         return $this->fails();
+        //     }
+        // } else if ($category == 2) { //real estate
+        //     $request->validate([
+        //         'ar_title' => ['required', 'string', 'max:144'],
+        //         'en_title' => ['required', 'string', 'max:144'],
+        //         'ar_desc' => ['required', 'string', 'max:1440'],
+        //         'en_desc' => ['required', 'string', 'max:1440'],
+        //         'phone_number' => ['integer'],
+        //         'isPhone_visable' => ['required_with:phone_number', 'boolean'],
+        //         'price' => ['integer'],
+        //         // 'picture' => ['required'],
+        //         'is_special' => ['required', 'boolean'],
+        //         'apartment_size' => ['integer'],
+        //         'land_size' => ['integer'],
+        //         'building_size' => ['integer'],
+        //         'floor' => ['integer'],
+        //         'room_count' => ['integer'],
+        //         'elevator' => ['boolean'],
+        //         'user_id' => ['required', 'integer', 'exists:users,user_id'],
+        //         'governorate_id' => ['integer', 'exists:governorates,governorate_id'],
+        //         'ad_type_id' => ['required', 'integer', 'exists:ad_types,ad_type_id'],
+        //         'ad_statuse_id' => ['required', 'integer', 'exists:ad_statuses,ad_statuse_id'],
+        //         'REMC_id' => ['integer', 'exists:real_estate_main_categories,REMC_id'],
+        //         'apartment_status_id' => ['integer', 'exists:apartment_statuses,apartment_status_id'],
+        //         'building_statuse_id' => ['integer', 'exists:building_statuses,building_statuse_id'],
+        //         'CAAT_id' => ['integer', 'exists:commercial_and_artificial_types,CAAT_id'],
+        //         'land_type_id' => ['integer', 'exists:land_types,land_type_id'],
+        //         'area_id' => ['integer', 'exists:areas,area_id'],
+        //         'neighborhood_id' => ['integer', 'exists:neighborhoods,neighborhood_id'],
+        //     ]);
+        //     $ad = RealEstate::Create([
+        //         'en_title' => $request->en_title ?? '',
+        //         'ar_title' => $request->ar_title ?? '',
+        //         'ar_desc' => $request->ar_desc ?? '',
+        //         'en_desc' => $request->en_desc ?? '',
+        //         'phone_number' => $request->phone_number ?? '',
+        //         'manger_accept' => AppSettings::all()->first()['defualt_manger_accept'] ?? '',
+        //         'isPhone_visable' => $request->isPhone_visable ?? '',
+        //         'price' => $request->price ?? '',
+        //         'picture' => $request->picture ?? '',
+        //         'is_special' => $request->is_special ?? '',
+        //         'watch_count' => 0 ?? '',
+        //         'apartment_size' => $request->apartment_size ?? '',
+        //         'land_size' => $request->land_size ?? '',
+        //         'building_size' => $request->building_size ?? '',
+        //         'floor' => $request->floor ?? '',
+        //         'room_count' => $request->room_count ?? '',
+        //         'elevator' => $request->elevator ?? '',
+        //         'user_id' => $request->user_id ?? '',
+        //         'REMC_id' => $request->REMC_id ?? '',
+        //         'apartment_status_id' => $request->apartment_status_id ?? '',
+        //         'building_statuse_id' => $request->building_statuse_id ?? '',
+        //         'CAAT_id' => $request->CAAT_id ?? '',
+        //         'land_type_id' => $request->land_type_id ?? '',
+        //         'governorate_id' => $request->governorate_id ?? '',
+        //         'area_id' => $request->area_id ?? '',
+        //         'neighborhood_id' => $request->neighborhood_id ?? '',
+        //         'ad_type_id' => $request->ad_type_id ?? '',
+        //         'ad_statuse_id' => $request->ad_statuse_id ?? '',
+        //     ]);
+        // } else if ($category == 3) { //jobs
+        //     $request->validate([
+        //         'ad_type_id' => ['required', 'integer', 'exists:ad_types,ad_type_id'],
+        //     ]);
+        // } else {
+        //     $this->fails();
+        // }
 
         //define which category your adding
         //valdition
