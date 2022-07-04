@@ -88,10 +88,10 @@ class Register extends Component
         $Code = rand(111111, 999999);
         $user = User::Create([
             'first_name' => $this->first_name,
-            'last_name' => $this->last_name,
+            'last_name' => $this->last_name ?? null,
             'email' => $this->email,
             'serial_number' => $Code,
-            'phone_number' => $this->phone_number,
+            'phone_number' => $this->phone_number ?? null,
             'password' => Hash::make($this->password),
             'birth_date' => $this->birth_date ?? null,
             'is_personal' => $this->is_personal,
