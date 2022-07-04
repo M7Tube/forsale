@@ -29,102 +29,102 @@ class Register extends Component
         }
         $this->is_personal = 0;
     }
-    public function updatedFirstName()
-    {
-        $this->validate([
-            'first_name' => ['required', 'string', 'max:48'],
-            'phone_number' => ['unique:users,phone_number'],
-            'email' => ['required_without:phone_number', 'email', 'unique:users,email'],
-            'password' => ['required', 'min:8', 'confirmed'],
-            'is_personal' => ['required', 'in:0,1'],
-            'birth_date' => ['date'],
+    // public function updatedFirstName()
+    // {
+    //     $this->validate([
+    //         'first_name' => ['required', 'string', 'max:48'],
+    //         'phone_number' => ['unique:users,phone_number'],
+    //         'email' => ['required_without:phone_number', 'email', 'unique:users,email'],
+    //         'password' => ['required', 'min:8', 'confirmed'],
+    //         'is_personal' => ['required', 'in:0,1'],
+    //         'birth_date' => ['date'],
 
-        ]);
-    }
+    //     ]);
+    // }
 
-    public function updatedLastName()
-    {
-        $this->validate([
-            'first_name' => ['required', 'string', 'max:48'],
-            'phone_number' => ['unique:users,phone_number'],
-            'email' => ['required_without:phone_number', 'email', 'unique:users,email'],
-            'password' => ['required', 'min:8', 'confirmed'],
-            'is_personal' => ['required', 'in:0,1'],
-            'birth_date' => ['date'],
-
-
-        ]);
-    }
-
-    public function updatedEmail()
-    {
-        $this->validate([
-            'first_name' => ['required', 'string', 'max:48'],
-            'phone_number' => ['unique:users,phone_number'],
-            'email' => ['required_without:phone_number', 'email', 'unique:users,email'],
-            'password' => ['required', 'min:8', 'confirmed'],
-            'is_personal' => ['required', 'in:0,1'],
-            'birth_date' => ['date'],
+    // public function updatedLastName()
+    // {
+    //     $this->validate([
+    //         'first_name' => ['required', 'string', 'max:48'],
+    //         'phone_number' => ['unique:users,phone_number'],
+    //         'email' => ['required_without:phone_number', 'email', 'unique:users,email'],
+    //         'password' => ['required', 'min:8', 'confirmed'],
+    //         'is_personal' => ['required', 'in:0,1'],
+    //         'birth_date' => ['date'],
 
 
-        ]);
-    }
+    //     ]);
+    // }
 
-    public function updatedPhoneNumber()
-    {
-        $this->validate([
-            'first_name' => ['required', 'string', 'max:48'],
-            'phone_number' => ['unique:users,phone_number'],
-            'email' => ['required_without:phone_number', 'email', 'unique:users,email'],
-            'password' => ['required', 'min:8', 'confirmed'],
-            'is_personal' => ['required', 'in:0,1'],
-            'birth_date' => ['date'],
-
-
-        ]);
-    }
-
-    public function updatedIsPersonal()
-    {
-        $this->validate([
-            'first_name' => ['required', 'string', 'max:48'],
-            'phone_number' => ['unique:users,phone_number'],
-            'email' => ['required_without:phone_number', 'email', 'unique:users,email'],
-            'password' => ['required', 'min:8', 'confirmed'],
-            'is_personal' => ['required', 'in:0,1'],
-            'birth_date' => ['date'],
+    // public function updatedEmail()
+    // {
+    //     $this->validate([
+    //         'first_name' => ['required', 'string', 'max:48'],
+    //         'phone_number' => ['unique:users,phone_number'],
+    //         'email' => ['required_without:phone_number', 'email', 'unique:users,email'],
+    //         'password' => ['required', 'min:8', 'confirmed'],
+    //         'is_personal' => ['required', 'in:0,1'],
+    //         'birth_date' => ['date'],
 
 
-        ]);
-    }
+    //     ]);
+    // }
 
-    public function updatedPassword()
-    {
-        $this->validate([
-            'first_name' => ['required', 'string', 'max:48'],
-            'phone_number' => ['unique:users,phone_number'],
-            'email' => ['required_without:phone_number', 'email', 'unique:users,email'],
-            'password' => ['required', 'min:8', 'confirmed'],
-            'is_personal' => ['required', 'in:0,1'],
-            'birth_date' => ['date'],
-
-
-        ]);
-    }
-
-    public function updatedPasswordConfirmation()
-    {
-        $this->validate([
-            'first_name' => ['required', 'string', 'max:48'],
-            'phone_number' => ['unique:users,phone_number'],
-            'email' => ['required_without:phone_number', 'email', 'unique:users,email'],
-            'password' => ['required', 'min:8', 'confirmed'],
-            'is_personal' => ['required', 'in:0,1'],
-            'birth_date' => ['date'],
+    // public function updatedPhoneNumber()
+    // {
+    //     $this->validate([
+    //         'first_name' => ['required', 'string', 'max:48'],
+    //         'phone_number' => ['unique:users,phone_number'],
+    //         'email' => ['required_without:phone_number', 'email', 'unique:users,email'],
+    //         'password' => ['required', 'min:8', 'confirmed'],
+    //         'is_personal' => ['required', 'in:0,1'],
+    //         'birth_date' => ['date'],
 
 
-        ]);
-    }
+    //     ]);
+    // }
+
+    // public function updatedIsPersonal()
+    // {
+    //     $this->validate([
+    //         'first_name' => ['required', 'string', 'max:48'],
+    //         'phone_number' => ['unique:users,phone_number'],
+    //         'email' => ['required_without:phone_number', 'email', 'unique:users,email'],
+    //         'password' => ['required', 'min:8', 'confirmed'],
+    //         'is_personal' => ['required', 'in:0,1'],
+    //         'birth_date' => ['date'],
+
+
+    //     ]);
+    // }
+
+    // public function updatedPassword()
+    // {
+    //     $this->validate([
+    //         'first_name' => ['required', 'string', 'max:48'],
+    //         'phone_number' => ['unique:users,phone_number'],
+    //         'email' => ['required_without:phone_number', 'email', 'unique:users,email'],
+    //         'password' => ['required', 'min:8', 'confirmed'],
+    //         'is_personal' => ['required', 'in:0,1'],
+    //         'birth_date' => ['date'],
+
+
+    //     ]);
+    // }
+
+    // public function updatedPasswordConfirmation()
+    // {
+    //     $this->validate([
+    //         'first_name' => ['required', 'string', 'max:48'],
+    //         'phone_number' => ['unique:users,phone_number'],
+    //         'email' => ['required_without:phone_number', 'email', 'unique:users,email'],
+    //         'password' => ['required', 'min:8', 'confirmed'],
+    //         'is_personal' => ['required', 'in:0,1'],
+    //         'birth_date' => ['date'],
+
+
+    //     ]);
+    // }
 
     public function create()
     {
