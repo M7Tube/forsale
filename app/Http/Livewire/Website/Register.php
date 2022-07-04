@@ -28,7 +28,7 @@ class Register extends Component
             abort(403);
         }
         $this->is_personal = 0;
-        $this->birth_date = 02/07/2000;
+        // $this->birth_date = 02/07/2000;
     }
     // public function updatedFirstName()
     // {
@@ -146,7 +146,7 @@ class Register extends Component
             'serial_number' => $Code,
             'phone_number' => $this->phone_number,
             'password' => Hash::make($this->password),
-            'birth_date' => $this->birth_date,
+            'birth_date' => $this->birth_date ?? null,
             'is_personal' => $this->is_personal,
             // 'is_admin' => 0,
         ]);
