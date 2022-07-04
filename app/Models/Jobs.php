@@ -25,23 +25,23 @@ class Jobs extends Model
         'manger_accept',
         'isPhone_visable',
         'qualification',
-        'age',
-        'salary',
-        'work_hour',
-        'extra_work_hour',
-        'work_hour_rent',
-        'driving_license',
-        'picture',
-        'is_special',
+        'age',//done
+        'salary',//done
+        'work_hour',//done
+        'extra_work_hour',//done
+        'work_hour_rent',//
+        'driving_license',//done
+        'picture',//done
+        'is_special',//done
         'watch_count',
         'user_id',
-        'governorate_id',
-        'area_id',
-        'jobs_categorie_id',
-        'lang_id',
-        'YOE_id',
+        'governorate_id',//done
+        'area_id',//done
+        'jobs_categorie_id',//done
+        'lang_id',//done
+        'YOE_id',//done
         'ad_type_id',
-        'ad_statuse_id',
+        'ad_statuse_id',//done
     ];
 
     public  static function dashboardsearch($search)

@@ -25,28 +25,28 @@ class RealEstate extends Model
         'phone_number',
         'manger_accept',
         'isPhone_visable',
-        'price',
-        'picture',
-        'is_special',
+        'price',//done
+        'picture',//done
+        'is_special',//done
         'watch_count',
-        'apartment_size',
-        'land_size',
-        'building_size',
-        'floor',
-        'room_count',
-        'elevator',
+        'apartment_size',//done
+        'land_size',//done
+        'building_size',//done
+        'floor',//done
+        'room_count',//done
+        'elevator',//done
         'user_id',
-        'ros_id',
-        'REMC_id',
-        'apartment_status_id',
-        'building_statuse_id',
-        'CAAT_id',
-        'land_type_id',
-        'governorate_id',
-        'area_id',
-        'neighborhood_id',
+        'ros_id',//done
+        'REMC_id',//done
+        'apartment_status_id',//done
+        'building_statuse_id',//done
+        'CAAT_id',//done
+        'land_type_id',//done
+        'governorate_id',//done
+        'area_id',//done
+        'neighborhood_id',//done
         'ad_type_id',
-        'ad_statuse_id',
+        'ad_statuse_id',//done
     ];
     public function governorate()
     {

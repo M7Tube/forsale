@@ -1,17 +1,18 @@
 <div class="container-fluid">
-    @if ($category == 1)
-        <h5 class="mb-5">{{ __('Cars') }}</h5>
+    <?php if($category == 1): ?>
+        <h5 class="mb-5"><?php echo e(__('Cars')); ?></h5>
         <div class="accordion accordion-flush" id="accordionFlushExample">
             <div class="accordion-item">
                 <h2 class="accordion-header" id="flush-headingOne">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        {{--  --}} data-bs-target="#flush-collapseOne" aria-expanded="false"
+                         data-bs-target="#flush-collapseOne" aria-expanded="false"
                         aria-controls="flush-collapseOne">
-                        {{ __('Filters') }}
+                        <?php echo e(__('Filters')); ?>
+
                     </button>
                 </h2>
                 <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
-                    {{--  --}} data-bs-parent="#accordionFlushExample" wire:ignore>
+                     data-bs-parent="#accordionFlushExample" wire:ignore>
                     <div class="accordion-body" style="background-color:#e7e6e6">
                         <div class="container-fluid">
                             <div class="row">
@@ -26,7 +27,8 @@
                                                                 <div class="media-body">
                                                                     <div class="row">
                                                                         <div class="col-12">
-                                                                            {{ __('Ad Status') }}
+                                                                            <?php echo e(__('Ad Status')); ?>
+
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
@@ -35,27 +37,38 @@
                                                                                 wire:model="ad_statuse_id" multiple
                                                                                 data-live-search="true">
                                                                                 <option disabled>
-                                                                                    {{ __('Choose The Ad Status') }}
+                                                                                    <?php echo e(__('Choose The Ad Status')); ?>
+
                                                                                 </option>
-                                                                                @forelse ($ad_statuses as $ad_statuse)
-                                                                                    @if (app()->getLocale() == 'ar')
+                                                                                <?php $__empty_1 = true; $__currentLoopData = $ad_statuses; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ad_statuse): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                                                                                    <?php if(app()->getLocale() == 'ar'): ?>
                                                                                         <option
-                                                                                            value="{{ $ad_statuse->ad_statuse_id }}">
-                                                                                            {{ $ad_statuse->ar_name }}
+                                                                                            value="<?php echo e($ad_statuse->ad_statuse_id); ?>">
+                                                                                            <?php echo e($ad_statuse->ar_name); ?>
+
                                                                                         </option>
-                                                                                    @else
+                                                                                    <?php else: ?>
                                                                                         <option
-                                                                                            value="{{ $ad_statuse->ad_statuse_id }}">
-                                                                                            {{ $ad_statuse->en_name }}
+                                                                                            value="<?php echo e($ad_statuse->ad_statuse_id); ?>">
+                                                                                            <?php echo e($ad_statuse->en_name); ?>
+
                                                                                         </option>
-                                                                                    @endif
-                                                                                @empty
-                                                                                @endforelse
+                                                                                    <?php endif; ?>
+                                                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                                                                                <?php endif; ?>
                                                                             </select>
                                                                             <span class="text-danger">
-                                                                                @error('ad_statuse_id')
-                                                                                    {{ $message }}
-                                                                                @enderror
+                                                                                <?php $__errorArgs = ['ad_statuse_id'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                                    <?php echo e($message); ?>
+
+                                                                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                                             </span>
                                                                         </div>
                                                                     </div>
@@ -79,7 +92,8 @@
                                                                 <div class="media-body">
                                                                     <div class="row">
                                                                         <div class="col-12">
-                                                                            {{ __('Governorate') }}
+                                                                            <?php echo e(__('Governorate')); ?>
+
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
@@ -88,27 +102,38 @@
                                                                                 wire:model="governorate_id" multiple
                                                                                 data-live-search="true">
                                                                                 <option disabled>
-                                                                                    {{ __('Choose The Governorate') }}
+                                                                                    <?php echo e(__('Choose The Governorate')); ?>
+
                                                                                 </option>
-                                                                                @forelse ($governorates as $governorate)
-                                                                                    @if (app()->getLocale() == 'ar')
+                                                                                <?php $__empty_1 = true; $__currentLoopData = $governorates; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $governorate): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                                                                                    <?php if(app()->getLocale() == 'ar'): ?>
                                                                                         <option
-                                                                                            value="{{ $governorate->governorate_id }}">
-                                                                                            {{ $governorate->ar_name }}
+                                                                                            value="<?php echo e($governorate->governorate_id); ?>">
+                                                                                            <?php echo e($governorate->ar_name); ?>
+
                                                                                         </option>
-                                                                                    @else
+                                                                                    <?php else: ?>
                                                                                         <option
-                                                                                            value="{{ $governorate->governorate_id }}">
-                                                                                            {{ $governorate->en_name }}
+                                                                                            value="<?php echo e($governorate->governorate_id); ?>">
+                                                                                            <?php echo e($governorate->en_name); ?>
+
                                                                                         </option>
-                                                                                    @endif
-                                                                                @empty
-                                                                                @endforelse
+                                                                                    <?php endif; ?>
+                                                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                                                                                <?php endif; ?>
                                                                             </select>
                                                                             <span class="text-danger">
-                                                                                @error('governorate_id')
-                                                                                    {{ $message }}
-                                                                                @enderror
+                                                                                <?php $__errorArgs = ['governorate_id'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                                    <?php echo e($message); ?>
+
+                                                                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                                             </span>
                                                                         </div>
                                                                     </div>
@@ -132,7 +157,8 @@
                                                                 <div class="media-body">
                                                                     <div class="row">
                                                                         <div class="col-12">
-                                                                            {{ __('Car Type') }}
+                                                                            <?php echo e(__('Car Type')); ?>
+
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
@@ -141,27 +167,38 @@
                                                                                 wire:model="car_type_id" multiple
                                                                                 data-live-search="true">
                                                                                 <option disabled>
-                                                                                    {{ __('Choose The Car Type') }}
+                                                                                    <?php echo e(__('Choose The Car Type')); ?>
+
                                                                                 </option>
-                                                                                @forelse ($carTypes as $carType)
-                                                                                    @if (app()->getLocale() == 'ar')
+                                                                                <?php $__empty_1 = true; $__currentLoopData = $carTypes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $carType): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                                                                                    <?php if(app()->getLocale() == 'ar'): ?>
                                                                                         <option
-                                                                                            value="{{ $carType->car_type_id }}">
-                                                                                            {{ $carType->ar_name }}
+                                                                                            value="<?php echo e($carType->car_type_id); ?>">
+                                                                                            <?php echo e($carType->ar_name); ?>
+
                                                                                         </option>
-                                                                                    @else
+                                                                                    <?php else: ?>
                                                                                         <option
-                                                                                            value="{{ $carType->car_type_id }}">
-                                                                                            {{ $carType->en_name }}
+                                                                                            value="<?php echo e($carType->car_type_id); ?>">
+                                                                                            <?php echo e($carType->en_name); ?>
+
                                                                                         </option>
-                                                                                    @endif
-                                                                                @empty
-                                                                                @endforelse
+                                                                                    <?php endif; ?>
+                                                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                                                                                <?php endif; ?>
                                                                             </select>
                                                                             <span class="text-danger">
-                                                                                @error('car_type_id')
-                                                                                    {{ $message }}
-                                                                                @enderror
+                                                                                <?php $__errorArgs = ['car_type_id'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                                    <?php echo e($message); ?>
+
+                                                                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                                             </span>
                                                                         </div>
                                                                     </div>
@@ -185,7 +222,8 @@
                                                                 <div class="media-body">
                                                                     <div class="row">
                                                                         <div class="col-12">
-                                                                            {{ __('Car Status') }}
+                                                                            <?php echo e(__('Car Status')); ?>
+
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
@@ -194,27 +232,38 @@
                                                                                 wire:model="car_status_id" multiple
                                                                                 data-live-search="true">
                                                                                 <option disabled>
-                                                                                    {{ __('Choose The Car Status') }}
+                                                                                    <?php echo e(__('Choose The Car Status')); ?>
+
                                                                                 </option>
-                                                                                @forelse ($car_status as $car_statu)
-                                                                                    @if (app()->getLocale() == 'ar')
+                                                                                <?php $__empty_1 = true; $__currentLoopData = $car_status; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $car_statu): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                                                                                    <?php if(app()->getLocale() == 'ar'): ?>
                                                                                         <option
-                                                                                            value="{{ $car_statu->car_status_id }}">
-                                                                                            {{ $car_statu->ar_name }}
+                                                                                            value="<?php echo e($car_statu->car_status_id); ?>">
+                                                                                            <?php echo e($car_statu->ar_name); ?>
+
                                                                                         </option>
-                                                                                    @else
+                                                                                    <?php else: ?>
                                                                                         <option
-                                                                                            value="{{ $car_statu->car_status_id }}">
-                                                                                            {{ $car_statu->en_name }}
+                                                                                            value="<?php echo e($car_statu->car_status_id); ?>">
+                                                                                            <?php echo e($car_statu->en_name); ?>
+
                                                                                         </option>
-                                                                                    @endif
-                                                                                @empty
-                                                                                @endforelse
+                                                                                    <?php endif; ?>
+                                                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                                                                                <?php endif; ?>
                                                                             </select>
                                                                             <span class="text-danger">
-                                                                                @error('car_status_id')
-                                                                                    {{ $message }}
-                                                                                @enderror
+                                                                                <?php $__errorArgs = ['car_status_id'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                                    <?php echo e($message); ?>
+
+                                                                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                                             </span>
                                                                         </div>
                                                                     </div>
@@ -238,7 +287,8 @@
                                                                 <div class="media-body">
                                                                     <div class="row">
                                                                         <div class="col-12">
-                                                                            {{ __('Color') }}
+                                                                            <?php echo e(__('Color')); ?>
+
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
@@ -247,27 +297,38 @@
                                                                                 wire:model="color_id" multiple
                                                                                 data-live-search="true">
                                                                                 <option disabled>
-                                                                                    {{ __('Choose The Color') }}
+                                                                                    <?php echo e(__('Choose The Color')); ?>
+
                                                                                 </option>
-                                                                                @forelse ($colors as $color)
-                                                                                    @if (app()->getLocale() == 'ar')
+                                                                                <?php $__empty_1 = true; $__currentLoopData = $colors; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $color): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                                                                                    <?php if(app()->getLocale() == 'ar'): ?>
                                                                                         <option
-                                                                                            value="{{ $color->color_id }}">
-                                                                                            {{ $color->ar_name }}
+                                                                                            value="<?php echo e($color->color_id); ?>">
+                                                                                            <?php echo e($color->ar_name); ?>
+
                                                                                         </option>
-                                                                                    @else
+                                                                                    <?php else: ?>
                                                                                         <option
-                                                                                            value="{{ $color->color_id }}">
-                                                                                            {{ $color->en_name }}
+                                                                                            value="<?php echo e($color->color_id); ?>">
+                                                                                            <?php echo e($color->en_name); ?>
+
                                                                                         </option>
-                                                                                    @endif
-                                                                                @empty
-                                                                                @endforelse
+                                                                                    <?php endif; ?>
+                                                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                                                                                <?php endif; ?>
                                                                             </select>
                                                                             <span class="text-danger">
-                                                                                @error('color_id')
-                                                                                    {{ $message }}
-                                                                                @enderror
+                                                                                <?php $__errorArgs = ['color_id'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                                    <?php echo e($message); ?>
+
+                                                                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                                             </span>
                                                                         </div>
                                                                     </div>
@@ -291,7 +352,8 @@
                                                                 <div class="media-body">
                                                                     <div class="row">
                                                                         <div class="col-12">
-                                                                            {{ __('Rent Or Sale') }}
+                                                                            <?php echo e(__('Rent Or Sale')); ?>
+
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
@@ -300,27 +362,38 @@
                                                                                 wire:model="ros_id" multiple
                                                                                 data-live-search="true">
                                                                                 <option disabled>
-                                                                                    {{ __('Choose') }}
+                                                                                    <?php echo e(__('Choose')); ?>
+
                                                                                 </option>
-                                                                                @forelse ($ross as $ros)
-                                                                                    @if (app()->getLocale() == 'ar')
+                                                                                <?php $__empty_1 = true; $__currentLoopData = $ross; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ros): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                                                                                    <?php if(app()->getLocale() == 'ar'): ?>
                                                                                         <option
-                                                                                            value="{{ $ros->ros_id }}">
-                                                                                            {{ $ros->ar_name }}
+                                                                                            value="<?php echo e($ros->ros_id); ?>">
+                                                                                            <?php echo e($ros->ar_name); ?>
+
                                                                                         </option>
-                                                                                    @else
+                                                                                    <?php else: ?>
                                                                                         <option
-                                                                                            value="{{ $ros->ros_id }}">
-                                                                                            {{ $ros->en_name }}
+                                                                                            value="<?php echo e($ros->ros_id); ?>">
+                                                                                            <?php echo e($ros->en_name); ?>
+
                                                                                         </option>
-                                                                                    @endif
-                                                                                @empty
-                                                                                @endforelse
+                                                                                    <?php endif; ?>
+                                                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                                                                                <?php endif; ?>
                                                                             </select>
                                                                             <span class="text-danger">
-                                                                                @error('ros_id')
-                                                                                    {{ $message }}
-                                                                                @enderror
+                                                                                <?php $__errorArgs = ['ros_id'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                                    <?php echo e($message); ?>
+
+                                                                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                                             </span>
                                                                         </div>
                                                                     </div>
@@ -344,7 +417,8 @@
                                                                 <div class="media-body">
                                                                     <div class="row">
                                                                         <div class="col-12">
-                                                                            {{ __('Continents Of Origins') }}
+                                                                            <?php echo e(__('Continents Of Origins')); ?>
+
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
@@ -353,27 +427,38 @@
                                                                                 wire:model="continent_id" multiple
                                                                                 data-live-search="true">
                                                                                 <option disabled>
-                                                                                    {{ __('Choose The Continents Of Origins') }}
+                                                                                    <?php echo e(__('Choose The Continents Of Origins')); ?>
+
                                                                                 </option>
-                                                                                @forelse ($continents as $key => $continent)
-                                                                                    @if (app()->getLocale() == 'ar')
+                                                                                <?php $__empty_1 = true; $__currentLoopData = $continents; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $continent): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                                                                                    <?php if(app()->getLocale() == 'ar'): ?>
                                                                                         <option
-                                                                                            value="{{ $continent->continent_id }}">
-                                                                                            {{ $continent->ar_name }}
+                                                                                            value="<?php echo e($continent->continent_id); ?>">
+                                                                                            <?php echo e($continent->ar_name); ?>
+
                                                                                         </option>
-                                                                                    @else
+                                                                                    <?php else: ?>
                                                                                         <option
-                                                                                            value="{{ $continent->continent_id }}">
-                                                                                            {{ $continent->en_name }}
+                                                                                            value="<?php echo e($continent->continent_id); ?>">
+                                                                                            <?php echo e($continent->en_name); ?>
+
                                                                                         </option>
-                                                                                    @endif
-                                                                                @empty
-                                                                                @endforelse
+                                                                                    <?php endif; ?>
+                                                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                                                                                <?php endif; ?>
                                                                             </select>
                                                                             <span class="text-danger">
-                                                                                @error('continent_id')
-                                                                                    {{ $message }}
-                                                                                @enderror
+                                                                                <?php $__errorArgs = ['continent_id'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                                    <?php echo e($message); ?>
+
+                                                                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                                             </span>
                                                                         </div>
                                                                     </div>
@@ -397,7 +482,8 @@
                                                                 <div class="media-body">
                                                                     <div class="row">
                                                                         <div class="col-12">
-                                                                            {{ __('Motion Vector') }}
+                                                                            <?php echo e(__('Motion Vector')); ?>
+
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
@@ -406,27 +492,38 @@
                                                                                 wire:model="motion_vector_id" multiple
                                                                                 data-live-search="true">
                                                                                 <option disabled>
-                                                                                    {{ __('Choose The Motion Vector') }}
+                                                                                    <?php echo e(__('Choose The Motion Vector')); ?>
+
                                                                                 </option>
-                                                                                @forelse ($motion_vectors as $key => $motion_vector)
-                                                                                    @if (app()->getLocale() == 'ar')
+                                                                                <?php $__empty_1 = true; $__currentLoopData = $motion_vectors; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $motion_vector): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                                                                                    <?php if(app()->getLocale() == 'ar'): ?>
                                                                                         <option
-                                                                                            value="{{ $motion_vector->motion_vector_id }}">
-                                                                                            {{ $motion_vector->ar_name }}
+                                                                                            value="<?php echo e($motion_vector->motion_vector_id); ?>">
+                                                                                            <?php echo e($motion_vector->ar_name); ?>
+
                                                                                         </option>
-                                                                                    @else
+                                                                                    <?php else: ?>
                                                                                         <option
-                                                                                            value="{{ $motion_vector->motion_vector_id }}">
-                                                                                            {{ $motion_vector->en_name }}
+                                                                                            value="<?php echo e($motion_vector->motion_vector_id); ?>">
+                                                                                            <?php echo e($motion_vector->en_name); ?>
+
                                                                                         </option>
-                                                                                    @endif
-                                                                                @empty
-                                                                                @endforelse
+                                                                                    <?php endif; ?>
+                                                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                                                                                <?php endif; ?>
                                                                             </select>
                                                                             <span class="text-danger">
-                                                                                @error('motion_vector_id')
-                                                                                    {{ $message }}
-                                                                                @enderror
+                                                                                <?php $__errorArgs = ['motion_vector_id'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                                    <?php echo e($message); ?>
+
+                                                                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                                             </span>
                                                                         </div>
                                                                     </div>
@@ -450,7 +547,8 @@
                                                                 <div class="media-body">
                                                                     <div class="row">
                                                                         <div class="col-12">
-                                                                            {{ __('Country Of Manufacture') }}
+                                                                            <?php echo e(__('Country Of Manufacture')); ?>
+
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
@@ -459,27 +557,38 @@
                                                                                 wire:model="cof_id" multiple
                                                                                 data-live-search="true">
                                                                                 <option disabled>
-                                                                                    {{ __('Choose The Country Of Manufacture') }}
+                                                                                    <?php echo e(__('Choose The Country Of Manufacture')); ?>
+
                                                                                 </option>
-                                                                                @forelse ($countryOfmans as $key => $countryOfman)
-                                                                                    @if (app()->getLocale() == 'ar')
+                                                                                <?php $__empty_1 = true; $__currentLoopData = $countryOfmans; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $countryOfman): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                                                                                    <?php if(app()->getLocale() == 'ar'): ?>
                                                                                         <option
-                                                                                            value="{{ $countryOfman->cof_id }}">
-                                                                                            {{ $countryOfman->ar_name }}
+                                                                                            value="<?php echo e($countryOfman->cof_id); ?>">
+                                                                                            <?php echo e($countryOfman->ar_name); ?>
+
                                                                                         </option>
-                                                                                    @else
+                                                                                    <?php else: ?>
                                                                                         <option
-                                                                                            value="{{ $countryOfman->cof_id }}">
-                                                                                            {{ $countryOfman->en_name }}
+                                                                                            value="<?php echo e($countryOfman->cof_id); ?>">
+                                                                                            <?php echo e($countryOfman->en_name); ?>
+
                                                                                         </option>
-                                                                                    @endif
-                                                                                @empty
-                                                                                @endforelse
+                                                                                    <?php endif; ?>
+                                                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                                                                                <?php endif; ?>
                                                                             </select>
                                                                             <span class="text-danger">
-                                                                                @error('cof_id')
-                                                                                    {{ $message }}
-                                                                                @enderror
+                                                                                <?php $__errorArgs = ['cof_id'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                                    <?php echo e($message); ?>
+
+                                                                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                                             </span>
                                                                         </div>
                                                                     </div>
@@ -503,33 +612,50 @@
                                                                 <div class="media-body">
                                                                     <div class="row">
                                                                         <div class="col-12">
-                                                                            {{ __('Kilometer Counter') }}
+                                                                            <?php echo e(__('Kilometer Counter')); ?>
+
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
                                                                         <div class="col-6">
                                                                             <input class="form-control" id="inputfrom"
-                                                                                placeholder="{{ __('From') }}"
+                                                                                placeholder="<?php echo e(__('From')); ?>"
                                                                                 type="number" min="0"
                                                                                 step="5000" autocomplete="off"
                                                                                 wire:model="K_from" />
                                                                             <span class="text-danger">
-                                                                                @error('K_from')
-                                                                                    {{ $message }}
-                                                                                @enderror
+                                                                                <?php $__errorArgs = ['K_from'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                                    <?php echo e($message); ?>
+
+                                                                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                                             </span>
                                                                         </div>
                                                                         <div class="col-6">
                                                                             <input class="form-control" id="inputto"
-                                                                                placeholder="{{ __('To') }}"
+                                                                                placeholder="<?php echo e(__('To')); ?>"
                                                                                 type="number"
-                                                                                min="{{ $K_from }}"
+                                                                                min="<?php echo e($K_from); ?>"
                                                                                 step="5000" autocomplete="off"
                                                                                 wire:model="K_to" />
                                                                             <span class="text-danger">
-                                                                                @error('K_to')
-                                                                                    {{ $message }}
-                                                                                @enderror
+                                                                                <?php $__errorArgs = ['K_to'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                                    <?php echo e($message); ?>
+
+                                                                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                                             </span>
                                                                         </div>
                                                                     </div>
@@ -553,33 +679,50 @@
                                                                 <div class="media-body">
                                                                     <div class="row">
                                                                         <div class="col-12">
-                                                                            {{ __('Price Range') }}
+                                                                            <?php echo e(__('Price Range')); ?>
+
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
                                                                         <div class="col-6">
                                                                             <input class="form-control" id="inputfrom"
-                                                                                placeholder="{{ __('From') }}"
+                                                                                placeholder="<?php echo e(__('From')); ?>"
                                                                                 type="number" min="0"
                                                                                 step="100000" autocomplete="off"
                                                                                 wire:model="P_from" />
                                                                             <span class="text-danger">
-                                                                                @error('P_from')
-                                                                                    {{ $message }}
-                                                                                @enderror
+                                                                                <?php $__errorArgs = ['P_from'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                                    <?php echo e($message); ?>
+
+                                                                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                                             </span>
                                                                         </div>
                                                                         <div class="col-6">
                                                                             <input class="form-control" id="inputto"
-                                                                                placeholder="{{ __('To') }}"
+                                                                                placeholder="<?php echo e(__('To')); ?>"
                                                                                 type="number"
-                                                                                min="{{ $P_from }}"
+                                                                                min="<?php echo e($P_from); ?>"
                                                                                 step="100000" autocomplete="off"
                                                                                 wire:model="P_to" />
                                                                             <span class="text-danger">
-                                                                                @error('P_to')
-                                                                                    {{ $message }}
-                                                                                @enderror
+                                                                                <?php $__errorArgs = ['P_to'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                                    <?php echo e($message); ?>
+
+                                                                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                                             </span>
                                                                         </div>
                                                                     </div>
@@ -603,33 +746,50 @@
                                                                 <div class="media-body">
                                                                     <div class="row">
                                                                         <div class="col-12">
-                                                                            {{ __('Manufacturing Year Range') }}
+                                                                            <?php echo e(__('Manufacturing Year Range')); ?>
+
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
                                                                         <div class="col-6">
                                                                             <input class="form-control" id="inputfrom"
-                                                                                placeholder="{{ __('From') }}"
+                                                                                placeholder="<?php echo e(__('From')); ?>"
                                                                                 type="number" min="0"
                                                                                 step="1" autocomplete="off"
                                                                                 wire:model="MY_from" />
                                                                             <span class="text-danger">
-                                                                                @error('MY_from')
-                                                                                    {{ $message }}
-                                                                                @enderror
+                                                                                <?php $__errorArgs = ['MY_from'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                                    <?php echo e($message); ?>
+
+                                                                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                                             </span>
                                                                         </div>
                                                                         <div class="col-6">
                                                                             <input class="form-control" id="inputto"
-                                                                                placeholder="{{ __('To') }}"
+                                                                                placeholder="<?php echo e(__('To')); ?>"
                                                                                 type="number"
-                                                                                min="{{ $MY_from }}"
+                                                                                min="<?php echo e($MY_from); ?>"
                                                                                 step="1" autocomplete="off"
                                                                                 wire:model="MY_to" />
                                                                             <span class="text-danger">
-                                                                                @error('MY_to')
-                                                                                    {{ $message }}
-                                                                                @enderror
+                                                                                <?php $__errorArgs = ['MY_to'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                                    <?php echo e($message); ?>
+
+                                                                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                                             </span>
                                                                         </div>
                                                                     </div>
@@ -653,7 +813,8 @@
                                                                 <div class="media-body">
                                                                     <div class="row">
                                                                         <div class="col-12">
-                                                                            {{ __('Options') }}
+                                                                            <?php echo e(__('Options')); ?>
+
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
@@ -664,7 +825,7 @@
                                                                                     id="flexSwitchCheckDefault"
                                                                                     wire:model="ads_without_picture">
                                                                                 <label class="form-check-label"
-                                                                                    for="flexSwitchCheckDefault">{{ __('Ads Without Picture') }}</label>
+                                                                                    for="flexSwitchCheckDefault"><?php echo e(__('Ads Without Picture')); ?></label>
                                                                             </div>
                                                                             <div class="form-check form-switch">
                                                                                 <input class="form-check-input"
@@ -672,7 +833,7 @@
                                                                                     id="flexSwitchCheckDefault"
                                                                                     wire:model="ads_without_price">
                                                                                 <label class="form-check-label"
-                                                                                    for="flexSwitchCheckDefault">{{ __('Ads Without Price') }}</label>
+                                                                                    for="flexSwitchCheckDefault"><?php echo e(__('Ads Without Price')); ?></label>
                                                                             </div>
                                                                             <div class="form-check form-switch">
                                                                                 <input class="form-check-input"
@@ -680,7 +841,7 @@
                                                                                     id="flexSwitchCheckDefault"
                                                                                     wire:model="spcial_ad">
                                                                                 <label class="form-check-label"
-                                                                                    for="flexSwitchCheckDefault">{{ __('Spcial Ad') }}</label>
+                                                                                    for="flexSwitchCheckDefault"><?php echo e(__('Spcial Ad')); ?></label>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -704,7 +865,8 @@
                                                                 <div class="media-body">
                                                                     <div class="row">
                                                                         <div class="col-12">
-                                                                            {{ __('Rental Time') }}
+                                                                            <?php echo e(__('Rental Time')); ?>
+
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
@@ -713,27 +875,38 @@
                                                                                 wire:model="rental_time_id" multiple
                                                                                 data-live-search="true">
                                                                                 <option disabled>
-                                                                                    {{ __('Choose The Rental Time') }}
+                                                                                    <?php echo e(__('Choose The Rental Time')); ?>
+
                                                                                 </option>
-                                                                                @forelse ($rentalTimes as $rentalTime)
-                                                                                    @if (app()->getLocale() == 'ar')
+                                                                                <?php $__empty_1 = true; $__currentLoopData = $rentalTimes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $rentalTime): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                                                                                    <?php if(app()->getLocale() == 'ar'): ?>
                                                                                         <option
-                                                                                            value="{{ $rentalTime->rental_time_id }}">
-                                                                                            {{ $rentalTime->ar_rent_name }}
+                                                                                            value="<?php echo e($rentalTime->rental_time_id); ?>">
+                                                                                            <?php echo e($rentalTime->ar_rent_name); ?>
+
                                                                                         </option>
-                                                                                    @else
+                                                                                    <?php else: ?>
                                                                                         <option
-                                                                                            value="{{ $rentalTime->rental_time_id }}">
-                                                                                            {{ $rentalTime->en_rent_name }}
+                                                                                            value="<?php echo e($rentalTime->rental_time_id); ?>">
+                                                                                            <?php echo e($rentalTime->en_rent_name); ?>
+
                                                                                         </option>
-                                                                                    @endif
-                                                                                @empty
-                                                                                @endforelse
+                                                                                    <?php endif; ?>
+                                                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                                                                                <?php endif; ?>
                                                                             </select>
                                                                             <span class="text-danger">
-                                                                                @error('rental_time_id')
-                                                                                    {{ $message }}
-                                                                                @enderror
+                                                                                <?php $__errorArgs = ['rental_time_id'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                                    <?php echo e($message); ?>
+
+                                                                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                                             </span>
                                                                         </div>
                                                                     </div>
@@ -766,113 +939,129 @@
             </div>
         </div>
         <div class="row" id="ads" wire:init="loadData" wire:loading.remove>
-            @if ($ads)
-                @forelse ($ads as $ad)
-                    @if (app()->getLocale() == 'ar')
+            <?php if($ads): ?>
+                <?php $__empty_1 = true; $__currentLoopData = $ads; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ad): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                    <?php if(app()->getLocale() == 'ar'): ?>
                         <div class="col-6 col-sm-4 col-md-3 mb-5">
-                            <a href="{{ route('website.ad', [app()->getLocale(), 'category' => 1, 'id' => $ad->car_id]) }}"
+                            <a href="<?php echo e(route('website.ad', [app()->getLocale(), 'category' => 1, 'id' => $ad->car_id])); ?>"
                                 style="text-decoration: none; color:black;">
                                 <div class="card">
                                     <div class="card-image">
-                                        <span class="card-notify-badge">{{ $ad->price ?? 0 }}
-                                            {{ __('SYP') }}</span>
-                                        {{-- <span class="card-notify-year">{{ __('Cars') }}</span> --}}
-                                        @if (file_exists('../storage/app/img/' . array_values(json_decode($ad->picture))[0]))
+                                        <span class="card-notify-badge"><?php echo e($ad->price ?? 0); ?>
+
+                                            <?php echo e(__('SYP')); ?></span>
+                                        
+                                        <?php if(file_exists('../storage/app/img/' . array_values(json_decode($ad->picture))[0])): ?>
                                             <img class="img-fluid img"
-                                                src="data:image/png|jpg|jpeg;base64, {!! base64_encode(file_get_contents('../storage/app/img/' . array_values(json_decode($ad->picture))[0])) !!}"
+                                                src="data:image/png|jpg|jpeg;base64, <?php echo base64_encode(file_get_contents('../storage/app/img/' . array_values(json_decode($ad->picture))[0])); ?>"
                                                 alt="Alternate Text" />
-                                        @else
+                                        <?php else: ?>
                                             <img class="img-fluid img"
-                                                src="data:image/png|jpg|jpeg;base64, {!! base64_encode(file_get_contents('../storage/app/img/defualt.png')) !!}"
+                                                src="data:image/png|jpg|jpeg;base64, <?php echo base64_encode(file_get_contents('../storage/app/img/defualt.png')); ?>"
                                                 alt="Alternate Text" />
-                                        @endif
+                                        <?php endif; ?>
                                     </div>
                                     <div class="card-body">
-                                        <span>{{ $ad->ar_title }}</span>
+                                        <span><?php echo e($ad->ar_title); ?></span>
                                     </div>
                                     <div class="card-image-overlay p-1">
-                                        @if (\Carbon\Carbon::parse($ad->created_at)->diffInDays() > 0)
-                                            <i class="bi bi-clock"></i> <span class="since">{{ __('Since ') }}
-                                                {{ \Carbon\Carbon::parse($ad->created_at)->diffInDays() . __(' Days') }}
+                                        <?php if(\Carbon\Carbon::parse($ad->created_at)->diffInDays() > 0): ?>
+                                            <i class="bi bi-clock"></i> <span class="since"><?php echo e(__('Since ')); ?>
+
+                                                <?php echo e(\Carbon\Carbon::parse($ad->created_at)->diffInDays() . __(' Days')); ?>
+
                                                 | <i class="bi bi-geo-alt-fill"></i>
-                                                {{ $ad->governorate->ar_name ?? '' }}
+                                                <?php echo e($ad->governorate->ar_name ?? ''); ?>
+
                                             </span>
-                                        @else
-                                            <i class="bi bi-clock"></i> <span class="since">{{ __('Since ') }}
-                                                {{ \Carbon\Carbon::parse($ad->created_at)->addDays(\Carbon\Carbon::parse($ad->created_at)->diffInDays())->diffInHours() . __(' Hours') }}
+                                        <?php else: ?>
+                                            <i class="bi bi-clock"></i> <span class="since"><?php echo e(__('Since ')); ?>
+
+                                                <?php echo e(\Carbon\Carbon::parse($ad->created_at)->addDays(\Carbon\Carbon::parse($ad->created_at)->diffInDays())->diffInHours() . __(' Hours')); ?>
+
                                                 | <i class="bi bi-geo-alt-fill"></i>
-                                                {{ $ad->governorate->ar_name ?? '' }}
+                                                <?php echo e($ad->governorate->ar_name ?? ''); ?>
+
                                             </span>
-                                        @endif
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                             </a>
                         </div>
-                    @else
+                    <?php else: ?>
                         <div class="col-6 col-sm-4 col-md-3 mb-5">
-                            <a href="{{ route('website.ad', [app()->getLocale(), 'category' => 1, 'id' => $ad->car_id]) }}"
+                            <a href="<?php echo e(route('website.ad', [app()->getLocale(), 'category' => 1, 'id' => $ad->car_id])); ?>"
                                 style="text-decoration: none; color:black;">
                                 <div class="card">
                                     <div class="card-image">
-                                        <span class="card-notify-badge">{{ $ad->price ?? 0 }}
-                                            {{ __('SYP') }}</span>
-                                        {{-- <span class="card-notify-year">{{ __('Cars') }}</span> --}}
-                                        @if (file_exists('../storage/app/img/' . array_values(json_decode($ad->picture))[0]))
+                                        <span class="card-notify-badge"><?php echo e($ad->price ?? 0); ?>
+
+                                            <?php echo e(__('SYP')); ?></span>
+                                        
+                                        <?php if(file_exists('../storage/app/img/' . array_values(json_decode($ad->picture))[0])): ?>
                                             <img class="img-fluid img"
-                                                src="data:image/png|jpg|jpeg;base64, {!! base64_encode(file_get_contents('../storage/app/img/' . array_values(json_decode($ad->picture))[0])) !!}"
+                                                src="data:image/png|jpg|jpeg;base64, <?php echo base64_encode(file_get_contents('../storage/app/img/' . array_values(json_decode($ad->picture))[0])); ?>"
                                                 alt="Alternate Text" />
-                                        @else
+                                        <?php else: ?>
                                             <img class="img-fluid img"
-                                                src="data:image/png|jpg|jpeg;base64, {!! base64_encode(file_get_contents('../storage/app/img/defualt.png')) !!}"
+                                                src="data:image/png|jpg|jpeg;base64, <?php echo base64_encode(file_get_contents('../storage/app/img/defualt.png')); ?>"
                                                 alt="Alternate Text" />
-                                        @endif
+                                        <?php endif; ?>
                                     </div>
                                     <div class="card-body">
-                                        <span>{{ $ad->en_title }}</span>
+                                        <span><?php echo e($ad->en_title); ?></span>
                                     </div>
                                     <div class="card-image-overlay p-1">
-                                        @if (\Carbon\Carbon::parse($ad->created_at)->diffInDays() > 0)
-                                            <i class="bi bi-clock"></i> <span class="since">{{ __('Since ') }}
-                                                {{ \Carbon\Carbon::parse($ad->created_at)->diffInDays() . __(' Days') }}
+                                        <?php if(\Carbon\Carbon::parse($ad->created_at)->diffInDays() > 0): ?>
+                                            <i class="bi bi-clock"></i> <span class="since"><?php echo e(__('Since ')); ?>
+
+                                                <?php echo e(\Carbon\Carbon::parse($ad->created_at)->diffInDays() . __(' Days')); ?>
+
                                                 | <i class="bi bi-geo-alt-fill"></i>
-                                                {{ $ad->governorate->en_name ?? '' }}
+                                                <?php echo e($ad->governorate->en_name ?? ''); ?>
+
                                             </span>
-                                        @else
-                                            <i class="bi bi-clock"></i> <span class="since">{{ __('Since ') }}
-                                                {{ \Carbon\Carbon::parse($ad->created_at)->addDays(\Carbon\Carbon::parse($ad->created_at)->diffInDays())->diffInHours() . __(' Hours') }}
+                                        <?php else: ?>
+                                            <i class="bi bi-clock"></i> <span class="since"><?php echo e(__('Since ')); ?>
+
+                                                <?php echo e(\Carbon\Carbon::parse($ad->created_at)->addDays(\Carbon\Carbon::parse($ad->created_at)->diffInDays())->diffInHours() . __(' Hours')); ?>
+
                                                 | <i class="bi bi-geo-alt-fill"></i>
-                                                {{ $ad->governorate->en_name ?? '' }}
+                                                <?php echo e($ad->governorate->en_name ?? ''); ?>
+
                                             </span>
-                                        @endif
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                             </a>
                         </div>
-                    @endif
-                @empty
-                    <h4 class="text-center text-secondary">{{ __('Empty') }}</h4>
-                @endforelse
+                    <?php endif; ?>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                    <h4 class="text-center text-secondary"><?php echo e(__('Empty')); ?></h4>
+                <?php endif; ?>
                 <div class="d-flex justify-content-center">
-                    {{ $ads->links() }}
+                    <?php echo e($ads->links()); ?>
+
                 </div>
-            @else
-                <h4 class="text-center text-secondary">{{ __('Empty') }}</h4>
-            @endif
+            <?php else: ?>
+                <h4 class="text-center text-secondary"><?php echo e(__('Empty')); ?></h4>
+            <?php endif; ?>
         </div>
-    @endif
-    @if ($category == 2)
-        <h5 class="mb-5">{{ __('Real Estate') }}</h5>
+    <?php endif; ?>
+    <?php if($category == 2): ?>
+        <h5 class="mb-5"><?php echo e(__('Real Estate')); ?></h5>
         <div class="accordion accordion-flush" id="accordionFlushExample">
             <div class="accordion-item">
                 <h2 class="accordion-header" id="flush-headingOne">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        {{--  --}} data-bs-target="#flush-collapseOne" aria-expanded="false"
+                         data-bs-target="#flush-collapseOne" aria-expanded="false"
                         aria-controls="flush-collapseOne">
-                        {{ __('Filters') }}
+                        <?php echo e(__('Filters')); ?>
+
                     </button>
                 </h2>
                 <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
-                    {{--  --}} data-bs-parent="#accordionFlushExample" wire:ignore>
+                     data-bs-parent="#accordionFlushExample" wire:ignore>
                     <div class="accordion-body" style="background-color:#e7e6e6">
                         <div class="container-fluid">
                             <div class="row">
@@ -887,7 +1076,8 @@
                                                                 <div class="media-body">
                                                                     <div class="row">
                                                                         <div class="col-12">
-                                                                            {{ __('Real Estate Main Category') }}
+                                                                            <?php echo e(__('Real Estate Main Category')); ?>
+
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
@@ -896,27 +1086,38 @@
                                                                                 wire:model="REMC_id" multiple
                                                                                 data-live-search="true">
                                                                                 <option disabled>
-                                                                                    {{ __('Choose') }}
+                                                                                    <?php echo e(__('Choose')); ?>
+
                                                                                 </option>
-                                                                                @forelse ($REMCs as $REMC)
-                                                                                    @if (app()->getLocale() == 'ar')
+                                                                                <?php $__empty_1 = true; $__currentLoopData = $REMCs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $REMC): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                                                                                    <?php if(app()->getLocale() == 'ar'): ?>
                                                                                         <option
-                                                                                            value="{{ $REMC->REMC_id }}">
-                                                                                            {{ $REMC->ar_name }}
+                                                                                            value="<?php echo e($REMC->REMC_id); ?>">
+                                                                                            <?php echo e($REMC->ar_name); ?>
+
                                                                                         </option>
-                                                                                    @else
+                                                                                    <?php else: ?>
                                                                                         <option
-                                                                                            value="{{ $REMC->REMC_id }}">
-                                                                                            {{ $REMC->en_name }}
+                                                                                            value="<?php echo e($REMC->REMC_id); ?>">
+                                                                                            <?php echo e($REMC->en_name); ?>
+
                                                                                         </option>
-                                                                                    @endif
-                                                                                @empty
-                                                                                @endforelse
+                                                                                    <?php endif; ?>
+                                                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                                                                                <?php endif; ?>
                                                                             </select>
                                                                             <span class="text-danger">
-                                                                                @error('REMC_id')
-                                                                                    {{ $message }}
-                                                                                @enderror
+                                                                                <?php $__errorArgs = ['REMC_id'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                                    <?php echo e($message); ?>
+
+                                                                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                                             </span>
                                                                         </div>
                                                                     </div>
@@ -940,7 +1141,8 @@
                                                                 <div class="media-body">
                                                                     <div class="row">
                                                                         <div class="col-12">
-                                                                            {{ __('Commercial And Artificial Type') }}
+                                                                            <?php echo e(__('Commercial And Artificial Type')); ?>
+
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
@@ -949,27 +1151,38 @@
                                                                                 wire:model="CAAT_id" multiple
                                                                                 data-live-search="true">
                                                                                 <option disabled>
-                                                                                    {{ __('Choose') }}
+                                                                                    <?php echo e(__('Choose')); ?>
+
                                                                                 </option>
-                                                                                @forelse ($CAATs as $CAAT)
-                                                                                    @if (app()->getLocale() == 'ar')
+                                                                                <?php $__empty_1 = true; $__currentLoopData = $CAATs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $CAAT): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                                                                                    <?php if(app()->getLocale() == 'ar'): ?>
                                                                                         <option
-                                                                                            value="{{ $CAAT->CAAT_id }}">
-                                                                                            {{ $CAAT->ar_name }}
+                                                                                            value="<?php echo e($CAAT->CAAT_id); ?>">
+                                                                                            <?php echo e($CAAT->ar_name); ?>
+
                                                                                         </option>
-                                                                                    @else
+                                                                                    <?php else: ?>
                                                                                         <option
-                                                                                            value="{{ $CAAT->CAAT_id }}">
-                                                                                            {{ $CAAT->en_name }}
+                                                                                            value="<?php echo e($CAAT->CAAT_id); ?>">
+                                                                                            <?php echo e($CAAT->en_name); ?>
+
                                                                                         </option>
-                                                                                    @endif
-                                                                                @empty
-                                                                                @endforelse
+                                                                                    <?php endif; ?>
+                                                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                                                                                <?php endif; ?>
                                                                             </select>
                                                                             <span class="text-danger">
-                                                                                @error('CAAT_id')
-                                                                                    {{ $message }}
-                                                                                @enderror
+                                                                                <?php $__errorArgs = ['CAAT_id'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                                    <?php echo e($message); ?>
+
+                                                                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                                             </span>
                                                                         </div>
                                                                     </div>
@@ -993,7 +1206,8 @@
                                                                 <div class="media-body">
                                                                     <div class="row">
                                                                         <div class="col-12">
-                                                                            {{ __('Apartment Status') }}
+                                                                            <?php echo e(__('Apartment Status')); ?>
+
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
@@ -1002,27 +1216,38 @@
                                                                                 wire:model="apartment_status_id"
                                                                                 multiple data-live-search="true">
                                                                                 <option disabled>
-                                                                                    {{ __('Choose') }}
+                                                                                    <?php echo e(__('Choose')); ?>
+
                                                                                 </option>
-                                                                                @forelse ($apartment_status as $apartment_statu)
-                                                                                    @if (app()->getLocale() == 'ar')
+                                                                                <?php $__empty_1 = true; $__currentLoopData = $apartment_status; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $apartment_statu): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                                                                                    <?php if(app()->getLocale() == 'ar'): ?>
                                                                                         <option
-                                                                                            value="{{ $apartment_statu->apartment_status_id }}">
-                                                                                            {{ $apartment_statu->ar_name }}
+                                                                                            value="<?php echo e($apartment_statu->apartment_status_id); ?>">
+                                                                                            <?php echo e($apartment_statu->ar_name); ?>
+
                                                                                         </option>
-                                                                                    @else
+                                                                                    <?php else: ?>
                                                                                         <option
-                                                                                            value="{{ $apartment_statu->apartment_status_id }}">
-                                                                                            {{ $apartment_statu->en_name }}
+                                                                                            value="<?php echo e($apartment_statu->apartment_status_id); ?>">
+                                                                                            <?php echo e($apartment_statu->en_name); ?>
+
                                                                                         </option>
-                                                                                    @endif
-                                                                                @empty
-                                                                                @endforelse
+                                                                                    <?php endif; ?>
+                                                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                                                                                <?php endif; ?>
                                                                             </select>
                                                                             <span class="text-danger">
-                                                                                @error('apartment_status_id')
-                                                                                    {{ $message }}
-                                                                                @enderror
+                                                                                <?php $__errorArgs = ['apartment_status_id'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                                    <?php echo e($message); ?>
+
+                                                                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                                             </span>
                                                                         </div>
                                                                     </div>
@@ -1046,7 +1271,8 @@
                                                                 <div class="media-body">
                                                                     <div class="row">
                                                                         <div class="col-12">
-                                                                            {{ __('Building Status') }}
+                                                                            <?php echo e(__('Building Status')); ?>
+
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
@@ -1055,27 +1281,38 @@
                                                                                 wire:model="building_statuse_id"
                                                                                 multiple data-live-search="true">
                                                                                 <option disabled>
-                                                                                    {{ __('Choose') }}
+                                                                                    <?php echo e(__('Choose')); ?>
+
                                                                                 </option>
-                                                                                @forelse ($building_statuse as $building_status)
-                                                                                    @if (app()->getLocale() == 'ar')
+                                                                                <?php $__empty_1 = true; $__currentLoopData = $building_statuse; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $building_status): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                                                                                    <?php if(app()->getLocale() == 'ar'): ?>
                                                                                         <option
-                                                                                            value="{{ $building_status->building_statuse_id }}">
-                                                                                            {{ $building_status->ar_name }}
+                                                                                            value="<?php echo e($building_status->building_statuse_id); ?>">
+                                                                                            <?php echo e($building_status->ar_name); ?>
+
                                                                                         </option>
-                                                                                    @else
+                                                                                    <?php else: ?>
                                                                                         <option
-                                                                                            value="{{ $building_status->building_statuse_id }}">
-                                                                                            {{ $building_status->en_name }}
+                                                                                            value="<?php echo e($building_status->building_statuse_id); ?>">
+                                                                                            <?php echo e($building_status->en_name); ?>
+
                                                                                         </option>
-                                                                                    @endif
-                                                                                @empty
-                                                                                @endforelse
+                                                                                    <?php endif; ?>
+                                                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                                                                                <?php endif; ?>
                                                                             </select>
                                                                             <span class="text-danger">
-                                                                                @error('building_statuse_id')
-                                                                                    {{ $message }}
-                                                                                @enderror
+                                                                                <?php $__errorArgs = ['building_statuse_id'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                                    <?php echo e($message); ?>
+
+                                                                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                                             </span>
                                                                         </div>
                                                                     </div>
@@ -1099,7 +1336,8 @@
                                                                 <div class="media-body">
                                                                     <div class="row">
                                                                         <div class="col-12">
-                                                                            {{ __('Ad Status') }}
+                                                                            <?php echo e(__('Ad Status')); ?>
+
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
@@ -1108,27 +1346,38 @@
                                                                                 wire:model="ad_statuse_id" multiple
                                                                                 data-live-search="true">
                                                                                 <option disabled>
-                                                                                    {{ __('Choose The Ad Status') }}
+                                                                                    <?php echo e(__('Choose The Ad Status')); ?>
+
                                                                                 </option>
-                                                                                @forelse ($ad_statuses as $ad_statuse)
-                                                                                    @if (app()->getLocale() == 'ar')
+                                                                                <?php $__empty_1 = true; $__currentLoopData = $ad_statuses; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ad_statuse): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                                                                                    <?php if(app()->getLocale() == 'ar'): ?>
                                                                                         <option
-                                                                                            value="{{ $ad_statuse->ad_statuse_id }}">
-                                                                                            {{ $ad_statuse->ar_name }}
+                                                                                            value="<?php echo e($ad_statuse->ad_statuse_id); ?>">
+                                                                                            <?php echo e($ad_statuse->ar_name); ?>
+
                                                                                         </option>
-                                                                                    @else
+                                                                                    <?php else: ?>
                                                                                         <option
-                                                                                            value="{{ $ad_statuse->ad_statuse_id }}">
-                                                                                            {{ $ad_statuse->en_name }}
+                                                                                            value="<?php echo e($ad_statuse->ad_statuse_id); ?>">
+                                                                                            <?php echo e($ad_statuse->en_name); ?>
+
                                                                                         </option>
-                                                                                    @endif
-                                                                                @empty
-                                                                                @endforelse
+                                                                                    <?php endif; ?>
+                                                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                                                                                <?php endif; ?>
                                                                             </select>
                                                                             <span class="text-danger">
-                                                                                @error('ad_statuse_id')
-                                                                                    {{ $message }}
-                                                                                @enderror
+                                                                                <?php $__errorArgs = ['ad_statuse_id'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                                    <?php echo e($message); ?>
+
+                                                                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                                             </span>
                                                                         </div>
                                                                     </div>
@@ -1152,7 +1401,8 @@
                                                                 <div class="media-body">
                                                                     <div class="row">
                                                                         <div class="col-12">
-                                                                            {{ __('Governorate') }}
+                                                                            <?php echo e(__('Governorate')); ?>
+
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
@@ -1161,27 +1411,38 @@
                                                                                 wire:model="governorate_id" multiple
                                                                                 data-live-search="true">
                                                                                 <option disabled>
-                                                                                    {{ __('Choose The Governorate') }}
+                                                                                    <?php echo e(__('Choose The Governorate')); ?>
+
                                                                                 </option>
-                                                                                @forelse ($governorates as $governorate)
-                                                                                    @if (app()->getLocale() == 'ar')
+                                                                                <?php $__empty_1 = true; $__currentLoopData = $governorates; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $governorate): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                                                                                    <?php if(app()->getLocale() == 'ar'): ?>
                                                                                         <option
-                                                                                            value="{{ $governorate->governorate_id }}">
-                                                                                            {{ $governorate->ar_name }}
+                                                                                            value="<?php echo e($governorate->governorate_id); ?>">
+                                                                                            <?php echo e($governorate->ar_name); ?>
+
                                                                                         </option>
-                                                                                    @else
+                                                                                    <?php else: ?>
                                                                                         <option
-                                                                                            value="{{ $governorate->governorate_id }}">
-                                                                                            {{ $governorate->en_name }}
+                                                                                            value="<?php echo e($governorate->governorate_id); ?>">
+                                                                                            <?php echo e($governorate->en_name); ?>
+
                                                                                         </option>
-                                                                                    @endif
-                                                                                @empty
-                                                                                @endforelse
+                                                                                    <?php endif; ?>
+                                                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                                                                                <?php endif; ?>
                                                                             </select>
                                                                             <span class="text-danger">
-                                                                                @error('governorate_id')
-                                                                                    {{ $message }}
-                                                                                @enderror
+                                                                                <?php $__errorArgs = ['governorate_id'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                                    <?php echo e($message); ?>
+
+                                                                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                                             </span>
                                                                         </div>
                                                                     </div>
@@ -1205,7 +1466,8 @@
                                                                 <div class="media-body">
                                                                     <div class="row">
                                                                         <div class="col-12">
-                                                                            {{ __('Area') }}
+                                                                            <?php echo e(__('Area')); ?>
+
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
@@ -1214,27 +1476,38 @@
                                                                                 wire:model="area_id" multiple
                                                                                 data-live-search="true">
                                                                                 <option disabled>
-                                                                                    {{ __('Choose') }}
+                                                                                    <?php echo e(__('Choose')); ?>
+
                                                                                 </option>
-                                                                                @forelse ($areas as $area)
-                                                                                    @if (app()->getLocale() == 'ar')
+                                                                                <?php $__empty_1 = true; $__currentLoopData = $areas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $area): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                                                                                    <?php if(app()->getLocale() == 'ar'): ?>
                                                                                         <option
-                                                                                            value="{{ $area->area_id }}">
-                                                                                            {{ $area->ar_name }}
+                                                                                            value="<?php echo e($area->area_id); ?>">
+                                                                                            <?php echo e($area->ar_name); ?>
+
                                                                                         </option>
-                                                                                    @else
+                                                                                    <?php else: ?>
                                                                                         <option
-                                                                                            value="{{ $area->area_id }}">
-                                                                                            {{ $area->en_name }}
+                                                                                            value="<?php echo e($area->area_id); ?>">
+                                                                                            <?php echo e($area->en_name); ?>
+
                                                                                         </option>
-                                                                                    @endif
-                                                                                @empty
-                                                                                @endforelse
+                                                                                    <?php endif; ?>
+                                                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                                                                                <?php endif; ?>
                                                                             </select>
                                                                             <span class="text-danger">
-                                                                                @error('area_id')
-                                                                                    {{ $message }}
-                                                                                @enderror
+                                                                                <?php $__errorArgs = ['area_id'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                                    <?php echo e($message); ?>
+
+                                                                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                                             </span>
                                                                         </div>
                                                                     </div>
@@ -1258,7 +1531,8 @@
                                                                 <div class="media-body">
                                                                     <div class="row">
                                                                         <div class="col-12">
-                                                                            {{ __('Neighborhood') }}
+                                                                            <?php echo e(__('Neighborhood')); ?>
+
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
@@ -1267,27 +1541,38 @@
                                                                                 wire:model="neighborhood_id" multiple
                                                                                 data-live-search="true">
                                                                                 <option disabled>
-                                                                                    {{ __('Choose') }}
+                                                                                    <?php echo e(__('Choose')); ?>
+
                                                                                 </option>
-                                                                                @forelse ($neighborhoods as $neighborhood)
-                                                                                    @if (app()->getLocale() == 'ar')
+                                                                                <?php $__empty_1 = true; $__currentLoopData = $neighborhoods; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $neighborhood): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                                                                                    <?php if(app()->getLocale() == 'ar'): ?>
                                                                                         <option
-                                                                                            value="{{ $neighborhood->neighborhood_id }}">
-                                                                                            {{ $neighborhood->ar_name }}
+                                                                                            value="<?php echo e($neighborhood->neighborhood_id); ?>">
+                                                                                            <?php echo e($neighborhood->ar_name); ?>
+
                                                                                         </option>
-                                                                                    @else
+                                                                                    <?php else: ?>
                                                                                         <option
-                                                                                            value="{{ $neighborhood->neighborhood_id }}">
-                                                                                            {{ $neighborhood->en_name }}
+                                                                                            value="<?php echo e($neighborhood->neighborhood_id); ?>">
+                                                                                            <?php echo e($neighborhood->en_name); ?>
+
                                                                                         </option>
-                                                                                    @endif
-                                                                                @empty
-                                                                                @endforelse
+                                                                                    <?php endif; ?>
+                                                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                                                                                <?php endif; ?>
                                                                             </select>
                                                                             <span class="text-danger">
-                                                                                @error('neighborhood_id')
-                                                                                    {{ $message }}
-                                                                                @enderror
+                                                                                <?php $__errorArgs = ['neighborhood_id'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                                    <?php echo e($message); ?>
+
+                                                                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                                             </span>
                                                                         </div>
                                                                     </div>
@@ -1311,7 +1596,8 @@
                                                                 <div class="media-body">
                                                                     <div class="row">
                                                                         <div class="col-12">
-                                                                            {{ __('Land Type') }}
+                                                                            <?php echo e(__('Land Type')); ?>
+
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
@@ -1320,27 +1606,38 @@
                                                                                 wire:model="land_type_id" multiple
                                                                                 data-live-search="true">
                                                                                 <option disabled>
-                                                                                    {{ __('Choose') }}
+                                                                                    <?php echo e(__('Choose')); ?>
+
                                                                                 </option>
-                                                                                @forelse ($land_types as $land_type)
-                                                                                    @if (app()->getLocale() == 'ar')
+                                                                                <?php $__empty_1 = true; $__currentLoopData = $land_types; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $land_type): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                                                                                    <?php if(app()->getLocale() == 'ar'): ?>
                                                                                         <option
-                                                                                            value="{{ $land_type->land_type_id }}">
-                                                                                            {{ $land_type->ar_name }}
+                                                                                            value="<?php echo e($land_type->land_type_id); ?>">
+                                                                                            <?php echo e($land_type->ar_name); ?>
+
                                                                                         </option>
-                                                                                    @else
+                                                                                    <?php else: ?>
                                                                                         <option
-                                                                                            value="{{ $land_type->land_type_id }}">
-                                                                                            {{ $land_type->en_name }}
+                                                                                            value="<?php echo e($land_type->land_type_id); ?>">
+                                                                                            <?php echo e($land_type->en_name); ?>
+
                                                                                         </option>
-                                                                                    @endif
-                                                                                @empty
-                                                                                @endforelse
+                                                                                    <?php endif; ?>
+                                                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                                                                                <?php endif; ?>
                                                                             </select>
                                                                             <span class="text-danger">
-                                                                                @error('land_type_id')
-                                                                                    {{ $message }}
-                                                                                @enderror
+                                                                                <?php $__errorArgs = ['land_type_id'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                                    <?php echo e($message); ?>
+
+                                                                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                                             </span>
                                                                         </div>
                                                                     </div>
@@ -1364,7 +1661,8 @@
                                                                 <div class="media-body">
                                                                     <div class="row">
                                                                         <div class="col-12">
-                                                                            {{ __('Rent Or Sale') }}
+                                                                            <?php echo e(__('Rent Or Sale')); ?>
+
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
@@ -1373,27 +1671,38 @@
                                                                                 wire:model="ros_id" multiple
                                                                                 data-live-search="true">
                                                                                 <option disabled>
-                                                                                    {{ __('Choose') }}
+                                                                                    <?php echo e(__('Choose')); ?>
+
                                                                                 </option>
-                                                                                @forelse ($ross as $ros)
-                                                                                    @if (app()->getLocale() == 'ar')
+                                                                                <?php $__empty_1 = true; $__currentLoopData = $ross; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ros): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                                                                                    <?php if(app()->getLocale() == 'ar'): ?>
                                                                                         <option
-                                                                                            value="{{ $ros->ros_id }}">
-                                                                                            {{ $ros->ar_name }}
+                                                                                            value="<?php echo e($ros->ros_id); ?>">
+                                                                                            <?php echo e($ros->ar_name); ?>
+
                                                                                         </option>
-                                                                                    @else
+                                                                                    <?php else: ?>
                                                                                         <option
-                                                                                            value="{{ $ros->ros_id }}">
-                                                                                            {{ $ros->en_name }}
+                                                                                            value="<?php echo e($ros->ros_id); ?>">
+                                                                                            <?php echo e($ros->en_name); ?>
+
                                                                                         </option>
-                                                                                    @endif
-                                                                                @empty
-                                                                                @endforelse
+                                                                                    <?php endif; ?>
+                                                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                                                                                <?php endif; ?>
                                                                             </select>
                                                                             <span class="text-danger">
-                                                                                @error('ros_id')
-                                                                                    {{ $message }}
-                                                                                @enderror
+                                                                                <?php $__errorArgs = ['ros_id'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                                    <?php echo e($message); ?>
+
+                                                                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                                             </span>
                                                                         </div>
                                                                     </div>
@@ -1417,33 +1726,50 @@
                                                                 <div class="media-body">
                                                                     <div class="row">
                                                                         <div class="col-12">
-                                                                            {{ __('Apartment Size') }}
+                                                                            <?php echo e(__('Apartment Size')); ?>
+
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
                                                                         <div class="col-6">
                                                                             <input class="form-control" id="inputfrom"
-                                                                                placeholder="{{ __('From') }}"
+                                                                                placeholder="<?php echo e(__('From')); ?>"
                                                                                 type="number" min="0"
                                                                                 step="1" autocomplete="off"
                                                                                 wire:model="A_size_from" />
                                                                             <span class="text-danger">
-                                                                                @error('A_size_from')
-                                                                                    {{ $message }}
-                                                                                @enderror
+                                                                                <?php $__errorArgs = ['A_size_from'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                                    <?php echo e($message); ?>
+
+                                                                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                                             </span>
                                                                         </div>
                                                                         <div class="col-6">
                                                                             <input class="form-control" id="inputto"
-                                                                                placeholder="{{ __('To') }}"
+                                                                                placeholder="<?php echo e(__('To')); ?>"
                                                                                 type="number"
-                                                                                min="{{ $A_size_from }}"
+                                                                                min="<?php echo e($A_size_from); ?>"
                                                                                 step="1" autocomplete="off"
                                                                                 wire:model="A_size_to" />
                                                                             <span class="text-danger">
-                                                                                @error('A_size_to')
-                                                                                    {{ $message }}
-                                                                                @enderror
+                                                                                <?php $__errorArgs = ['A_size_to'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                                    <?php echo e($message); ?>
+
+                                                                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                                             </span>
                                                                         </div>
                                                                     </div>
@@ -1467,33 +1793,50 @@
                                                                 <div class="media-body">
                                                                     <div class="row">
                                                                         <div class="col-12">
-                                                                            {{ __('Land Size') }}
+                                                                            <?php echo e(__('Land Size')); ?>
+
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
                                                                         <div class="col-6">
                                                                             <input class="form-control" id="inputfrom"
-                                                                                placeholder="{{ __('From') }}"
+                                                                                placeholder="<?php echo e(__('From')); ?>"
                                                                                 type="number" min="0"
                                                                                 step="1" autocomplete="off"
                                                                                 wire:model="L_size_from" />
                                                                             <span class="text-danger">
-                                                                                @error('L_size_from')
-                                                                                    {{ $message }}
-                                                                                @enderror
+                                                                                <?php $__errorArgs = ['L_size_from'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                                    <?php echo e($message); ?>
+
+                                                                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                                             </span>
                                                                         </div>
                                                                         <div class="col-6">
                                                                             <input class="form-control" id="inputto"
-                                                                                placeholder="{{ __('To') }}"
+                                                                                placeholder="<?php echo e(__('To')); ?>"
                                                                                 type="number"
-                                                                                min="{{ $L_size_from }}"
+                                                                                min="<?php echo e($L_size_from); ?>"
                                                                                 step="1" autocomplete="off"
                                                                                 wire:model="L_size_to" />
                                                                             <span class="text-danger">
-                                                                                @error('L_size_to')
-                                                                                    {{ $message }}
-                                                                                @enderror
+                                                                                <?php $__errorArgs = ['L_size_to'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                                    <?php echo e($message); ?>
+
+                                                                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                                             </span>
                                                                         </div>
                                                                     </div>
@@ -1517,33 +1860,50 @@
                                                                 <div class="media-body">
                                                                     <div class="row">
                                                                         <div class="col-12">
-                                                                            {{ __('Building Size') }}
+                                                                            <?php echo e(__('Building Size')); ?>
+
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
                                                                         <div class="col-6">
                                                                             <input class="form-control" id="inputfrom"
-                                                                                placeholder="{{ __('From') }}"
+                                                                                placeholder="<?php echo e(__('From')); ?>"
                                                                                 type="number" min="0"
                                                                                 step="1" autocomplete="off"
                                                                                 wire:model="B_size_from" />
                                                                             <span class="text-danger">
-                                                                                @error('B_size_from')
-                                                                                    {{ $message }}
-                                                                                @enderror
+                                                                                <?php $__errorArgs = ['B_size_from'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                                    <?php echo e($message); ?>
+
+                                                                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                                             </span>
                                                                         </div>
                                                                         <div class="col-6">
                                                                             <input class="form-control" id="inputto"
-                                                                                placeholder="{{ __('To') }}"
+                                                                                placeholder="<?php echo e(__('To')); ?>"
                                                                                 type="number"
-                                                                                min="{{ $B_size_from }}"
+                                                                                min="<?php echo e($B_size_from); ?>"
                                                                                 step="1" autocomplete="off"
                                                                                 wire:model="B_size_to" />
                                                                             <span class="text-danger">
-                                                                                @error('B_size_to')
-                                                                                    {{ $message }}
-                                                                                @enderror
+                                                                                <?php $__errorArgs = ['B_size_to'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                                    <?php echo e($message); ?>
+
+                                                                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                                             </span>
                                                                         </div>
                                                                     </div>
@@ -1567,33 +1927,50 @@
                                                                 <div class="media-body">
                                                                     <div class="row">
                                                                         <div class="col-12">
-                                                                            {{ __('Floor') }}
+                                                                            <?php echo e(__('Floor')); ?>
+
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
                                                                         <div class="col-6">
                                                                             <input class="form-control" id="inputfrom"
-                                                                                placeholder="{{ __('From') }}"
+                                                                                placeholder="<?php echo e(__('From')); ?>"
                                                                                 type="number" min="0"
                                                                                 step="1" autocomplete="off"
                                                                                 wire:model="floor_from" />
                                                                             <span class="text-danger">
-                                                                                @error('floor_from')
-                                                                                    {{ $message }}
-                                                                                @enderror
+                                                                                <?php $__errorArgs = ['floor_from'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                                    <?php echo e($message); ?>
+
+                                                                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                                             </span>
                                                                         </div>
                                                                         <div class="col-6">
                                                                             <input class="form-control" id="inputto"
-                                                                                placeholder="{{ __('To') }}"
+                                                                                placeholder="<?php echo e(__('To')); ?>"
                                                                                 type="number"
-                                                                                min="{{ $floor_from }}"
+                                                                                min="<?php echo e($floor_from); ?>"
                                                                                 step="1" autocomplete="off"
                                                                                 wire:model="floor_to" />
                                                                             <span class="text-danger">
-                                                                                @error('floor_to')
-                                                                                    {{ $message }}
-                                                                                @enderror
+                                                                                <?php $__errorArgs = ['floor_to'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                                    <?php echo e($message); ?>
+
+                                                                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                                             </span>
                                                                         </div>
                                                                     </div>
@@ -1617,33 +1994,50 @@
                                                                 <div class="media-body">
                                                                     <div class="row">
                                                                         <div class="col-12">
-                                                                            {{ __('Room Count') }}
+                                                                            <?php echo e(__('Room Count')); ?>
+
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
                                                                         <div class="col-6">
                                                                             <input class="form-control" id="inputfrom"
-                                                                                placeholder="{{ __('From') }}"
+                                                                                placeholder="<?php echo e(__('From')); ?>"
                                                                                 type="number" min="0"
                                                                                 step="1" autocomplete="off"
                                                                                 wire:model="room_count_from" />
                                                                             <span class="text-danger">
-                                                                                @error('room_count_from')
-                                                                                    {{ $message }}
-                                                                                @enderror
+                                                                                <?php $__errorArgs = ['room_count_from'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                                    <?php echo e($message); ?>
+
+                                                                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                                             </span>
                                                                         </div>
                                                                         <div class="col-6">
                                                                             <input class="form-control" id="inputto"
-                                                                                placeholder="{{ __('To') }}"
+                                                                                placeholder="<?php echo e(__('To')); ?>"
                                                                                 type="number"
-                                                                                min="{{ $room_count_from }}"
+                                                                                min="<?php echo e($room_count_from); ?>"
                                                                                 step="1" autocomplete="off"
                                                                                 wire:model="room_count_to" />
                                                                             <span class="text-danger">
-                                                                                @error('room_count_to')
-                                                                                    {{ $message }}
-                                                                                @enderror
+                                                                                <?php $__errorArgs = ['room_count_to'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                                    <?php echo e($message); ?>
+
+                                                                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                                             </span>
                                                                         </div>
                                                                     </div>
@@ -1667,33 +2061,50 @@
                                                                 <div class="media-body">
                                                                     <div class="row">
                                                                         <div class="col-12">
-                                                                            {{ __('Price Range') }}
+                                                                            <?php echo e(__('Price Range')); ?>
+
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
                                                                         <div class="col-6">
                                                                             <input class="form-control" id="inputfrom"
-                                                                                placeholder="{{ __('From') }}"
+                                                                                placeholder="<?php echo e(__('From')); ?>"
                                                                                 type="number" min="0"
                                                                                 step="100000" autocomplete="off"
                                                                                 wire:model="P_from" />
                                                                             <span class="text-danger">
-                                                                                @error('P_from')
-                                                                                    {{ $message }}
-                                                                                @enderror
+                                                                                <?php $__errorArgs = ['P_from'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                                    <?php echo e($message); ?>
+
+                                                                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                                             </span>
                                                                         </div>
                                                                         <div class="col-6">
                                                                             <input class="form-control" id="inputto"
-                                                                                placeholder="{{ __('To') }}"
+                                                                                placeholder="<?php echo e(__('To')); ?>"
                                                                                 type="number"
-                                                                                min="{{ $P_from }}"
+                                                                                min="<?php echo e($P_from); ?>"
                                                                                 step="100000" autocomplete="off"
                                                                                 wire:model="P_to" />
                                                                             <span class="text-danger">
-                                                                                @error('P_to')
-                                                                                    {{ $message }}
-                                                                                @enderror
+                                                                                <?php $__errorArgs = ['P_to'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                                    <?php echo e($message); ?>
+
+                                                                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                                             </span>
                                                                         </div>
                                                                     </div>
@@ -1717,7 +2128,8 @@
                                                                 <div class="media-body">
                                                                     <div class="row">
                                                                         <div class="col-12">
-                                                                            {{ __('Options') }}
+                                                                            <?php echo e(__('Options')); ?>
+
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
@@ -1728,7 +2140,7 @@
                                                                                     id="flexSwitchCheckDefault"
                                                                                     wire:model="elevator">
                                                                                 <label class="form-check-label"
-                                                                                    for="flexSwitchCheckDefault">{{ __('Elevator') }}</label>
+                                                                                    for="flexSwitchCheckDefault"><?php echo e(__('Elevator')); ?></label>
                                                                             </div>
                                                                             <div class="form-check form-switch">
                                                                                 <input class="form-check-input"
@@ -1736,7 +2148,7 @@
                                                                                     id="flexSwitchCheckDefault"
                                                                                     wire:model="ads_without_picture">
                                                                                 <label class="form-check-label"
-                                                                                    for="flexSwitchCheckDefault">{{ __('Ads Without Picture') }}</label>
+                                                                                    for="flexSwitchCheckDefault"><?php echo e(__('Ads Without Picture')); ?></label>
                                                                             </div>
                                                                             <div class="form-check form-switch">
                                                                                 <input class="form-check-input"
@@ -1744,7 +2156,7 @@
                                                                                     id="flexSwitchCheckDefault"
                                                                                     wire:model="ads_without_price">
                                                                                 <label class="form-check-label"
-                                                                                    for="flexSwitchCheckDefault">{{ __('Ads Without Price') }}</label>
+                                                                                    for="flexSwitchCheckDefault"><?php echo e(__('Ads Without Price')); ?></label>
                                                                             </div>
                                                                             <div class="form-check form-switch">
                                                                                 <input class="form-check-input"
@@ -1752,7 +2164,7 @@
                                                                                     id="flexSwitchCheckDefault"
                                                                                     wire:model="spcial_ad">
                                                                                 <label class="form-check-label"
-                                                                                    for="flexSwitchCheckDefault">{{ __('Spcial Ad') }}</label>
+                                                                                    for="flexSwitchCheckDefault"><?php echo e(__('Spcial Ad')); ?></label>
                                                                             </div>
 
                                                                         </div>
@@ -1777,7 +2189,8 @@
                                                                 <div class="media-body">
                                                                     <div class="row">
                                                                         <div class="col-12">
-                                                                            {{ __('Rental Time') }}
+                                                                            <?php echo e(__('Rental Time')); ?>
+
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
@@ -1786,27 +2199,38 @@
                                                                                 wire:model="rental_time_id" multiple
                                                                                 data-live-search="true">
                                                                                 <option disabled>
-                                                                                    {{ __('Choose The Rental Time') }}
+                                                                                    <?php echo e(__('Choose The Rental Time')); ?>
+
                                                                                 </option>
-                                                                                @forelse ($rentalTimes as $rentalTime)
-                                                                                    @if (app()->getLocale() == 'ar')
+                                                                                <?php $__empty_1 = true; $__currentLoopData = $rentalTimes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $rentalTime): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                                                                                    <?php if(app()->getLocale() == 'ar'): ?>
                                                                                         <option
-                                                                                            value="{{ $rentalTime->rental_time_id }}">
-                                                                                            {{ $rentalTime->ar_rent_name }}
+                                                                                            value="<?php echo e($rentalTime->rental_time_id); ?>">
+                                                                                            <?php echo e($rentalTime->ar_rent_name); ?>
+
                                                                                         </option>
-                                                                                    @else
+                                                                                    <?php else: ?>
                                                                                         <option
-                                                                                            value="{{ $rentalTime->rental_time_id }}">
-                                                                                            {{ $rentalTime->en_rent_name }}
+                                                                                            value="<?php echo e($rentalTime->rental_time_id); ?>">
+                                                                                            <?php echo e($rentalTime->en_rent_name); ?>
+
                                                                                         </option>
-                                                                                    @endif
-                                                                                @empty
-                                                                                @endforelse
+                                                                                    <?php endif; ?>
+                                                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                                                                                <?php endif; ?>
                                                                             </select>
                                                                             <span class="text-danger">
-                                                                                @error('rental_time_id')
-                                                                                    {{ $message }}
-                                                                                @enderror
+                                                                                <?php $__errorArgs = ['rental_time_id'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                                    <?php echo e($message); ?>
+
+                                                                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                                             </span>
                                                                         </div>
                                                                     </div>
@@ -1839,113 +2263,129 @@
             </div>
         </div>
         <div class="row" id="ads" wire:init="loadData" wire:loading.remove>
-            @if ($ads)
-                @forelse ($ads as $ad)
-                    @if (app()->getLocale() == 'ar')
+            <?php if($ads): ?>
+                <?php $__empty_1 = true; $__currentLoopData = $ads; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ad): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                    <?php if(app()->getLocale() == 'ar'): ?>
                         <div class="col-6 col-sm-4 col-md-3 mb-5">
-                            <a href="{{ route('website.ad', [app()->getLocale(), 'category' => 2, 'id' => $ad->real_estate_id]) }}"
+                            <a href="<?php echo e(route('website.ad', [app()->getLocale(), 'category' => 2, 'id' => $ad->real_estate_id])); ?>"
                                 style="text-decoration: none; color:black;">
                                 <div class="card">
                                     <div class="card-image">
-                                        <span class="card-notify-badge">{{ $ad->price ?? 0 }}
-                                            {{ __('SYP') }}</span>
-                                        {{-- <span class="card-notify-year">{{ __('Cars') }}</span> --}}
-                                        @if (file_exists('../storage/app/img/' . array_values(json_decode($ad->picture))[0]))
+                                        <span class="card-notify-badge"><?php echo e($ad->price ?? 0); ?>
+
+                                            <?php echo e(__('SYP')); ?></span>
+                                        
+                                        <?php if(file_exists('../storage/app/img/' . array_values(json_decode($ad->picture))[0])): ?>
                                             <img class="img-fluid img"
-                                                src="data:image/png|jpg|jpeg;base64, {!! base64_encode(file_get_contents('../storage/app/img/' . array_values(json_decode($ad->picture))[0])) !!}"
+                                                src="data:image/png|jpg|jpeg;base64, <?php echo base64_encode(file_get_contents('../storage/app/img/' . array_values(json_decode($ad->picture))[0])); ?>"
                                                 alt="Alternate Text" />
-                                        @else
+                                        <?php else: ?>
                                             <img class="img-fluid img"
-                                                src="data:image/png|jpg|jpeg;base64, {!! base64_encode(file_get_contents('../storage/app/img/defualt.png')) !!}"
+                                                src="data:image/png|jpg|jpeg;base64, <?php echo base64_encode(file_get_contents('../storage/app/img/defualt.png')); ?>"
                                                 alt="Alternate Text" />
-                                        @endif
+                                        <?php endif; ?>
                                     </div>
                                     <div class="card-body">
-                                        <span>{{ $ad->ar_title }}</span>
+                                        <span><?php echo e($ad->ar_title); ?></span>
                                     </div>
                                     <div class="card-image-overlay p-1">
-                                        @if (\Carbon\Carbon::parse($ad->created_at)->diffInDays() > 0)
-                                            <i class="bi bi-clock"></i> <span class="since">{{ __('Since ') }}
-                                                {{ \Carbon\Carbon::parse($ad->created_at)->diffInDays() . __(' Days') }}
+                                        <?php if(\Carbon\Carbon::parse($ad->created_at)->diffInDays() > 0): ?>
+                                            <i class="bi bi-clock"></i> <span class="since"><?php echo e(__('Since ')); ?>
+
+                                                <?php echo e(\Carbon\Carbon::parse($ad->created_at)->diffInDays() . __(' Days')); ?>
+
                                                 | <i class="bi bi-geo-alt-fill"></i>
-                                                {{ $ad->governorate->ar_name ?? '' }}
+                                                <?php echo e($ad->governorate->ar_name ?? ''); ?>
+
                                             </span>
-                                        @else
-                                            <i class="bi bi-clock"></i> <span class="since">{{ __('Since ') }}
-                                                {{ \Carbon\Carbon::parse($ad->created_at)->addDays(\Carbon\Carbon::parse($ad->created_at)->diffInDays())->diffInHours() . __(' Hours') }}
+                                        <?php else: ?>
+                                            <i class="bi bi-clock"></i> <span class="since"><?php echo e(__('Since ')); ?>
+
+                                                <?php echo e(\Carbon\Carbon::parse($ad->created_at)->addDays(\Carbon\Carbon::parse($ad->created_at)->diffInDays())->diffInHours() . __(' Hours')); ?>
+
                                                 | <i class="bi bi-geo-alt-fill"></i>
-                                                {{ $ad->governorate->ar_name ?? '' }}
+                                                <?php echo e($ad->governorate->ar_name ?? ''); ?>
+
                                             </span>
-                                        @endif
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                             </a>
                         </div>
-                    @else
+                    <?php else: ?>
                         <div class="col-6 col-sm-4 col-md-3 mb-5">
-                            <a href="{{ route('website.ad', [app()->getLocale(), 'category' => 2, 'id' => $ad->real_estate_id]) }}"
+                            <a href="<?php echo e(route('website.ad', [app()->getLocale(), 'category' => 2, 'id' => $ad->real_estate_id])); ?>"
                                 style="text-decoration: none; color:black;">
                                 <div class="card">
                                     <div class="card-image">
-                                        <span class="card-notify-badge">{{ $ad->price ?? 0 }}
-                                            {{ __('SYP') }}</span>
-                                        {{-- <span class="card-notify-year">{{ __('Cars') }}</span> --}}
-                                        @if (file_exists('../storage/app/img/' . array_values(json_decode($ad->picture))[0]))
+                                        <span class="card-notify-badge"><?php echo e($ad->price ?? 0); ?>
+
+                                            <?php echo e(__('SYP')); ?></span>
+                                        
+                                        <?php if(file_exists('../storage/app/img/' . array_values(json_decode($ad->picture))[0])): ?>
                                             <img class="img-fluid img"
-                                                src="data:image/png|jpg|jpeg;base64, {!! base64_encode(file_get_contents('../storage/app/img/' . array_values(json_decode($ad->picture))[0])) !!}"
+                                                src="data:image/png|jpg|jpeg;base64, <?php echo base64_encode(file_get_contents('../storage/app/img/' . array_values(json_decode($ad->picture))[0])); ?>"
                                                 alt="Alternate Text" />
-                                        @else
+                                        <?php else: ?>
                                             <img class="img-fluid img"
-                                                src="data:image/png|jpg|jpeg;base64, {!! base64_encode(file_get_contents('../storage/app/img/defualt.png')) !!}"
+                                                src="data:image/png|jpg|jpeg;base64, <?php echo base64_encode(file_get_contents('../storage/app/img/defualt.png')); ?>"
                                                 alt="Alternate Text" />
-                                        @endif
+                                        <?php endif; ?>
                                     </div>
                                     <div class="card-body">
-                                        <span>{{ $ad->en_title }}</span>
+                                        <span><?php echo e($ad->en_title); ?></span>
                                     </div>
                                     <div class="card-image-overlay p-1">
-                                        @if (\Carbon\Carbon::parse($ad->created_at)->diffInDays() > 0)
-                                            <i class="bi bi-clock"></i> <span class="since">{{ __('Since ') }}
-                                                {{ \Carbon\Carbon::parse($ad->created_at)->diffInDays() . __(' Days') }}
+                                        <?php if(\Carbon\Carbon::parse($ad->created_at)->diffInDays() > 0): ?>
+                                            <i class="bi bi-clock"></i> <span class="since"><?php echo e(__('Since ')); ?>
+
+                                                <?php echo e(\Carbon\Carbon::parse($ad->created_at)->diffInDays() . __(' Days')); ?>
+
                                                 | <i class="bi bi-geo-alt-fill"></i>
-                                                {{ $ad->governorate->en_name ?? '' }}
+                                                <?php echo e($ad->governorate->en_name ?? ''); ?>
+
                                             </span>
-                                        @else
-                                            <i class="bi bi-clock"></i> <span class="since">{{ __('Since ') }}
-                                                {{ \Carbon\Carbon::parse($ad->created_at)->addDays(\Carbon\Carbon::parse($ad->created_at)->diffInDays())->diffInHours() . __(' Hours') }}
+                                        <?php else: ?>
+                                            <i class="bi bi-clock"></i> <span class="since"><?php echo e(__('Since ')); ?>
+
+                                                <?php echo e(\Carbon\Carbon::parse($ad->created_at)->addDays(\Carbon\Carbon::parse($ad->created_at)->diffInDays())->diffInHours() . __(' Hours')); ?>
+
                                                 | <i class="bi bi-geo-alt-fill"></i>
-                                                {{ $ad->governorate->en_name ?? '' }}
+                                                <?php echo e($ad->governorate->en_name ?? ''); ?>
+
                                             </span>
-                                        @endif
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                             </a>
                         </div>
-                    @endif
-                @empty
-                    <h4 class="text-center text-secondary">{{ __('Empty') }}</h4>
-                @endforelse
+                    <?php endif; ?>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                    <h4 class="text-center text-secondary"><?php echo e(__('Empty')); ?></h4>
+                <?php endif; ?>
                 <div class="d-flex justify-content-center">
-                    {{ $ads->links() }}
+                    <?php echo e($ads->links()); ?>
+
                 </div>
-            @else
-                <h4 class="text-center text-secondary">{{ __('Empty') }}</h4>
-            @endif
+            <?php else: ?>
+                <h4 class="text-center text-secondary"><?php echo e(__('Empty')); ?></h4>
+            <?php endif; ?>
         </div>
-    @endif
-    @if ($category == 3)
-        <h5 class="mb-5">{{ __('Jobs') }}</h5>
+    <?php endif; ?>
+    <?php if($category == 3): ?>
+        <h5 class="mb-5"><?php echo e(__('Jobs')); ?></h5>
         <div class="accordion accordion-flush" id="accordionFlushExample">
             <div class="accordion-item">
                 <h2 class="accordion-header" id="flush-headingOne">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        {{--  --}} data-bs-target="#flush-collapseOne" aria-expanded="false"
+                         data-bs-target="#flush-collapseOne" aria-expanded="false"
                         aria-controls="flush-collapseOne">
-                        {{ __('Filters') }}
+                        <?php echo e(__('Filters')); ?>
+
                     </button>
                 </h2>
                 <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
-                    {{--  --}} data-bs-parent="#accordionFlushExample" wire:ignore>
+                     data-bs-parent="#accordionFlushExample" wire:ignore>
                     <div class="accordion-body" style="background-color:#e7e6e6">
                         <div class="container-fluid">
                             <div class="row">
@@ -1960,7 +2400,8 @@
                                                                 <div class="media-body">
                                                                     <div class="row">
                                                                         <div class="col-12">
-                                                                            {{ __('Job Category') }}
+                                                                            <?php echo e(__('Job Category')); ?>
+
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
@@ -1969,27 +2410,38 @@
                                                                                 wire:model="jobs_categorie_id" multiple
                                                                                 data-live-search="true">
                                                                                 <option disabled>
-                                                                                    {{ __('Choose') }}
+                                                                                    <?php echo e(__('Choose')); ?>
+
                                                                                 </option>
-                                                                                @forelse ($jobs_categories as $jobs_categorie)
-                                                                                    @if (app()->getLocale() == 'ar')
+                                                                                <?php $__empty_1 = true; $__currentLoopData = $jobs_categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $jobs_categorie): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                                                                                    <?php if(app()->getLocale() == 'ar'): ?>
                                                                                         <option
-                                                                                            value="{{ $jobs_categorie->jobs_categorie_id }}">
-                                                                                            {{ $jobs_categorie->ar_name }}
+                                                                                            value="<?php echo e($jobs_categorie->jobs_categorie_id); ?>">
+                                                                                            <?php echo e($jobs_categorie->ar_name); ?>
+
                                                                                         </option>
-                                                                                    @else
+                                                                                    <?php else: ?>
                                                                                         <option
-                                                                                            value="{{ $jobs_categorie->jobs_categorie_id }}">
-                                                                                            {{ $jobs_categorie->en_name }}
+                                                                                            value="<?php echo e($jobs_categorie->jobs_categorie_id); ?>">
+                                                                                            <?php echo e($jobs_categorie->en_name); ?>
+
                                                                                         </option>
-                                                                                    @endif
-                                                                                @empty
-                                                                                @endforelse
+                                                                                    <?php endif; ?>
+                                                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                                                                                <?php endif; ?>
                                                                             </select>
                                                                             <span class="text-danger">
-                                                                                @error('jobs_categorie_id')
-                                                                                    {{ $message }}
-                                                                                @enderror
+                                                                                <?php $__errorArgs = ['jobs_categorie_id'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                                    <?php echo e($message); ?>
+
+                                                                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                                             </span>
                                                                         </div>
                                                                     </div>
@@ -2013,7 +2465,8 @@
                                                                 <div class="media-body">
                                                                     <div class="row">
                                                                         <div class="col-12">
-                                                                            {{ __('Person Languages') }}
+                                                                            <?php echo e(__('Person Languages')); ?>
+
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
@@ -2022,27 +2475,38 @@
                                                                                 wire:model="lang_id" multiple
                                                                                 data-live-search="true">
                                                                                 <option disabled>
-                                                                                    {{ __('Choose') }}
+                                                                                    <?php echo e(__('Choose')); ?>
+
                                                                                 </option>
-                                                                                @forelse ($langs as $lang)
-                                                                                    @if (app()->getLocale() == 'ar')
+                                                                                <?php $__empty_1 = true; $__currentLoopData = $langs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $lang): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                                                                                    <?php if(app()->getLocale() == 'ar'): ?>
                                                                                         <option
-                                                                                            value="{{ $lang->lang_id }}">
-                                                                                            {{ $lang->ar_name }}
+                                                                                            value="<?php echo e($lang->lang_id); ?>">
+                                                                                            <?php echo e($lang->ar_name); ?>
+
                                                                                         </option>
-                                                                                    @else
+                                                                                    <?php else: ?>
                                                                                         <option
-                                                                                            value="{{ $lang->lang_id }}">
-                                                                                            {{ $lang->en_name }}
+                                                                                            value="<?php echo e($lang->lang_id); ?>">
+                                                                                            <?php echo e($lang->en_name); ?>
+
                                                                                         </option>
-                                                                                    @endif
-                                                                                @empty
-                                                                                @endforelse
+                                                                                    <?php endif; ?>
+                                                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                                                                                <?php endif; ?>
                                                                             </select>
                                                                             <span class="text-danger">
-                                                                                @error('lang_id')
-                                                                                    {{ $message }}
-                                                                                @enderror
+                                                                                <?php $__errorArgs = ['lang_id'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                                    <?php echo e($message); ?>
+
+                                                                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                                             </span>
                                                                         </div>
                                                                     </div>
@@ -2066,7 +2530,8 @@
                                                                 <div class="media-body">
                                                                     <div class="row">
                                                                         <div class="col-12">
-                                                                            {{ __('Years Of Experience') }}
+                                                                            <?php echo e(__('Years Of Experience')); ?>
+
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
@@ -2075,27 +2540,38 @@
                                                                                 wire:model="YOE_id" multiple
                                                                                 data-live-search="true">
                                                                                 <option disabled>
-                                                                                    {{ __('Choose') }}
+                                                                                    <?php echo e(__('Choose')); ?>
+
                                                                                 </option>
-                                                                                @forelse ($YOEs as $YOE)
-                                                                                    @if (app()->getLocale() == 'ar')
+                                                                                <?php $__empty_1 = true; $__currentLoopData = $YOEs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $YOE): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                                                                                    <?php if(app()->getLocale() == 'ar'): ?>
                                                                                         <option
-                                                                                            value="{{ $YOE->YOE_id }}">
-                                                                                            {{ $YOE->ar_name }}
+                                                                                            value="<?php echo e($YOE->YOE_id); ?>">
+                                                                                            <?php echo e($YOE->ar_name); ?>
+
                                                                                         </option>
-                                                                                    @else
+                                                                                    <?php else: ?>
                                                                                         <option
-                                                                                            value="{{ $YOE->YOE_id }}">
-                                                                                            {{ $YOE->en_name }}
+                                                                                            value="<?php echo e($YOE->YOE_id); ?>">
+                                                                                            <?php echo e($YOE->en_name); ?>
+
                                                                                         </option>
-                                                                                    @endif
-                                                                                @empty
-                                                                                @endforelse
+                                                                                    <?php endif; ?>
+                                                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                                                                                <?php endif; ?>
                                                                             </select>
                                                                             <span class="text-danger">
-                                                                                @error('YOE_id')
-                                                                                    {{ $message }}
-                                                                                @enderror
+                                                                                <?php $__errorArgs = ['YOE_id'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                                    <?php echo e($message); ?>
+
+                                                                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                                             </span>
                                                                         </div>
                                                                     </div>
@@ -2120,7 +2596,8 @@
                                                                 <div class="media-body">
                                                                     <div class="row">
                                                                         <div class="col-12">
-                                                                            {{ __('Ad Status') }}
+                                                                            <?php echo e(__('Ad Status')); ?>
+
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
@@ -2129,27 +2606,38 @@
                                                                                 wire:model="ad_statuse_id" multiple
                                                                                 data-live-search="true">
                                                                                 <option disabled>
-                                                                                    {{ __('Choose The Ad Status') }}
+                                                                                    <?php echo e(__('Choose The Ad Status')); ?>
+
                                                                                 </option>
-                                                                                @forelse ($ad_statuses as $ad_statuse)
-                                                                                    @if (app()->getLocale() == 'ar')
+                                                                                <?php $__empty_1 = true; $__currentLoopData = $ad_statuses; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ad_statuse): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                                                                                    <?php if(app()->getLocale() == 'ar'): ?>
                                                                                         <option
-                                                                                            value="{{ $ad_statuse->ad_statuse_id }}">
-                                                                                            {{ $ad_statuse->ar_name }}
+                                                                                            value="<?php echo e($ad_statuse->ad_statuse_id); ?>">
+                                                                                            <?php echo e($ad_statuse->ar_name); ?>
+
                                                                                         </option>
-                                                                                    @else
+                                                                                    <?php else: ?>
                                                                                         <option
-                                                                                            value="{{ $ad_statuse->ad_statuse_id }}">
-                                                                                            {{ $ad_statuse->en_name }}
+                                                                                            value="<?php echo e($ad_statuse->ad_statuse_id); ?>">
+                                                                                            <?php echo e($ad_statuse->en_name); ?>
+
                                                                                         </option>
-                                                                                    @endif
-                                                                                @empty
-                                                                                @endforelse
+                                                                                    <?php endif; ?>
+                                                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                                                                                <?php endif; ?>
                                                                             </select>
                                                                             <span class="text-danger">
-                                                                                @error('ad_statuse_id')
-                                                                                    {{ $message }}
-                                                                                @enderror
+                                                                                <?php $__errorArgs = ['ad_statuse_id'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                                    <?php echo e($message); ?>
+
+                                                                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                                             </span>
                                                                         </div>
                                                                     </div>
@@ -2173,7 +2661,8 @@
                                                                 <div class="media-body">
                                                                     <div class="row">
                                                                         <div class="col-12">
-                                                                            {{ __('Governorate') }}
+                                                                            <?php echo e(__('Governorate')); ?>
+
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
@@ -2182,27 +2671,38 @@
                                                                                 wire:model="governorate_id" multiple
                                                                                 data-live-search="true">
                                                                                 <option disabled>
-                                                                                    {{ __('Choose The Governorate') }}
+                                                                                    <?php echo e(__('Choose The Governorate')); ?>
+
                                                                                 </option>
-                                                                                @forelse ($governorates as $governorate)
-                                                                                    @if (app()->getLocale() == 'ar')
+                                                                                <?php $__empty_1 = true; $__currentLoopData = $governorates; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $governorate): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                                                                                    <?php if(app()->getLocale() == 'ar'): ?>
                                                                                         <option
-                                                                                            value="{{ $governorate->governorate_id }}">
-                                                                                            {{ $governorate->ar_name }}
+                                                                                            value="<?php echo e($governorate->governorate_id); ?>">
+                                                                                            <?php echo e($governorate->ar_name); ?>
+
                                                                                         </option>
-                                                                                    @else
+                                                                                    <?php else: ?>
                                                                                         <option
-                                                                                            value="{{ $governorate->governorate_id }}">
-                                                                                            {{ $governorate->en_name }}
+                                                                                            value="<?php echo e($governorate->governorate_id); ?>">
+                                                                                            <?php echo e($governorate->en_name); ?>
+
                                                                                         </option>
-                                                                                    @endif
-                                                                                @empty
-                                                                                @endforelse
+                                                                                    <?php endif; ?>
+                                                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                                                                                <?php endif; ?>
                                                                             </select>
                                                                             <span class="text-danger">
-                                                                                @error('governorate_id')
-                                                                                    {{ $message }}
-                                                                                @enderror
+                                                                                <?php $__errorArgs = ['governorate_id'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                                    <?php echo e($message); ?>
+
+                                                                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                                             </span>
                                                                         </div>
                                                                     </div>
@@ -2226,7 +2726,8 @@
                                                                 <div class="media-body">
                                                                     <div class="row">
                                                                         <div class="col-12">
-                                                                            {{ __('Area') }}
+                                                                            <?php echo e(__('Area')); ?>
+
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
@@ -2235,27 +2736,38 @@
                                                                                 wire:model="area_id" multiple
                                                                                 data-live-search="true">
                                                                                 <option disabled>
-                                                                                    {{ __('Choose') }}
+                                                                                    <?php echo e(__('Choose')); ?>
+
                                                                                 </option>
-                                                                                @forelse ($areas as $area)
-                                                                                    @if (app()->getLocale() == 'ar')
+                                                                                <?php $__empty_1 = true; $__currentLoopData = $areas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $area): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                                                                                    <?php if(app()->getLocale() == 'ar'): ?>
                                                                                         <option
-                                                                                            value="{{ $area->area_id }}">
-                                                                                            {{ $area->ar_name }}
+                                                                                            value="<?php echo e($area->area_id); ?>">
+                                                                                            <?php echo e($area->ar_name); ?>
+
                                                                                         </option>
-                                                                                    @else
+                                                                                    <?php else: ?>
                                                                                         <option
-                                                                                            value="{{ $area->area_id }}">
-                                                                                            {{ $area->en_name }}
+                                                                                            value="<?php echo e($area->area_id); ?>">
+                                                                                            <?php echo e($area->en_name); ?>
+
                                                                                         </option>
-                                                                                    @endif
-                                                                                @empty
-                                                                                @endforelse
+                                                                                    <?php endif; ?>
+                                                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                                                                                <?php endif; ?>
                                                                             </select>
                                                                             <span class="text-danger">
-                                                                                @error('area_id')
-                                                                                    {{ $message }}
-                                                                                @enderror
+                                                                                <?php $__errorArgs = ['area_id'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                                    <?php echo e($message); ?>
+
+                                                                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                                             </span>
                                                                         </div>
                                                                     </div>
@@ -2279,35 +2791,52 @@
                                                                 <div class="media-body">
                                                                     <div class="row">
                                                                         <div class="col-12">
-                                                                            {{ __('Work Hour') }}
+                                                                            <?php echo e(__('Work Hour')); ?>
+
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
                                                                         <div class="col-6">
                                                                             <input class="form-control"
                                                                                 id="inputfrom"
-                                                                                placeholder="{{ __('From') }}"
+                                                                                placeholder="<?php echo e(__('From')); ?>"
                                                                                 type="number" min="0"
                                                                                 step="1" autocomplete="off"
                                                                                 wire:model="work_hour_from" />
                                                                             <span class="text-danger">
-                                                                                @error('work_hour_from')
-                                                                                    {{ $message }}
-                                                                                @enderror
+                                                                                <?php $__errorArgs = ['work_hour_from'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                                    <?php echo e($message); ?>
+
+                                                                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                                             </span>
                                                                         </div>
                                                                         <div class="col-6">
                                                                             <input class="form-control"
                                                                                 id="inputto"
-                                                                                placeholder="{{ __('To') }}"
+                                                                                placeholder="<?php echo e(__('To')); ?>"
                                                                                 type="number"
-                                                                                min="{{ $work_hour_from }}"
+                                                                                min="<?php echo e($work_hour_from); ?>"
                                                                                 step="1" autocomplete="off"
                                                                                 wire:model="work_hour_to" />
                                                                             <span class="text-danger">
-                                                                                @error('work_hour_to')
-                                                                                    {{ $message }}
-                                                                                @enderror
+                                                                                <?php $__errorArgs = ['work_hour_to'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                                    <?php echo e($message); ?>
+
+                                                                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                                             </span>
                                                                         </div>
                                                                     </div>
@@ -2331,35 +2860,52 @@
                                                                 <div class="media-body">
                                                                     <div class="row">
                                                                         <div class="col-12">
-                                                                            {{ __('Extra Work Hour') }}
+                                                                            <?php echo e(__('Extra Work Hour')); ?>
+
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
                                                                         <div class="col-6">
                                                                             <input class="form-control"
                                                                                 id="inputfrom"
-                                                                                placeholder="{{ __('From') }}"
+                                                                                placeholder="<?php echo e(__('From')); ?>"
                                                                                 type="number" min="0"
                                                                                 step="1" autocomplete="off"
                                                                                 wire:model="extra_work_hour_from" />
                                                                             <span class="text-danger">
-                                                                                @error('extra_work_hour_from')
-                                                                                    {{ $message }}
-                                                                                @enderror
+                                                                                <?php $__errorArgs = ['extra_work_hour_from'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                                    <?php echo e($message); ?>
+
+                                                                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                                             </span>
                                                                         </div>
                                                                         <div class="col-6">
                                                                             <input class="form-control"
                                                                                 id="inputto"
-                                                                                placeholder="{{ __('To') }}"
+                                                                                placeholder="<?php echo e(__('To')); ?>"
                                                                                 type="number"
-                                                                                min="{{ $extra_work_hour_from }}"
+                                                                                min="<?php echo e($extra_work_hour_from); ?>"
                                                                                 step="1" autocomplete="off"
                                                                                 wire:model="extra_work_hour_to" />
                                                                             <span class="text-danger">
-                                                                                @error('extra_work_hour_to')
-                                                                                    {{ $message }}
-                                                                                @enderror
+                                                                                <?php $__errorArgs = ['extra_work_hour_to'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                                    <?php echo e($message); ?>
+
+                                                                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                                             </span>
                                                                         </div>
                                                                     </div>
@@ -2383,35 +2929,52 @@
                                                                 <div class="media-body">
                                                                     <div class="row">
                                                                         <div class="col-12">
-                                                                            {{ __('Work Hour Rent') }}
+                                                                            <?php echo e(__('Work Hour Rent')); ?>
+
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
                                                                         <div class="col-6">
                                                                             <input class="form-control"
                                                                                 id="inputfrom"
-                                                                                placeholder="{{ __('From') }}"
+                                                                                placeholder="<?php echo e(__('From')); ?>"
                                                                                 type="number" min="0"
                                                                                 step="1" autocomplete="off"
                                                                                 wire:model="work_hour_rent_from" />
                                                                             <span class="text-danger">
-                                                                                @error('work_hour_rent_from')
-                                                                                    {{ $message }}
-                                                                                @enderror
+                                                                                <?php $__errorArgs = ['work_hour_rent_from'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                                    <?php echo e($message); ?>
+
+                                                                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                                             </span>
                                                                         </div>
                                                                         <div class="col-6">
                                                                             <input class="form-control"
                                                                                 id="inputto"
-                                                                                placeholder="{{ __('To') }}"
+                                                                                placeholder="<?php echo e(__('To')); ?>"
                                                                                 type="number"
-                                                                                min="{{ $work_hour_rent_from }}"
+                                                                                min="<?php echo e($work_hour_rent_from); ?>"
                                                                                 step="1" autocomplete="off"
                                                                                 wire:model="work_hour_rent_to" />
                                                                             <span class="text-danger">
-                                                                                @error('work_hour_rent_to')
-                                                                                    {{ $message }}
-                                                                                @enderror
+                                                                                <?php $__errorArgs = ['work_hour_rent_to'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                                    <?php echo e($message); ?>
+
+                                                                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                                             </span>
                                                                         </div>
                                                                     </div>
@@ -2435,35 +2998,52 @@
                                                                 <div class="media-body">
                                                                     <div class="row">
                                                                         <div class="col-12">
-                                                                            {{ __('Age') }}
+                                                                            <?php echo e(__('Age')); ?>
+
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
                                                                         <div class="col-6">
                                                                             <input class="form-control"
                                                                                 id="inputfrom"
-                                                                                placeholder="{{ __('From') }}"
+                                                                                placeholder="<?php echo e(__('From')); ?>"
                                                                                 type="number" min="0"
                                                                                 step="1" autocomplete="off"
                                                                                 wire:model="age_from" />
                                                                             <span class="text-danger">
-                                                                                @error('age_from')
-                                                                                    {{ $message }}
-                                                                                @enderror
+                                                                                <?php $__errorArgs = ['age_from'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                                    <?php echo e($message); ?>
+
+                                                                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                                             </span>
                                                                         </div>
                                                                         <div class="col-6">
                                                                             <input class="form-control"
                                                                                 id="inputto"
-                                                                                placeholder="{{ __('To') }}"
+                                                                                placeholder="<?php echo e(__('To')); ?>"
                                                                                 type="number"
-                                                                                min="{{ $age_from }}"
+                                                                                min="<?php echo e($age_from); ?>"
                                                                                 step="1" autocomplete="off"
                                                                                 wire:model="age_to" />
                                                                             <span class="text-danger">
-                                                                                @error('age_to')
-                                                                                    {{ $message }}
-                                                                                @enderror
+                                                                                <?php $__errorArgs = ['age_to'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                                    <?php echo e($message); ?>
+
+                                                                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                                             </span>
                                                                         </div>
                                                                     </div>
@@ -2487,35 +3067,52 @@
                                                                 <div class="media-body">
                                                                     <div class="row">
                                                                         <div class="col-12">
-                                                                            {{ __('Salary Range') }}
+                                                                            <?php echo e(__('Salary Range')); ?>
+
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
                                                                         <div class="col-6">
                                                                             <input class="form-control"
                                                                                 id="inputfrom"
-                                                                                placeholder="{{ __('From') }}"
+                                                                                placeholder="<?php echo e(__('From')); ?>"
                                                                                 type="number" min="0"
                                                                                 step="100000" autocomplete="off"
                                                                                 wire:model="P_from" />
                                                                             <span class="text-danger">
-                                                                                @error('P_from')
-                                                                                    {{ $message }}
-                                                                                @enderror
+                                                                                <?php $__errorArgs = ['P_from'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                                    <?php echo e($message); ?>
+
+                                                                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                                             </span>
                                                                         </div>
                                                                         <div class="col-6">
                                                                             <input class="form-control"
                                                                                 id="inputto"
-                                                                                placeholder="{{ __('To') }}"
+                                                                                placeholder="<?php echo e(__('To')); ?>"
                                                                                 type="number"
-                                                                                min="{{ $P_from }}"
+                                                                                min="<?php echo e($P_from); ?>"
                                                                                 step="100000" autocomplete="off"
                                                                                 wire:model="P_to" />
                                                                             <span class="text-danger">
-                                                                                @error('P_to')
-                                                                                    {{ $message }}
-                                                                                @enderror
+                                                                                <?php $__errorArgs = ['P_to'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                                                    <?php echo e($message); ?>
+
+                                                                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                                             </span>
                                                                         </div>
                                                                     </div>
@@ -2539,7 +3136,8 @@
                                                                 <div class="media-body">
                                                                     <div class="row">
                                                                         <div class="col-12">
-                                                                            {{ __('Options') }}
+                                                                            <?php echo e(__('Options')); ?>
+
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
@@ -2550,7 +3148,7 @@
                                                                                     id="flexSwitchCheckDefault"
                                                                                     wire:model="driving_license">
                                                                                 <label class="form-check-label"
-                                                                                    for="flexSwitchCheckDefault">{{ __('Driving License') }}</label>
+                                                                                    for="flexSwitchCheckDefault"><?php echo e(__('Driving License')); ?></label>
                                                                             </div>
                                                                             <div class="form-check form-switch">
                                                                                 <input class="form-check-input"
@@ -2558,7 +3156,7 @@
                                                                                     id="flexSwitchCheckDefault"
                                                                                     wire:model="ads_without_picture">
                                                                                 <label class="form-check-label"
-                                                                                    for="flexSwitchCheckDefault">{{ __('Ads Without Picture') }}</label>
+                                                                                    for="flexSwitchCheckDefault"><?php echo e(__('Ads Without Picture')); ?></label>
                                                                             </div>
                                                                             <div class="form-check form-switch">
                                                                                 <input class="form-check-input"
@@ -2566,7 +3164,7 @@
                                                                                     id="flexSwitchCheckDefault"
                                                                                     wire:model="ads_without_price">
                                                                                 <label class="form-check-label"
-                                                                                    for="flexSwitchCheckDefault">{{ __('Ads Without Price') }}</label>
+                                                                                    for="flexSwitchCheckDefault"><?php echo e(__('Ads Without Price')); ?></label>
                                                                             </div>
                                                                             <div class="form-check form-switch">
                                                                                 <input class="form-check-input"
@@ -2574,7 +3172,7 @@
                                                                                     id="flexSwitchCheckDefault"
                                                                                     wire:model="spcial_ad">
                                                                                 <label class="form-check-label"
-                                                                                    for="flexSwitchCheckDefault">{{ __('Spcial Ad') }}</label>
+                                                                                    for="flexSwitchCheckDefault"><?php echo e(__('Spcial Ad')); ?></label>
                                                                             </div>
 
                                                                         </div>
@@ -2608,98 +3206,114 @@
             </div>
         </div>
         <div class="row" id="ads" wire:init="loadData" wire:loading.remove>
-            @if ($ads)
-                @forelse ($ads as $ad)
-                    @if (app()->getLocale() == 'ar')
+            <?php if($ads): ?>
+                <?php $__empty_1 = true; $__currentLoopData = $ads; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ad): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                    <?php if(app()->getLocale() == 'ar'): ?>
                         <div class="col-6 col-sm-4 col-md-3 mb-5">
-                            <a href="{{ route('website.ad', [app()->getLocale(), 'category' => 3, 'id' => $ad->job_id]) }}"
+                            <a href="<?php echo e(route('website.ad', [app()->getLocale(), 'category' => 3, 'id' => $ad->job_id])); ?>"
                                 style="text-decoration: none; color:black;">
                                 <div class="card">
                                     <div class="card-image">
-                                        <span class="card-notify-badge">{{ $ad->salary ?? 0 }}
-                                            {{ __('SYP') }}</span>
-                                        {{-- <span class="card-notify-year">{{ __('Cars') }}</span> --}}
-                                        @if (file_exists('../storage/app/img/' . array_values(json_decode($ad->picture))[0]))
+                                        <span class="card-notify-badge"><?php echo e($ad->salary ?? 0); ?>
+
+                                            <?php echo e(__('SYP')); ?></span>
+                                        
+                                        <?php if(file_exists('../storage/app/img/' . array_values(json_decode($ad->picture))[0])): ?>
                                             <img class="img-fluid img"
-                                                src="data:image/png|jpg|jpeg;base64, {!! base64_encode(file_get_contents('../storage/app/img/' . array_values(json_decode($ad->picture))[0])) !!}"
+                                                src="data:image/png|jpg|jpeg;base64, <?php echo base64_encode(file_get_contents('../storage/app/img/' . array_values(json_decode($ad->picture))[0])); ?>"
                                                 alt="Alternate Text" />
-                                        @else
+                                        <?php else: ?>
                                             <img class="img-fluid img"
-                                                src="data:image/png|jpg|jpeg;base64, {!! base64_encode(file_get_contents('../storage/app/img/defualt.png')) !!}"
+                                                src="data:image/png|jpg|jpeg;base64, <?php echo base64_encode(file_get_contents('../storage/app/img/defualt.png')); ?>"
                                                 alt="Alternate Text" />
-                                        @endif
+                                        <?php endif; ?>
                                     </div>
                                     <div class="card-body">
-                                        <span>{{ $ad->ar_title }}</span>
+                                        <span><?php echo e($ad->ar_title); ?></span>
                                     </div>
                                     <div class="card-image-overlay p-1">
-                                        @if (\Carbon\Carbon::parse($ad->created_at)->diffInDays() > 0)
-                                            <i class="bi bi-clock"></i> <span class="since">{{ __('Since ') }}
-                                                {{ \Carbon\Carbon::parse($ad->created_at)->diffInDays() . __(' Days') }}
+                                        <?php if(\Carbon\Carbon::parse($ad->created_at)->diffInDays() > 0): ?>
+                                            <i class="bi bi-clock"></i> <span class="since"><?php echo e(__('Since ')); ?>
+
+                                                <?php echo e(\Carbon\Carbon::parse($ad->created_at)->diffInDays() . __(' Days')); ?>
+
                                                 | <i class="bi bi-geo-alt-fill"></i>
-                                                {{ $ad->governorate->ar_name ?? '' }}
+                                                <?php echo e($ad->governorate->ar_name ?? ''); ?>
+
                                             </span>
-                                        @else
-                                            <i class="bi bi-clock"></i> <span class="since">{{ __('Since ') }}
-                                                {{ \Carbon\Carbon::parse($ad->created_at)->addDays(\Carbon\Carbon::parse($ad->created_at)->diffInDays())->diffInHours() . __(' Hours') }}
+                                        <?php else: ?>
+                                            <i class="bi bi-clock"></i> <span class="since"><?php echo e(__('Since ')); ?>
+
+                                                <?php echo e(\Carbon\Carbon::parse($ad->created_at)->addDays(\Carbon\Carbon::parse($ad->created_at)->diffInDays())->diffInHours() . __(' Hours')); ?>
+
                                                 | <i class="bi bi-geo-alt-fill"></i>
-                                                {{ $ad->governorate->ar_name ?? '' }}
+                                                <?php echo e($ad->governorate->ar_name ?? ''); ?>
+
                                             </span>
-                                        @endif
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                             </a>
                         </div>
-                    @else
+                    <?php else: ?>
                         <div class="col-6 col-sm-4 col-md-3 mb-5">
-                            <a href="{{ route('website.ad', [app()->getLocale(), 'category' => 3, 'id' => $ad->job_id]) }}"
+                            <a href="<?php echo e(route('website.ad', [app()->getLocale(), 'category' => 3, 'id' => $ad->job_id])); ?>"
                                 style="text-decoration: none; color:black;">
                                 <div class="card">
                                     <div class="card-image">
-                                        <span class="card-notify-badge">{{ $ad->salary ?? 0 }}
-                                            {{ __('SYP') }}</span>
-                                        {{-- <span class="card-notify-year">{{ __('Cars') }}</span> --}}
-                                        @if (file_exists('../storage/app/img/' . array_values(json_decode($ad->picture))[0]))
+                                        <span class="card-notify-badge"><?php echo e($ad->salary ?? 0); ?>
+
+                                            <?php echo e(__('SYP')); ?></span>
+                                        
+                                        <?php if(file_exists('../storage/app/img/' . array_values(json_decode($ad->picture))[0])): ?>
                                             <img class="img-fluid img"
-                                                src="data:image/png|jpg|jpeg;base64, {!! base64_encode(file_get_contents('../storage/app/img/' . array_values(json_decode($ad->picture))[0])) !!}"
+                                                src="data:image/png|jpg|jpeg;base64, <?php echo base64_encode(file_get_contents('../storage/app/img/' . array_values(json_decode($ad->picture))[0])); ?>"
                                                 alt="Alternate Text" />
-                                        @else
+                                        <?php else: ?>
                                             <img class="img-fluid img"
-                                                src="data:image/png|jpg|jpeg;base64, {!! base64_encode(file_get_contents('../storage/app/img/defualt.png')) !!}"
+                                                src="data:image/png|jpg|jpeg;base64, <?php echo base64_encode(file_get_contents('../storage/app/img/defualt.png')); ?>"
                                                 alt="Alternate Text" />
-                                        @endif
+                                        <?php endif; ?>
                                     </div>
                                     <div class="card-body">
-                                        <span>{{ $ad->en_title }}</span>
+                                        <span><?php echo e($ad->en_title); ?></span>
                                     </div>
                                     <div class="card-image-overlay p-1">
-                                        @if (\Carbon\Carbon::parse($ad->created_at)->diffInDays() > 0)
-                                            <i class="bi bi-clock"></i> <span class="since">{{ __('Since ') }}
-                                                {{ \Carbon\Carbon::parse($ad->created_at)->diffInDays() . __(' Days') }}
+                                        <?php if(\Carbon\Carbon::parse($ad->created_at)->diffInDays() > 0): ?>
+                                            <i class="bi bi-clock"></i> <span class="since"><?php echo e(__('Since ')); ?>
+
+                                                <?php echo e(\Carbon\Carbon::parse($ad->created_at)->diffInDays() . __(' Days')); ?>
+
                                                 | <i class="bi bi-geo-alt-fill"></i>
-                                                {{ $ad->governorate->en_name ?? '' }}
+                                                <?php echo e($ad->governorate->en_name ?? ''); ?>
+
                                             </span>
-                                        @else
-                                            <i class="bi bi-clock"></i> <span class="since">{{ __('Since ') }}
-                                                {{ \Carbon\Carbon::parse($ad->created_at)->addDays(\Carbon\Carbon::parse($ad->created_at)->diffInDays())->diffInHours() . __(' Hours') }}
+                                        <?php else: ?>
+                                            <i class="bi bi-clock"></i> <span class="since"><?php echo e(__('Since ')); ?>
+
+                                                <?php echo e(\Carbon\Carbon::parse($ad->created_at)->addDays(\Carbon\Carbon::parse($ad->created_at)->diffInDays())->diffInHours() . __(' Hours')); ?>
+
                                                 | <i class="bi bi-geo-alt-fill"></i>
-                                                {{ $ad->governorate->en_name ?? '' }}
+                                                <?php echo e($ad->governorate->en_name ?? ''); ?>
+
                                             </span>
-                                        @endif
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                             </a>
                         </div>
-                    @endif
-                @empty
-                    <h4 class="text-center text-secondary">{{ __('Empty') }}</h4>
-                @endforelse
+                    <?php endif; ?>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                    <h4 class="text-center text-secondary"><?php echo e(__('Empty')); ?></h4>
+                <?php endif; ?>
                 <div class="d-flex justify-content-center">
-                    {{ $ads->links() }}
+                    <?php echo e($ads->links()); ?>
+
                 </div>
-            @else
-                <h4 class="text-center text-secondary">{{ __('Empty') }}</h4>
-            @endif
+            <?php else: ?>
+                <h4 class="text-center text-secondary"><?php echo e(__('Empty')); ?></h4>
+            <?php endif; ?>
         </div>
-    @endif
+    <?php endif; ?>
 </div>
+<?php /**PATH C:\Users\Abo Samer\Desktop\Work\Waseetcom\_public_htewrml\_public_html\resources\views/livewire/website/view-ads.blade.php ENDPATH**/ ?>

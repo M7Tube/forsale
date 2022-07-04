@@ -14,7 +14,8 @@
     <th>{{ __('Last Name') }}</th>
     <th>{{ __('Phone Number') }}</th>
     <th>{{ __('Email') }}</th>
-    <th>{{ __('Account Type') }}</th>
+    <th>{{ __('Admin Account') }}</th>
+    <th>{{ __('Personal Account') }}</th>
     <th>{{ __('Birth Date') }}</th>
     <th>{{ __('Action') }}</th>
 @endsection
@@ -22,22 +23,29 @@
     @forelse($Users as $data)
         <tbody>
             <tr>
-                <td>{{ $data->first_name }}
+                <td>{{ $data->first_name ?? '' }}
                 </td>
-                <td>{{ $data->last_name }}
+                <td>{{ $data->last_name ?? '' }}
                 </td>
-                <td>{{ $data->phone_number }}
+                <td>{{ $data->phone_number ?? '' }}
                 </td>
-                <td>{{ $data->email }}
+                <td>{{ $data->email ?? '' }}
                 </td>
-                @if ($data->is_personal == 1)
-                    <td>{{ __('Yes') }}
+                @if ($data->is_admin == 1)
+                    <td>{{ __('Yes') ?? '' }}
                     </td>
                 @else
-                    <td>{{ __('No') }}
+                    <td>{{ __('No') ?? '' }}
                     </td>
                 @endif
-                <td>{{ $data->birth_date }}
+                @if ($data->is_personal == 1)
+                    <td>{{ __('Yes') ?? '' }}
+                    </td>
+                @else
+                    <td>{{ __('No') ?? '' }}
+                    </td>
+                @endif
+                <td>{{ $data->birth_date ?? '' }}
                 </td>
                 @can('edit_users')
                     <td>
@@ -52,8 +60,9 @@
         <tr>
             <td colspan="100">
                 <h5 class="text-center">
-                    <i>{{ __('Empty') }} <button type="button" class="btn btn-outline-success mb-2" data-bs-toggle="modal"
-                            data-bs-target="#CreateModal"><i class="bi bi-plus-square"></i></button></i>
+                    <i>{{ __('Empty') }} <button type="button" class="btn btn-outline-success mb-2"
+                            data-bs-toggle="modal" data-bs-target="#CreateModal"><i
+                                class="bi bi-plus-square"></i></button></i>
                 </h5>
             </td>
         </tr>
@@ -185,8 +194,8 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-floating mb-3">
-                            <input class="form-control" id="inputname" type="text" name="last_name" autocomplete="off"
-                                wire:model="last_name" />
+                            <input class="form-control" id="inputname" type="text" name="last_name"
+                                autocomplete="off" wire:model="last_name" />
                             <label for="inputlast_name">{{ __('Last Name') }}
                             </label>
                             <span class="text-danger">
@@ -200,8 +209,8 @@
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <div class="form-floating mb-3">
-                            <input class="form-control" id="inputname" type="text" name="phone_number" autocomplete="off"
-                                wire:model="phone_number" />
+                            <input class="form-control" id="inputname" type="text" name="phone_number"
+                                autocomplete="off" wire:model="phone_number" />
                             <label for="inputphone_number">{{ __('Phone Number') }}
                             </label>
                             <span class="text-danger">
