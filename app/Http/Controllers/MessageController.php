@@ -44,9 +44,9 @@ class MessageController extends Controller
         $request->validate([
             'user_id' => ['required', 'integer', 'exists:users,user_id'],
         ]);
-        $user = User::where('user_id', $request->user_id)->first();
+        $user = User::where('user_id', auth()->user()['user_id'])->first();
         if ($user) {
-            $chats = Message::where('user_id', $request->user_id)->get();
+            $chats = Message::where('user_id', auth()->user()['user_id'])->get();
             if ($chats) {
                 return $this->success('Messages', $chats);
             } else {
