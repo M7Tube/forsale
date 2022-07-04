@@ -10,7 +10,7 @@
                         <div class="card-content">
                             <div class="card-body">
                                 <form wire:submit.prevent="confirm">
-                                    <div class="results">
+                                    {{-- <div class="results">
                                         @if (Session::get('fail'))
                                             <div class="alert alert-danger">
                                                 {{ Session::get('fail') }}
@@ -23,7 +23,7 @@
                                                 {{ Session::get('success') }}
                                             </div>
                                         @endif
-                                    </div>
+                                    </div> --}}
                                     <div class="m-5">
                                         <div class="row">
                                             <div class="col-12">
