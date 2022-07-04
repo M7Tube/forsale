@@ -24,7 +24,7 @@ class MessageController extends Controller
             'message' => $request->message,
             'is_admin' =>  $request->is_admin,
             'read_state' => $request->read_state,
-            'user_id' =>  $request->user_id,
+            'user_id' =>  auth()->user()['user_id'],
         ]);
         if ($message) {
             // Larafirebase::withTitle('New Message - رسالة جديدة')
