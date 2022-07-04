@@ -53,8 +53,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-12 col-md-6">
-                                                <label for="phone_number">{{ __('Phone Number') }} <span
-                                                        class="text-danger">*</span></label>
+                                                <label for="phone_number">{{ __('Phone Number') }}</label>
                                                 <div class="mb-1">
                                                     <input class="form-control" id="inputphone_number" type="text"
                                                         autocomplete="off" wire:model="phone_number" />

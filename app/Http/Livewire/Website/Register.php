@@ -28,6 +28,7 @@ class Register extends Component
             abort(403);
         }
         $this->is_personal = 0;
+        $this->birth_date = 02/07/2000;
     }
     // public function updatedFirstName()
     // {
