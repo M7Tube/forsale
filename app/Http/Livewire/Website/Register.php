@@ -49,7 +49,7 @@ class Register extends Component
     public function updatedPhoneNumber()
     {
         $this->validate([
-            'phone_number' => ['unique:users,phone_number'],
+            'phone_number' => ['nullable', 'unique:users,phone_number'],
         ]);
     }
 
@@ -78,7 +78,7 @@ class Register extends Component
     {
         $this->validate([
             'first_name' => ['required', 'string', 'max:48'],
-            'phone_number' => ['unique:users,phone_number'],
+            'phone_number' => ['nullable', 'unique:users,phone_number'],
             'email' => ['required', 'email', 'unique:users,email'],
             'password' => ['required', 'min:8', 'confirmed'],
             'is_personal' => ['required', 'in:0,1'],
