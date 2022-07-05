@@ -3,7 +3,7 @@
 use App\Http\Controllers\Website\LoginController;
 use Illuminate\Support\Facades\Route;
 
-Route::group(['as' => 'website.'], function () {
+Route::group(['as' => 'website.', 'prefix' => 'hehe'], function () {
 
     Route::view('homepage', 'Website.homepage')->name('homepage');
     Route::view('viewAds/category/{category}', 'Website.viewAds')->name('viewAds');
