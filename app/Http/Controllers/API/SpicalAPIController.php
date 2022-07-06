@@ -112,6 +112,7 @@ class SpicalAPIController extends Controller
                     'governorate_id',
                     'ad_type_id',
                     'ad_statuse_id',
+                    'created_at',
                 ]);
                 if ($ad) {
                     return $this->success('ad', SingleCarResource::collection([$ad]));
@@ -150,6 +151,7 @@ class SpicalAPIController extends Controller
                     'neighborhood_id',
                     'ad_type_id',
                     'ad_statuse_id',
+                    'created_at',
                 ]);
                 if ($ad) {
                     return $this->success('ad', SingleRealEstateResource::collection([$ad]));
@@ -185,6 +187,7 @@ class SpicalAPIController extends Controller
                     'neighborhood_id',
                     'ad_type_id',
                     'ad_statuse_id',
+                    'created_at',
                 ]);
                 if ($ad) {
                     return $this->success('ad', SingleRealEstateResource::collection([$ad]));
@@ -218,6 +221,7 @@ class SpicalAPIController extends Controller
                     'YOE_id',
                     'ad_type_id',
                     'ad_statuse_id',
+                    'created_at',
                 ]);
                 if ($ad) {
                     return $this->success('ad', SingleJobResource::collection([$ad]));
@@ -249,6 +253,7 @@ class SpicalAPIController extends Controller
                     'YOE_id',
                     'ad_type_id',
                     'ad_statuse_id',
+                    'created_at',
                 ]);
                 if ($ad) {
                     return $this->success('ad', SingleJobResource::collection([$ad]));

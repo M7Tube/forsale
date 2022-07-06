@@ -44,6 +44,7 @@ class SingleCarResource extends JsonResource
                 'governorate' => $this->governorate->ar_name ?? null,
                 'ad_type' => $this->AdType->ar_name ?? null,
                 'ad_statuse' => $this->AdStatus->ar_name ?? null,
+                'created_at' => $this->created_at ?? null,
             ];
         }
         if ($this->en_title) {
@@ -71,6 +72,7 @@ class SingleCarResource extends JsonResource
                 'governorate' => $this->governorate->en_name ?? null,
                 'ad_type' => $this->AdType->en_name ?? null,
                 'ad_statuse' => $this->AdStatus->en_name ?? null,
+                'created_at' => $this->created_at ?? null,
             ];
         }
     }

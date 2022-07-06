@@ -48,6 +48,7 @@ class SingleRealEstateResource extends JsonResource
                 'neighborhood' => $this->Neighborhood->ar_name ?? null,
                 'ad_type' => $this->AdType->ar_name ?? null,
                 'ad_statuse' => $this->AdStatus->ar_name ?? null,
+                'created_at' => $this->created_at ?? null,
             ];
         }
         if ($this->en_title) {
@@ -79,6 +80,7 @@ class SingleRealEstateResource extends JsonResource
                 'neighborhood' => $this->Neighborhood->en_name ?? null,
                 'ad_type' => $this->AdType->en_name ?? null,
                 'ad_statuse' => $this->AdStatus->en_name ?? null,
+                'created_at' => $this->created_at ?? null,
             ];
         }
     }
