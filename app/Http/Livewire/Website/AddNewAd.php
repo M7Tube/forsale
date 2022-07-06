@@ -163,10 +163,10 @@ class AddNewAd extends Component
     {
         if ($this->category == 1) { //cars
             $this->validate([
-                'ar_title' => ['required', 'string', 'max:144'],
-                'en_title' => ['required', 'string', 'max:144'],
-                'ar_desc' => ['required', 'string', 'max:1440'],
-                'en_desc' => ['required', 'string', 'max:1440'],
+                'ar_title' => ['required_without:en_title', 'nullable', 'string', 'max:144'],
+                'en_title' => ['required_without:ar_title', 'nullable', 'string', 'max:144'],
+                'ar_desc' => ['required_without:en_desc', 'nullable', 'string', 'max:1440'],
+                'en_desc' => ['required_without:ar_desc', 'nullable', 'string', 'max:1440'],
                 'picture.*' => ['required', 'mimes:jpg,png,jpeg'],
                 // 'car_type_id' => ['integer', 'exists:car_types,car_type_id'],
                 // 'car_status_id' => ['integer', 'exists:car_statuses,car_status_id'],
@@ -183,7 +183,7 @@ class AddNewAd extends Component
             $listOfPicture = [];
             foreach ($this->picture as $pic) {
                 $name = $pic->getClientOriginalName() . time() . '.jpg';
-                $img = Image::make($pic)->resize(1024,640)->encode('jpg', 100)->interlace()->insert(storage_path('app/img/watermark.png'), 'bottom')->save(storage_path('app/img/' . $name));
+                $img = Image::make($pic)->resize(1024, 640)->encode('jpg', 100)->interlace()->insert(storage_path('app/img/watermark.png'), 'bottom')->save(storage_path('app/img/' . $name));
                 array_push($listOfPicture, $name);
             }
             $is_spcial = AdType::where('user_id', $this->user_id)->where('ad_type_id', $this->ad_type_id)->first();
@@ -227,10 +227,10 @@ class AddNewAd extends Component
             }
         } elseif ($this->category == 2) { //real estate
             $this->validate([
-                'ar_title' => ['required', 'string', 'max:144'],
-                'en_title' => ['required', 'string', 'max:144'],
-                'ar_desc' => ['required', 'string', 'max:1440'],
-                'en_desc' => ['required', 'string', 'max:1440'],
+                'ar_title' => ['required_without:en_title', 'nullable', 'string', 'max:144'],
+                'en_title' => ['required_without:ar_title', 'nullable', 'string', 'max:144'],
+                'ar_desc' => ['required_without:en_desc', 'nullable', 'string', 'max:1440'],
+                'en_desc' => ['required_without:ar_desc', 'nullable', 'string', 'max:1440'],
                 'picture.*' => ['required', 'mimes:jpg,png,jpeg'],
                 'REMC_id' => ['required', 'integer', 'exists:real_estate_main_categories,REMC_id'],
             ]);
@@ -285,10 +285,10 @@ class AddNewAd extends Component
             }
         } elseif ($this->category == 3) { //jobs
             $this->validate([
-                'ar_title' => ['required', 'string', 'max:144'],
-                'en_title' => ['required', 'string', 'max:144'],
-                'ar_desc' => ['required', 'string', 'max:1440'],
-                'en_desc' => ['required', 'string', 'max:1440'],
+                'ar_title' => ['required_without:en_title', 'nullable', 'string', 'max:144'],
+                'en_title' => ['required_without:ar_title', 'nullable', 'string', 'max:144'],
+                'ar_desc' => ['required_without:en_desc', 'nullable', 'string', 'max:1440'],
+                'en_desc' => ['required_without:ar_desc', 'nullable', 'string', 'max:1440'],
                 'phone_number' => ['required', 'string'],
                 'isPhone_visable' => ['required', 'boolean'],
                 'salary' => ['required', 'integer'],

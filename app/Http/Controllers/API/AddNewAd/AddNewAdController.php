@@ -257,10 +257,10 @@ class AddNewAdController extends Controller
     {
         if ($request->category == 1) { //cars
             $request->validate([
-                'ar_title' => ['required', 'string', 'max:144'],
-                'en_title' => ['required', 'string', 'max:144'],
-                'ar_desc' => ['required', 'string', 'max:1440'],
-                'en_desc' => ['required', 'string', 'max:1440'],
+                'ar_title' => ['required_without:en_title', 'string', 'max:144'],
+                'en_title' => ['required_without:ar_title', 'string', 'max:144'],
+                'ar_desc' => ['required_without:en_desc', 'string', 'max:1440'],
+                'en_desc' => ['required_without:ar_desc', 'string', 'max:1440'],
                 'picture.*' => ['required', 'mimes:jpg,png,jpeg'],
                 'car_type_id' => ['integer', 'exists:car_types,car_type_id'],
                 'car_status_id' => ['integer', 'exists:car_statuses,car_status_id'],
@@ -323,10 +323,10 @@ class AddNewAdController extends Controller
             }
         } elseif ($request->category == 2) { //real estate
             $request->validate([
-                'ar_title' => ['required', 'string', 'max:144'],
-                'en_title' => ['required', 'string', 'max:144'],
-                'ar_desc' => ['required', 'string', 'max:1440'],
-                'en_desc' => ['required', 'string', 'max:1440'],
+                'ar_title' => ['required_without:en_title', 'string', 'max:144'],
+                'en_title' => ['required_without:ar_title', 'string', 'max:144'],
+                'ar_desc' => ['required_without:en_desc', 'string', 'max:1440'],
+                'en_desc' => ['required_without:ar_desc', 'string', 'max:1440'],
                 'picture.*' => ['required', 'mimes:jpg,png,jpeg'],
                 'REMC_id' => ['required', 'integer', 'exists:real_estate_main_categories,REMC_id'],
             ]);
@@ -381,10 +381,10 @@ class AddNewAdController extends Controller
             }
         } elseif ($request->category == 3) { //jobs
             $request->validate([
-                'ar_title' => ['required', 'string', 'max:144'],
-                'en_title' => ['required', 'string', 'max:144'],
-                'ar_desc' => ['required', 'string', 'max:1440'],
-                'en_desc' => ['required', 'string', 'max:1440'],
+                'ar_title' => ['required_without:en_title', 'string', 'max:144'],
+                'en_title' => ['required_without:ar_title', 'string', 'max:144'],
+                'ar_desc' => ['required_without:en_desc', 'string', 'max:1440'],
+                'en_desc' => ['required_without:ar_desc', 'string', 'max:1440'],
                 'phone_number' => ['required', 'string'],
                 'isPhone_visable' => ['required', 'boolean'],
                 'salary' => ['required', 'integer'],

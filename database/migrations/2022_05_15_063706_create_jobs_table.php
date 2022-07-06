@@ -15,10 +15,10 @@ class CreateJobsTable extends Migration
     {
         Schema::create('jobs', function (Blueprint $table) {
             $table->id('job_id');
-            $table->string('ar_title');
-            $table->string('en_title');
-            $table->text('ar_desc');
-            $table->text('en_desc');
+            $table->string('ar_title')->nullable();
+            $table->string('en_title')->nullable();
+            $table->text('ar_desc')->nullable();
+            $table->text('en_desc')->nullable();
             $table->string('phone_number');
             $table->integer('manger_accept'); //HERE THIS COULMN CONTAINS (3) VALUE 0-> REJECTED 1-> NEED APPROVAL 2-> ACCEPTED
             $table->boolean('isPhone_visable');

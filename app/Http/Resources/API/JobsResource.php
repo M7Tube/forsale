@@ -22,7 +22,7 @@ class JobsResource extends JsonResource
         if ($this->ar_title) {
             return [
                 'id' => $this->job_id,
-                'title' => $this->ar_title,
+                'title' => $this->ar_title ?? $this->en_title,
                 'picture' => $listOfPicture,
                 'is_special' => $this->is_special,
                 'price' => $this->salary,
@@ -34,7 +34,7 @@ class JobsResource extends JsonResource
         if ($this->en_title) {
             return [
                 'id' => $this->job_id,
-                'title' => $this->en_title,
+                'title' => $this->en_title ?? $this->ar_title,
                 'picture' => $listOfPicture,
                 'is_special' => $this->is_special,
                 'price' => $this->salary,

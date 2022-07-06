@@ -21,8 +21,8 @@ class SingleCarResource extends JsonResource
         // return parent::toArray($request);
         if ($this->ar_title) {
             return [
-                'title' => $this->ar_title,
-                'desc' => $this->ar_desc,
+                'title' => $this->ar_title ?? $this->en_title,
+                'desc' => $this->ar_desc ?? $this->en_desc,
                 'phone_number' => $this->phone_number,
                 'manger_accept' => $this->manger_accept,
                 'isPhone_visable' => $this->isPhone_visable,
@@ -49,8 +49,8 @@ class SingleCarResource extends JsonResource
         }
         if ($this->en_title) {
             return [
-                'title' => $this->en_title,
-                'desc' => $this->en_desc,
+                'title' => $this->en_title ?? $this->ar_title,
+                'desc' => $this->en_desc ?? $this->ar_desc,
                 'phone_number' => $this->phone_number,
                 'manger_accept' => $this->manger_accept,
                 'isPhone_visable' => $this->isPhone_visable,
