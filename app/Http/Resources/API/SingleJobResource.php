@@ -18,6 +18,7 @@ class SingleJobResource extends JsonResource
         foreach (json_decode($this->picture) as $pic) {
             array_push($listOfPicture, 'https://waseetco.com/storage/app/img/' . $pic);
         }
+        // sd
         // return parent::toArray($request);
         if ($this->ar_title) {
             return [

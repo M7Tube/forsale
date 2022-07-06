@@ -265,7 +265,7 @@ class SpicalAPIController extends Controller
             return $this->fails();
         }
     }
-
+    // sfd
     public function search($lang)
     {
         return $cars = Cars::orderBy('created_at', 'desc')->where('ar_title', 'like', '%' . request('search') . '%')->orWhere('en_title', 'like', '%' . request('search') . '%')->paginate(1, ['car_id', 'ar_title', 'en_title']);
