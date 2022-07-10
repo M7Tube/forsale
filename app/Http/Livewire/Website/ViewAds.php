@@ -175,7 +175,7 @@ class ViewAds extends Component
         if ($this->category == 1) {
             $this->emit('gotoTop');
             return view('livewire.website.view-ads', [
-                'ads' => Cars::when($this->governorate_id, function ($query) {
+                'ads' => Cars::where('manger_accept', 2)->when($this->governorate_id, function ($query) {
                     return $query->whereIn('governorate_id', $this->governorate_id);
                 })->when($this->car_type_id, function ($query) {
                     return $query->whereIn('car_type_id', $this->car_type_id);
@@ -212,7 +212,7 @@ class ViewAds extends Component
         } else if ($this->category == 2) {
             $this->emit('gotoTop');
             return view('livewire.website.view-ads', [
-                'ads' => RealEstate::when($this->A_size_from && $this->A_size_to, function ($query) {
+                'ads' => RealEstate::where('manger_accept', 2)->when($this->A_size_from && $this->A_size_to, function ($query) {
                     return $query->whereBetween('apartment_size', [$this->A_size_from, $this->A_size_to]);
                 })->when($this->L_size_from && $this->L_size_to, function ($query) {
                     return $query->whereBetween('land_size', [$this->L_size_from, $this->L_size_to]);
@@ -261,7 +261,7 @@ class ViewAds extends Component
         } else if ($this->category == 3) {
             $this->emit('gotoTop');
             return view('livewire.website.view-ads', [
-                'ads' => Jobs::when($this->work_hour_from && $this->work_hour_to, function ($query) {
+                'ads' => Jobs::where('manger_accept', 2)->when($this->work_hour_from && $this->work_hour_to, function ($query) {
                     return $query->whereBetween('work_hour', [$this->work_hour_from, $this->work_hour_to]);
                 })->when($this->extra_work_hour_from && $this->extra_work_hour_to, function ($query) {
                     return $query->whereBetween('extra_work_hour', [$this->extra_work_hour_from, $this->extra_work_hour_to]);

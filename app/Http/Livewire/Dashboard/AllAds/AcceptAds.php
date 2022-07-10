@@ -91,6 +91,7 @@ class AcceptAds extends Component
             if ($ad) {
                 $ad->manger_accept = 0;
                 $ad->save();
+                return redirect()->route('web.crud.AcceptAds', app()->getLocale());
             } else {
                 abort(404);
             }
@@ -99,6 +100,7 @@ class AcceptAds extends Component
             if ($ad) {
                 $ad->manger_accept = 0;
                 $ad->save();
+                return redirect()->route('web.crud.AcceptAds', app()->getLocale());
             } else {
                 abort(404);
             }
@@ -107,6 +109,7 @@ class AcceptAds extends Component
             if ($ad) {
                 $ad->manger_accept = 0;
                 $ad->save();
+                return redirect()->route('web.crud.AcceptAds', app()->getLocale());
             } else {
                 abort(404);
             }

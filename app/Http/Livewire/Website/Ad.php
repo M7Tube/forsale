@@ -40,26 +40,26 @@ class Ad extends Component
         if (request('category') == 1) { //cars
             $ad = Cars::find(request('id'));
             if ($ad) {
-                if ($ad->manger_accept == 2) {
-                    $ad->watch_count++;
-                    $ad->save();
-                    $this->ad = $ad;
-                } else {
-                    abort(404, __('This Ad Is Not Active Yet'));
-                }
+                // if ($ad->manger_accept == 2) {
+                $ad->watch_count++;
+                $ad->save();
+                $this->ad = $ad;
+                // } else {
+                //     abort(404, __('This Ad Is Not Active Yet'));
+                // }
             } else {
                 abort(404);
             }
         } else if (request('category') == 2) { //real estate
             $ad = RealEstate::find(request('id'));
             if ($ad) {
-                if ($ad->manger_accept == 2) {
-                    $ad->watch_count++;
-                    $ad->save();
-                    $this->ad = $ad;
-                } else {
-                    abort(404, __('This Ad Is Not Active Yet'));
-                }
+                // if ($ad->manger_accept == 2) {
+                $ad->watch_count++;
+                $ad->save();
+                $this->ad = $ad;
+                // } else {
+                //     abort(404, __('This Ad Is Not Active Yet'));
+                // }
             } else {
                 abort(404);
             }
@@ -67,13 +67,13 @@ class Ad extends Component
         } else if (request('category') == 3) { //job
             $ad =  Jobs::find(request('id'));
             if ($ad) {
-                if ($ad->manger_accept == 2) {
-                    $ad->watch_count++;
-                    $ad->save();
-                    $this->ad = $ad;
-                } else {
-                    abort(404, __('This Ad Is Not Active Yet'));
-                }
+                // if ($ad->manger_accept == 2) {
+                $ad->watch_count++;
+                $ad->save();
+                $this->ad = $ad;
+                // } else {
+                //     abort(404, __('This Ad Is Not Active Yet'));
+                // }
             } else {
                 abort(404);
             }

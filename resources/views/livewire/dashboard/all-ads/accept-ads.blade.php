@@ -105,8 +105,33 @@
                         <div class="d-flex justify-content-center">
                             <button class="btn btn-block w-50 mt-2 btn-outline-dark mx-1"
                                 wire:click.prevent="accept(1,{{ $car->car_id }})">{{ __('Accept') }}</button>
-                            <button class="btn btn-block w-50 mt-2 btn-outline-danger mx-1"
-                                wire:click.prevent="reject(1,{{ $car->car_id }})">{{ __('Reject') }}</button>
+                            <button class="btn btn-block w-50 mt-2 btn-outline-danger mx-1" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal">{{ __('Reject') }}</button>
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">
+                                                {{ __('Rejected Reason') }}</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <textarea wire:model="rejected_reason" id="" cols="30" rows="10" class="form-control"
+                                                placeholder="{{ __('Rejected Reason') }}"></textarea>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-outline-secondary"
+                                                data-bs-dismiss="modal">{{ __('Close') }}</button>
+                                            <button type="button" class="btn btn-outline-danger"
+                                                wire:click.prevent="reject(1,{{ $car->car_id }})">{{ __('Reject') }}</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 @empty
