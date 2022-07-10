@@ -35,7 +35,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth', 'as' => 'web.crud
             'middleware' => 'permission:read_country_of_manufacture|create_country_of_manufacture|edit_country_of_manufacture|delete_country_of_manufacture'
         ]);
     //PAGE FOR CONTROLE ContinentOfOrigin
-    Route::view('ContinentOfOrigin', 'Dashboard.Contianant.index')->name('ContinentOfOrigin')
+    Route::view('RegionOfOrigin', 'Dashboard.Contianant.index')->name('ContinentOfOrigin')
         ->middleware([
             'middleware' => 'permission:read_continent_of_origin|create_continent_of_origin|edit_continent_of_origin|delete_continent_of_origin'
         ]);
@@ -105,7 +105,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth', 'as' => 'web.crud
             'middleware' => 'permission:read_users|create_users|edit_users|delete_users'
         ]);
     //PAGE FOR CONTROLE SpcialAd
-    Route::view('SpcialAd', 'Dashboard.spcialAd.index')->name('SpcialAd')
+    Route::view('AdminAd', 'Dashboard.spcialAd.index')->name('SpcialAd')
         ->middleware([
             'middleware' => 'permission:read_spcialAd|create_spcialAd|edit_spcialAd|delete_spcialAd'
         ]);
@@ -118,6 +118,11 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth', 'as' => 'web.crud
     Route::view('Governorates', 'Dashboard.Governorates.index')->name('Governorates')
         ->middleware([
             'middleware' => 'permission:read_governorate|create_governorate|edit_governorate|delete_governorate'
+        ]);
+    //PAGE FOR CONTROLE Governorates
+    Route::view('AcceptAds', 'Dashboard.AllAds.accept-all-ads')->name('AcceptAds')
+        ->middleware([
+            'middleware' => 'permission:edit_cars|edit_jobs|edit_real_estate'
         ]);
     //PAGE FOR SEND GENERAL Notification
     Route::view('SendNotification', 'Dashboard.Notification.send')->name('sendGeneralNoti');

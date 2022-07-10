@@ -36,7 +36,7 @@
                                     @endif
                                 </div>
                                 <div class="card-body">
-                                    <span>{{ app()->getLocale() == 'ar' ? $ad->car->ar_title ?? '' : $ad->car->en_title ?? '' }}</span>
+                                    <span>{{ app()->getLocale() == 'ar' ? $ad->car->ar_title ?? $ad->car->en_title : $ad->car->en_title ?? $ad->car->ar_title }}</span>
                                 </div>
                                 <div class="card-image-overlay p-1">
                                     @if (\Carbon\Carbon::parse($ad->car->created_at)->diffInDays() > 0)
@@ -87,7 +87,7 @@
                                     @endif
                                 </div>
                                 <div class="card-body">
-                                    <span>{{ app()->getLocale() == 'ar' ? $ad->real_estate->ar_title ?? '' : $ad->real_estate->en_title ?? '' }}</span>
+                                    <span>{{ app()->getLocale() == 'ar' ? $ad->real_estate->ar_title ?? $ad->real_estate->en_title : $ad->real_estate->en_title ?? $ad->real_estate->ar_title }}</span>
                                 </div>
                                 <div class="card-image-overlay p-1">
                                     @if (\Carbon\Carbon::parse($ad->real_estate->created_at)->diffInDays() > 0)
@@ -138,7 +138,7 @@
                                     @endif
                                 </div>
                                 <div class="card-body">
-                                    <span>{{ app()->getLocale() == 'ar' ? $ad->job->ar_title ?? '' : $ad->job->en_title ?? '' }}</span>
+                                    <span>{{ app()->getLocale() == 'ar' ? $ad->job->ar_title ?? $ad->job->en_title : $ad->job->en_title ?? $ad->job->ar_title }}</span>
                                 </div>
                                 <div class="card-image-overlay p-1">
                                     @if (\Carbon\Carbon::parse($ad->job->created_at)->diffInDays() > 0)

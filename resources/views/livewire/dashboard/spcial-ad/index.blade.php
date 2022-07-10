@@ -1,6 +1,6 @@
 @extends('layouts.livewireLayout')
 
-@section('tableName', __('Spcial Ads'))
+@section('tableName', __('Admin Ads'))
 @section('searchOptions')
     <option value="en_title">{{ __('English Title') }}</option>
     <option value="ar_title">{{ __('Arabic Title') }}</option>

@@ -1,6 +1,6 @@
 @extends('layouts.dashboard')
 @section('insideHead')
-    <title>{{ __('Motion Vector') }}</title>
+    <title>{{ __('Transmision Vector') }}</title>
 @endsection
 @section('insideBody')
     @livewire('dashboard.motion-vector.index')

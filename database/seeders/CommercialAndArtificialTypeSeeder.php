@@ -17,15 +17,15 @@ class CommercialAndArtificialTypeSeeder extends Seeder
         CommercialAndArtificialType::Create(['en_name' => 'Offices - Clinics', 'ar_name' => 'مكاتب - عيادات', 'REMC_id' => 4]);
         CommercialAndArtificialType::Create(['en_name' => 'Shop', 'ar_name' => 'محل', 'REMC_id' => 4]);
         CommercialAndArtificialType::Create(['en_name' => 'Exhibition', 'ar_name' => 'معرض', 'REMC_id' => 4]);
-        CommercialAndArtificialType::Create(['en_name' => 'Storehouse', 'ar_name' => 'مستودع', 'REMC_id' => 4]);
+        CommercialAndArtificialType::Create(['en_name' => 'Store', 'ar_name' => 'مستودع', 'REMC_id' => 4]);
         CommercialAndArtificialType::Create(['en_name' => 'Hotel', 'ar_name' => 'فندق', 'REMC_id' => 4]);
         CommercialAndArtificialType::Create(['en_name' => 'Restaurant - Cafe', 'ar_name' => 'مطعم - كافيه', 'REMC_id' => 4]);
         CommercialAndArtificialType::Create(['en_name' => 'Institute', 'ar_name' => 'معهد', 'REMC_id' => 4]);
         CommercialAndArtificialType::Create(['en_name' => 'Others', 'ar_name' => 'أخرى', 'REMC_id' => 4]);
         //
-        CommercialAndArtificialType::Create(['en_name' => 'Grounded', 'ar_name' => 'أرضي', 'REMC_id' => 5]);
+        CommercialAndArtificialType::Create(['en_name' => 'Ground Floor', 'ar_name' => 'أرضي', 'REMC_id' => 5]);
         CommercialAndArtificialType::Create(['en_name' => 'Building', 'ar_name' => 'مبنى', 'REMC_id' => 5]);
-        CommercialAndArtificialType::Create(['en_name' => 'Cellars', 'ar_name' => 'أقبية', 'REMC_id' => 5]);
+        CommercialAndArtificialType::Create(['en_name' => 'Basement', 'ar_name' => 'أقبية', 'REMC_id' => 5]);
         CommercialAndArtificialType::Create(['en_name' => 'Others', 'ar_name' => 'أخرى', 'REMC_id' => 5]);
     }
 }

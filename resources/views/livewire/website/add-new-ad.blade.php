@@ -325,7 +325,7 @@
                 <div class="card p-3">
                     <div class="row">
                         <div class="col-12 col-md-6">
-                            <h6>{{ __('Continent Of Origin') }}
+                            <h6>{{ __('Region Of Origin') }}
                             </h6>
                         </div>
                         <div class="col-12 col-md-6">

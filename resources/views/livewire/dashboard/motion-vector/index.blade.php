@@ -1,6 +1,6 @@
 @extends('layouts.livewireLayout')
 
-@section('tableName', __('Motion Vector'))
+@section('tableName', __('Transmision Vector'))
 @section('searchOptions')
     <option value="en_name">{{ __('English Name') }}</option>
     <option value="ar_name">{{ __('Arabic Name') }}</option>

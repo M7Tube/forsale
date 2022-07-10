@@ -1,6 +1,7 @@
 <?php return array (
   'auth.register' => 'App\\Http\\Livewire\\Auth\\Register',
   'dashboard.ad-status.index' => 'App\\Http\\Livewire\\Dashboard\\AdStatus\\Index',
+  'dashboard.all-ads.accept-ads' => 'App\\Http\\Livewire\\Dashboard\\AllAds\\AcceptAds',
   'dashboard.apartment-status.index' => 'App\\Http\\Livewire\\Dashboard\\ApartmentStatus\\Index',
   'dashboard.area.index' => 'App\\Http\\Livewire\\Dashboard\\Area\\Index',
   'dashboard.building-status.index' => 'App\\Http\\Livewire\\Dashboard\\BuildingStatus\\Index',

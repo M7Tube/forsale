@@ -344,7 +344,7 @@
                                                                 <div class="media-body">
                                                                     <div class="row">
                                                                         <div class="col-12">
-                                                                            {{ __('Continents Of Origins') }}
+                                                                            {{ __('Region Of Origin') }}
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
@@ -353,7 +353,7 @@
                                                                                 wire:model="continent_id" multiple
                                                                                 data-live-search="true">
                                                                                 <option disabled>
-                                                                                    {{ __('Choose The Continents Of Origins') }}
+                                                                                    {{ __('Choose') }}
                                                                                 </option>
                                                                                 @forelse ($continents as $key => $continent)
                                                                                     @if (app()->getLocale() == 'ar')
@@ -397,7 +397,7 @@
                                                                 <div class="media-body">
                                                                     <div class="row">
                                                                         <div class="col-12">
-                                                                            {{ __('Motion Vector') }}
+                                                                            {{ __('Transmision Vector') }}
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
@@ -406,7 +406,7 @@
                                                                                 wire:model="motion_vector_id" multiple
                                                                                 data-live-search="true">
                                                                                 <option disabled>
-                                                                                    {{ __('Choose The Motion Vector') }}
+                                                                                    {{ __('Choose') }}
                                                                                 </option>
                                                                                 @forelse ($motion_vectors as $key => $motion_vector)
                                                                                     @if (app()->getLocale() == 'ar')
@@ -788,7 +788,7 @@
                                         @endif
                                     </div>
                                     <div class="card-body">
-                                        <span>{{ $ad->ar_title }}</span>
+                                        <span>{{ $ad->ar_title ?? $ad->en_title }}</span>
                                     </div>
                                     <div class="card-image-overlay p-1">
                                         @if (\Carbon\Carbon::parse($ad->created_at)->diffInDays() > 0)
@@ -828,7 +828,7 @@
                                         @endif
                                     </div>
                                     <div class="card-body">
-                                        <span>{{ $ad->en_title }}</span>
+                                        <span>{{ $ad->en_title ?? $ad->ar_title }}</span>
                                     </div>
                                     <div class="card-image-overlay p-1">
                                         @if (\Carbon\Carbon::parse($ad->created_at)->diffInDays() > 0)
@@ -1861,7 +1861,7 @@
                                         @endif
                                     </div>
                                     <div class="card-body">
-                                        <span>{{ $ad->ar_title }}</span>
+                                        <span>{{ $ad->ar_title ?? $ad->en_title }}</span>
                                     </div>
                                     <div class="card-image-overlay p-1">
                                         @if (\Carbon\Carbon::parse($ad->created_at)->diffInDays() > 0)
@@ -1901,7 +1901,7 @@
                                         @endif
                                     </div>
                                     <div class="card-body">
-                                        <span>{{ $ad->en_title }}</span>
+                                        <span>{{ $ad->en_title ?? $ad->ar_title }}</span>
                                     </div>
                                     <div class="card-image-overlay p-1">
                                         @if (\Carbon\Carbon::parse($ad->created_at)->diffInDays() > 0)
@@ -2630,7 +2630,7 @@
                                         @endif
                                     </div>
                                     <div class="card-body">
-                                        <span>{{ $ad->ar_title }}</span>
+                                        <span>{{ $ad->ar_title ?? $ad->en_title }}</span>
                                     </div>
                                     <div class="card-image-overlay p-1">
                                         @if (\Carbon\Carbon::parse($ad->created_at)->diffInDays() > 0)
@@ -2670,7 +2670,7 @@
                                         @endif
                                     </div>
                                     <div class="card-body">
-                                        <span>{{ $ad->en_title }}</span>
+                                        <span>{{ $ad->en_title ?? $ad->ar_title }}</span>
                                     </div>
                                     <div class="card-image-overlay p-1">
                                         @if (\Carbon\Carbon::parse($ad->created_at)->diffInDays() > 0)

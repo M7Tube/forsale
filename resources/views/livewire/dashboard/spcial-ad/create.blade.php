@@ -4,7 +4,7 @@
             <div class="col-lg-12">
                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                     <div class="card-header">
-                        <h3 class="text-center font-weight-light my-4">{{ __('Craete Spcial Ad') }} <i
+                        <h3 class="text-center font-weight-light my-4">{{ __('Craete Admin Ad') }} <i
                                 class="bi bi-badge-ad-fill"></i></h3>
                     </div>
                     <div class="card-body">

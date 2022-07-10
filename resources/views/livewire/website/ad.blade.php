@@ -7,7 +7,7 @@
                     <div class="row">
                         <div class="col-12 col-md-4">
                             <div class="p-4">
-                                <h4>{{ $ad->ar_title ?? '' }}</h4>
+                                <h4>{{ $ad->ar_title ?? $ad->en_title }}</h4>
                                 <h5>{{ __('Price') }} : {{ $ad->price ?? 0 }} {{ __('SYP') }}</h5>
                                 @if (\Carbon\Carbon::parse($ad->created_at ?? '')->diffInDays() > 0)
                                     <i class="bi bi-clock"></i> <span class="since">{{ __('Since ') }}
@@ -64,7 +64,7 @@
                                 </div>
                                 {{ __('Descriptions : ') }} <br>
                                 <p>
-                                    {{ $ad->ar_desc ?? '' }}
+                                    {{ $ad->ar_desc ?? $ad->en_desc }}
                                 </p>
                             </div>
                         </div>
@@ -229,7 +229,7 @@
                             </div>
                             <div class="card p-2 my-1" style="background-color:#F2F2F2;">
                                 <div class="row">
-                                    <div class="col-6" style="color: #33333384;">{{ __('Motion Vector') }}</div>
+                                    <div class="col-6" style="color: #33333384;">{{ __('Transmision Vector') }}</div>
                                     <div class="col-6 d-flex justify-content-center">
                                         <div class="col-6">{{ $ad->MotionVector->ar_name ?? '' }}</div>
                                     </div>
@@ -279,8 +279,8 @@
                         <br>
                         @if ($ad->isPhone_visable == 1)
                             <button wire:click.prevent="" class="btn btn-block w-100 my-2"
-                                style="background-color: #C1C1C1;">
-                                <i class="bi bi-telephone"></i> {{ $ad->phone_number ?? '' }}
+                                style="background-color: #C1C1C1;" {{ $ad->phone_number ?? 'disabled' }}>
+                                <i class="bi bi-telephone"></i> {{ $ad->phone_number ?? __('Empty') }}
                             </button>
                         @else
                             <button wire:click.prevent="" class="btn btn-block w-100 my-2"
@@ -312,7 +312,7 @@
                     <div class="row">
                         <div class="col-12 col-md-4">
                             <div class="p-4">
-                                <h4>{{ $ad->ar_title ?? '' }}</h4>
+                                <h4>{{ $ad->ar_title ?? $ad->en_title }}</h4>
                                 <h5>{{ __('Price') }} : {{ $ad->price ?? 0 }} {{ __('SYP') }}</h5>
                                 @if (\Carbon\Carbon::parse($ad->created_at ?? '')->diffInDays() > 0)
                                     <i class="bi bi-clock"></i> <span class="since">{{ __('Since ') }}
@@ -376,7 +376,7 @@
                                 </div>
                                 {{ __('Descriptions : ') }} <br>
                                 <p>
-                                    {{ $ad->ar_desc ?? '' }}
+                                    {{ $ad->ar_desc ?? $ad->en_desc }}
                                 </p>
                             </div>
                         </div>
@@ -635,8 +635,8 @@
                         <br>
                         @if ($ad->isPhone_visable == 1)
                             <button wire:click.prevent="" class="btn btn-block w-100 my-2"
-                                style="background-color: #C1C1C1;">
-                                <i class="bi bi-telephone"></i> {{ $ad->phone_number ?? '' }}
+                                style="background-color: #C1C1C1;" {{ $ad->phone_number ?? 'disabled' }}>
+                                <i class="bi bi-telephone"></i> {{ $ad->phone_number ?? __('Empty') }}
                             </button>
                         @else
                             <button wire:click.prevent="" class="btn btn-block w-100 my-2"
@@ -668,7 +668,7 @@
                     <div class="row">
                         <div class="col-12 col-md-4">
                             <div class="p-4">
-                                <h4>{{ $ad->ar_title ?? '' }}</h4>
+                                <h4>{{ $ad->ar_title ?? $ad->en_title }}</h4>
                                 <h5>{{ __('Salary') }} : {{ $ad->salary ?? 0 }} {{ __('SYP') }}</h5>
                                 @if (\Carbon\Carbon::parse($ad->created_at ?? '')->diffInDays() > 0)
                                     <i class="bi bi-clock"></i> <span class="since">{{ __('Since ') }}
@@ -738,7 +738,7 @@
                                 </div>
                                 {{ __('Descriptions : ') }} <br>
                                 <p>
-                                    {{ $ad->ar_desc ?? '' }}
+                                    {{ $ad->ar_desc ?? $ad->en_desc }}
                                 </p>
                             </div>
                         </div>
@@ -964,8 +964,8 @@
                         <br>
                         @if ($ad->isPhone_visable == 1)
                             <button wire:click.prevent="" class="btn btn-block w-100 my-2"
-                                style="background-color: #C1C1C1;">
-                                <i class="bi bi-telephone"></i> {{ $ad->phone_number ?? '' }}
+                                style="background-color: #C1C1C1;" {{ $ad->phone_number ?? 'disabled' }}>
+                                <i class="bi bi-telephone"></i> {{ $ad->phone_number ?? __('Empty') }}
                             </button>
                         @else
                             <button wire:click.prevent="" class="btn btn-block w-100 my-2"
@@ -999,7 +999,7 @@
                     <div class="row">
                         <div class="col-12 col-md-4">
                             <div class="p-4">
-                                <h4>{{ $ad->en_title ?? '' }}</h4>
+                                <h4>{{ $ad->en_title ?? $ad->ar_title }}</h4>
                                 <h5>{{ __('Price') }} : {{ $ad->price ?? 0 }} {{ __('SYP') }}</h5>
                                 @if (\Carbon\Carbon::parse($ad->created_at ?? '')->diffInDays() > 0)
                                     <i class="bi bi-clock"></i> <span class="since">{{ __('Since ') }}
@@ -1057,7 +1057,7 @@
                                 </div>
                                 {{ __('Descriptions : ') }} <br>
                                 <p>
-                                    {{ $ad->en_desc ?? '' }}
+                                    {{ $ad->en_desc ?? $ad->ar_desc }}
                                 </p>
                             </div>
                         </div>
@@ -1222,7 +1222,7 @@
                             </div>
                             <div class="card p-2 my-1" style="background-color:#F2F2F2;">
                                 <div class="row">
-                                    <div class="col-6" style="color: #33333384;">{{ __('Motion Vector') }}</div>
+                                    <div class="col-6" style="color: #33333384;">{{ __('Transmision Vector') }}</div>
                                     <div class="col-6 d-flex justify-content-center">
                                         <div class="col-6">{{ $ad->MotionVector->en_name ?? '' }}</div>
                                     </div>
@@ -1273,8 +1273,8 @@
                         <br>
                         @if ($ad->isPhone_visable == 1)
                             <button wire:click.prevent="" class="btn btn-block w-100 my-2"
-                                style="background-color: #C1C1C1;">
-                                <i class="bi bi-telephone"></i> {{ $ad->phone_number ?? '' }}
+                                style="background-color: #C1C1C1;" {{ $ad->phone_number ?? 'disabled' }}>
+                                <i class="bi bi-telephone"></i> {{ $ad->phone_number ?? __('Empty') }}
                             </button>
                         @else
                             <button wire:click.prevent="" class="btn btn-block w-100 my-2"
@@ -1306,7 +1306,7 @@
                     <div class="row">
                         <div class="col-12 col-md-4">
                             <div class="p-4">
-                                <h4>{{ $ad->en_title ?? '' }}</h4>
+                                <h4>{{ $ad->en_title ?? $ad->ar_title }}</h4>
                                 <h5>{{ __('Price') }} : {{ $ad->price ?? 0 }} {{ __('SYP') }}</h5>
                                 @if (\Carbon\Carbon::parse($ad->created_at ?? '')->diffInDays() > 0)
                                     <i class="bi bi-clock"></i> <span class="since">{{ __('Since ') }}
@@ -1370,7 +1370,7 @@
                                 </div>
                                 {{ __('Descriptions : ') }} <br>
                                 <p>
-                                    {{ $ad->en_desc ?? '' }}
+                                    {{ $ad->en_desc ?? $ad->ar_desc }}
                                 </p>
                             </div>
                         </div>
@@ -1640,8 +1640,8 @@
                         <br>
                         @if ($ad->isPhone_visable == 1)
                             <button wire:click.prevent="" class="btn btn-block w-100 my-2"
-                                style="background-color: #C1C1C1;">
-                                <i class="bi bi-telephone"></i> {{ $ad->phone_number ?? '' }}
+                                style="background-color: #C1C1C1;" {{ $ad->phone_number ?? 'disabled' }}>
+                                <i class="bi bi-telephone"></i> {{ $ad->phone_number ?? __('Empty') }}
                             </button>
                         @else
                             <button wire:click.prevent="" class="btn btn-block w-100 my-2"
@@ -1673,7 +1673,7 @@
                     <div class="row">
                         <div class="col-12 col-md-4">
                             <div class="p-4">
-                                <h4>{{ $ad->en_title ?? '' }}</h4>
+                                <h4>{{ $ad->en_title ?? $ad->ar_title }}</h4>
                                 <h5>{{ __('Salary') }} : {{ $ad->salary ?? 0 }} {{ __('SYP') }}</h5>
                                 @if (\Carbon\Carbon::parse($ad->created_at ?? '')->diffInDays() > 0)
                                     <i class="bi bi-clock"></i> <span class="since">{{ __('Since ') }}
@@ -1743,7 +1743,7 @@
                                 </div>
                                 {{ __('Descriptions : ') }} <br>
                                 <p>
-                                    {{ $ad->en_desc ?? '' }}
+                                    {{ $ad->en_desc ?? $ad->ar_desc }}
                                 </p>
                             </div>
                         </div>
@@ -1972,8 +1972,8 @@
                         <br>
                         @if ($ad->isPhone_visable == 1)
                             <button wire:click.prevent="" class="btn btn-block w-100 my-2"
-                                style="background-color: #C1C1C1;">
-                                <i class="bi bi-telephone"></i> {{ $ad->phone_number ?? '' }}
+                                style="background-color: #C1C1C1;" {{ $ad->phone_number ?? 'disabled' }}>
+                                <i class="bi bi-telephone"></i> {{ $ad->phone_number ?? __('Empty') }}
                             </button>
                         @else
                             <button wire:click.prevent="" class="btn btn-block w-100 my-2"

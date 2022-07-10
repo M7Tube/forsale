@@ -5,10 +5,10 @@
                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                     <div class="card-header">
                         @if (app()->getLocale() == 'en')
-                            <h3 class="text-center font-weight-light my-4">{{ __('Edit Spcial Ad Picture') }}
+                            <h3 class="text-center font-weight-light my-4">{{ __('Edit Admin Ad Picture') }}
                                 </b><i class="bi bi-badge-ad-fill"></i></h3>
                         @else
-                            <h3 class="text-center font-weight-light my-4">{{ __('Edit Spcial Ad Picture') }}
+                            <h3 class="text-center font-weight-light my-4">{{ __('Edit Admin Ad Picture') }}
                                 </b><i class="bi bi-badge-ad-fill"></i></h3>
                         @endif
                     </div>

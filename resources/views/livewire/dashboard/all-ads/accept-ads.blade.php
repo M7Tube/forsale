@@ -1,6 +1,6 @@
 <div>
-    <h4 class="p-3">{{ __('My Ads') }}</h4>
-    <div class="container text-center mb-2">
+    <h4 class="p-3 text-center">{{ __('Ads Need Approval') }}</h4>
+    {{-- <div class="container text-center mb-2">
         <div class="row card p-3 bg-white rounded-lg border-0 ">
             <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
                 <input type="radio" class="btn-check w-100" wire:model="manger_accept" id="manger_accept1"
@@ -17,7 +17,7 @@
                 </label>
             </div>
         </div>
-    </div>
+    </div> --}}
     <div class="container text-center mb-2">
         <div class="row card p-3 bg-white rounded-lg border-0 ">
             <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
@@ -63,7 +63,11 @@
                                     <span class="card-notify-badge">{{ $car->price ?? 0 }}
                                         {{ __('SYP') }}</span>
                                     <img class="img-fluid img"
-                                        src="data:image/png|jpg|jpeg;base64, {!! base64_encode(file_exists('../storage/app/img/' . array_values(json_decode($car->picture))[0]) ? file_get_contents('../storage/app/img/' . array_values(json_decode($car->picture))[0]) : file_get_contents('../storage/app/img/defualt.png')) !!}"
+                                        src="data:image/png|jpg|jpeg;base64, {!! base64_encode(
+                                            file_exists('../storage/app/img/' . array_values(json_decode($car->picture))[0])
+                                                ? file_get_contents('../storage/app/img/' . array_values(json_decode($car->picture))[0])
+                                                : file_get_contents('../storage/app/img/defualt.png'),
+                                        ) !!}"
                                         alt="Alternate Text" />
                                 </div>
                                 <div class="card-body">
@@ -98,6 +102,12 @@
                                 </div>
                             </div>
                         </a>
+                        <div class="d-flex justify-content-center">
+                            <button class="btn btn-block w-50 mt-2 btn-outline-dark mx-1"
+                                wire:click.prevent="accept(1,{{ $car->car_id }})">{{ __('Accept') }}</button>
+                            <button class="btn btn-block w-50 mt-2 btn-outline-danger mx-1"
+                                wire:click.prevent="reject(1,{{ $car->car_id }})">{{ __('Reject') }}</button>
+                        </div>
                     </div>
                 @empty
                     <h4 class="text-center text-secondary">{{ __('Empty') }}</h4>
@@ -117,7 +127,11 @@
                                     <span class="card-notify-badge">{{ $real_estate->price ?? 0 }}
                                         {{ __('SYP') }}</span>
                                     <img class="img-fluid img"
-                                        src="data:image/png|jpg|jpeg;base64, {!! base64_encode(file_exists('../storage/app/img/' . array_values(json_decode($real_estate->picture))[0]) ? file_get_contents('../storage/app/img/' . array_values(json_decode($real_estate->picture))[0]) : file_get_contents('../storage/app/img/defualt.png')) !!}"
+                                        src="data:image/png|jpg|jpeg;base64, {!! base64_encode(
+                                            file_exists('../storage/app/img/' . array_values(json_decode($real_estate->picture))[0])
+                                                ? file_get_contents('../storage/app/img/' . array_values(json_decode($real_estate->picture))[0])
+                                                : file_get_contents('../storage/app/img/defualt.png'),
+                                        ) !!}"
                                         alt="Alternate Text" />
                                 </div>
                                 <div class="card-body">
@@ -152,6 +166,12 @@
                                 </div>
                             </div>
                         </a>
+                        <div class="d-flex justify-content-center">
+                            <button class="btn btn-block w-50 mt-2 btn-outline-dark mx-1"
+                                wire:click.prevent="accept(2,{{ $real_estate->real_estate_id }})">{{ __('Accept') }}</button>
+                            <button class="btn btn-block w-50 mt-2 btn-outline-danger mx-1"
+                                wire:click.prevent="reject(2,{{ $real_estate->real_estate_id }})">{{ __('Reject') }}</button>
+                        </div>
                     </div>
                 @empty
                     <h4 class="text-center text-secondary">{{ __('Empty') }}</h4>
@@ -171,7 +191,11 @@
                                     <span class="card-notify-badge">{{ $job->salary ?? 0 }}
                                         {{ __('SYP') }}</span>
                                     <img class="img-fluid img"
-                                        src="data:image/png|jpg|jpeg;base64, {!! base64_encode(file_exists('../storage/app/img/' . array_values(json_decode($job->picture))[0]) ? file_get_contents('../storage/app/img/' . array_values(json_decode($job->picture))[0]) : file_get_contents('../storage/app/img/defualt.png')) !!}"
+                                        src="data:image/png|jpg|jpeg;base64, {!! base64_encode(
+                                            file_exists('../storage/app/img/' . array_values(json_decode($job->picture))[0])
+                                                ? file_get_contents('../storage/app/img/' . array_values(json_decode($job->picture))[0])
+                                                : file_get_contents('../storage/app/img/defualt.png'),
+                                        ) !!}"
                                         alt="Alternate Text" />
                                 </div>
                                 <div class="card-body">
@@ -206,6 +230,12 @@
                                 </div>
                             </div>
                         </a>
+                        <div class="d-flex justify-content-center">
+                            <button class="btn btn-block w-50 mt-2 btn-outline-dark mx-1"
+                                wire:click.prevent="accept(3,{{ $job->job_id }})">{{ __('Accept') }}</button>
+                            <button class="btn btn-block w-50 mt-2 btn-outline-danger mx-1"
+                                wire:click.prevent="reject(3,{{ $job->job_id }})">{{ __('Reject') }}</button>
+                        </div>
                     </div>
                 @empty
                     <h4 class="text-center text-secondary">{{ __('Empty') }}</h4>

@@ -18,6 +18,6 @@ class RealEstateMainCategorySeeder extends Seeder
         RealEstateMainCategory::Create(['en_name' => 'Villas - Farms', 'ar_name' => 'فلل - مزارع']);
         RealEstateMainCategory::Create(['en_name' => 'Apartments', 'ar_name' => 'شقق']);
         RealEstateMainCategory::Create(['en_name' => 'Commercial', 'ar_name' => 'تجاري']);
-        RealEstateMainCategory::Create(['en_name' => 'Artificial', 'ar_name' => 'صناعي']);
+        RealEstateMainCategory::Create(['en_name' => 'Industrial', 'ar_name' => 'صناعي']);
     }
 }

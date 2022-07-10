@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-@if (app()->getLocale() == 'en')
-    <html lang="{{ app()->getLocale() }}" dir="ltr">
-@else
-    <html lang="{{ app()->getLocale() }}" dir="rtl">
-@endif
+<?php if(app()->getLocale() == 'en'): ?>
+    <html lang="<?php echo e(app()->getLocale()); ?>" dir="ltr">
+<?php else: ?>
+    <html lang="<?php echo e(app()->getLocale()); ?>" dir="rtl">
+<?php endif; ?>
 
 <head>
     <meta charset="UTF-8">
@@ -17,11 +17,11 @@
     <meta name="viewport"
         content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    {{-- <link href="{{ asset('css/aaa.css') }}" rel="stylesheet" /> --}}
-    <link href="{{ asset('vendor2/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('vendor2/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
-    <link href="{{ asset('vendor2/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('vendor2/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
+    
+    <link href="<?php echo e(asset('vendor2/bootstrap/css/bootstrap.min.css')); ?>" rel="stylesheet">
+    <link href="<?php echo e(asset('vendor2/bootstrap-icons/bootstrap-icons.css')); ?>" rel="stylesheet">
+    <link href="<?php echo e(asset('vendor2/glightbox/css/glightbox.min.css')); ?>" rel="stylesheet">
+    <link href="<?php echo e(asset('vendor2/swiper/swiper-bundle.min.css')); ?>" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="module">
         // Import the functions you need from the SDKs you need
@@ -77,18 +77,20 @@
         }
 
     </style>
-    @yield('insideHead')
-    @livewireStyles
+    <?php echo $__env->yieldContent('insideHead'); ?>
+    <?php echo \Livewire\Livewire::styles(); ?>
+
 
 </head>
 
 <body style="background-color: rgb(236, 235, 235)">
-    @yield('insideBody')
+    <?php echo $__env->yieldContent('insideBody'); ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous">
     </script>
-    @livewireScripts
-    @yield('scripts')
+    <?php echo \Livewire\Livewire::scripts(); ?>
+
+    <?php echo $__env->yieldContent('scripts'); ?>
     <script>
         window.livewire.on('AreaCreated', () => {
             $('#CreateAreaModal').modal('hide');
@@ -149,7 +151,7 @@
             $('#editRMModal').modal('hide');
         })
     </script>
-    {{--  --}}
+    
     <script>
         window.livewire.on('ContinentOfOriginCreated', () => {
             $('#CreateCOOModal').modal('hide');
@@ -160,7 +162,7 @@
             $('#editCOOModal').modal('hide');
         })
     </script>
-    {{--  --}}
+    
     <script>
         window.livewire.on('Created', () => {
             $('#CreateModal').modal('hide');
@@ -177,7 +179,8 @@
         })
     </script>
 </body>
-@stack('scripts')
-@stack('styles')
+<?php echo $__env->yieldPushContent('scripts'); ?>
+<?php echo $__env->yieldPushContent('styles'); ?>
 
 </html>
+<?php /**PATH C:\Users\Abo Samer\Desktop\Work\Waseetcom\_public_htewrml\_public_html\resources\views/layouts/dashboard.blade.php ENDPATH**/ ?>
