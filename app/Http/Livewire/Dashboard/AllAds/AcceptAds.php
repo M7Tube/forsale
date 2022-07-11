@@ -16,6 +16,7 @@ class AcceptAds extends Component
     public $user_id;
     public $readyToLoad = false;
     public $category;
+    public $rejected_reason;
 
     protected $data;
 
@@ -90,6 +91,7 @@ class AcceptAds extends Component
             $ad = Cars::findOrFail($id);
             if ($ad) {
                 $ad->manger_accept = 0;
+                $ad->rejected_reason = $this->rejected_reason ?? '';
                 $ad->save();
                 return redirect()->route('web.crud.AcceptAds', app()->getLocale());
             } else {
@@ -99,6 +101,7 @@ class AcceptAds extends Component
             $ad = RealEstate::findOrFail($id);
             if ($ad) {
                 $ad->manger_accept = 0;
+                $ad->rejected_reason = $this->rejected_reason ?? '';
                 $ad->save();
                 return redirect()->route('web.crud.AcceptAds', app()->getLocale());
             } else {
@@ -108,6 +111,7 @@ class AcceptAds extends Component
             $ad = Jobs::findOrFail($id);
             if ($ad) {
                 $ad->manger_accept = 0;
+                $ad->rejected_reason = $this->rejected_reason ?? '';
                 $ad->save();
                 return redirect()->route('web.crud.AcceptAds', app()->getLocale());
             } else {

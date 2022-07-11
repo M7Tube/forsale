@@ -105,20 +105,20 @@
                             <button class="btn btn-block w-50 mt-2 btn-outline-dark mx-1"
                                 wire:click.prevent="accept(1,<?php echo e($car->car_id); ?>)"><?php echo e(__('Accept')); ?></button>
                             <button class="btn btn-block w-50 mt-2 btn-outline-danger mx-1" data-bs-toggle="modal"
-                                data-bs-target="#exampleModal"><?php echo e(__('Reject')); ?></button>
+                                data-bs-target="#exampleModal1<?php echo e($car->car_id); ?>"><?php echo e(__('Reject')); ?></button>
                             <!-- Modal -->
-                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                                aria-hidden="true">
+                            <div class="modal fade" id="exampleModal1<?php echo e($car->car_id); ?>" tabindex="-1"
+                                aria-labelledby="exampleModal1<?php echo e($car->car_id); ?>Label" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">
+                                            <h5 class="modal-title" id="exampleModal1<?php echo e($car->car_id); ?>Label">
                                                 <?php echo e(__('Rejected Reason')); ?></h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <textarea wire:model="rejected_reason" id="" cols="30" rows="10" class="form-control"
+                                            <textarea wire:model.defer="rejected_reason" id="" cols="30" rows="10" class="form-control"
                                                 placeholder="<?php echo e(__('Rejected Reason')); ?>"></textarea>
                                         </div>
                                         <div class="modal-footer">
@@ -130,7 +130,6 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
@@ -207,8 +206,35 @@
                         <div class="d-flex justify-content-center">
                             <button class="btn btn-block w-50 mt-2 btn-outline-dark mx-1"
                                 wire:click.prevent="accept(2,<?php echo e($real_estate->real_estate_id); ?>)"><?php echo e(__('Accept')); ?></button>
-                            <button class="btn btn-block w-50 mt-2 btn-outline-danger mx-1"
-                                wire:click.prevent="reject(2,<?php echo e($real_estate->real_estate_id); ?>)"><?php echo e(__('Reject')); ?></button>
+                            <button class="btn btn-block w-50 mt-2 btn-outline-danger mx-1" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal2<?php echo e($real_estate->real_estate_id); ?>"><?php echo e(__('Reject')); ?></button>
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal2<?php echo e($real_estate->real_estate_id); ?>"
+                                tabindex="-1"
+                                aria-labelledby="exampleModal2<?php echo e($real_estate->real_estate_id); ?>Label"
+                                aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title"
+                                                id="exampleModal2<?php echo e($real_estate->real_estate_id); ?>Label">
+                                                <?php echo e(__('Rejected Reason')); ?></h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <textarea wire:model.defer="rejected_reason" id="" cols="30" rows="10" class="form-control"
+                                                placeholder="<?php echo e(__('Rejected Reason')); ?>"></textarea>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-outline-secondary"
+                                                data-bs-dismiss="modal"><?php echo e(__('Close')); ?></button>
+                                            <button type="button" class="btn btn-outline-danger"
+                                                wire:click.prevent="reject(2,<?php echo e($real_estate->real_estate_id); ?>)"><?php echo e(__('Reject')); ?></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
@@ -285,8 +311,32 @@
                         <div class="d-flex justify-content-center">
                             <button class="btn btn-block w-50 mt-2 btn-outline-dark mx-1"
                                 wire:click.prevent="accept(3,<?php echo e($job->job_id); ?>)"><?php echo e(__('Accept')); ?></button>
-                            <button class="btn btn-block w-50 mt-2 btn-outline-danger mx-1"
-                                wire:click.prevent="reject(3,<?php echo e($job->job_id); ?>)"><?php echo e(__('Reject')); ?></button>
+                            <button class="btn btn-block w-50 mt-2 btn-outline-danger mx-1" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal3<?php echo e($job->job_id); ?>"><?php echo e(__('Reject')); ?></button>
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal3<?php echo e($job->job_id); ?>" tabindex="-1"
+                                aria-labelledby="exampleModal3<?php echo e($job->job_id); ?>Label" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModal3<?php echo e($job->job_id); ?>Label">
+                                                <?php echo e(__('Rejected Reason')); ?></h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <textarea wire:model.defer="rejected_reason" id="" cols="30" rows="10" class="form-control"
+                                                placeholder="<?php echo e(__('Rejected Reason')); ?>"></textarea>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-outline-secondary"
+                                                data-bs-dismiss="modal"><?php echo e(__('Close')); ?></button>
+                                            <button type="button" class="btn btn-outline-danger"
+                                                wire:click.prevent="reject(3,<?php echo e($job->job_id); ?>)"><?php echo e(__('Reject')); ?></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>

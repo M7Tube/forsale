@@ -23,6 +23,7 @@ class CreateRealEstatesTable extends Migration
             $table->integer('manger_accept'); //HERE THIS COULMN CONTAINS (3) VALUE 0-> REJECTED 1-> NEED APPROVAL 2-> ACCEPTED
             $table->boolean('isPhone_visable');
             $table->integer('price')->nullable();
+            $table->string('rejected_reason')->nullable();
             $table->string('picture')->nullable();
             $table->integer('is_special');
             $table->bigInteger('watch_count')->default(0);

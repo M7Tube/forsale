@@ -21,6 +21,7 @@ class Jobs extends Model
         'en_title',
         'ar_desc',
         'en_desc',
+        'rejected_reason',
         'phone_number',
         'manger_accept',
         'isPhone_visable',

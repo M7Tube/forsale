@@ -2,9 +2,30 @@
     <!-- Begin Of Create Pages Card -->
     <h4 class="text-center mt-4">{{ __('Waseetcom Dashboard') }}</h4>
     <div class="row">
+        @canany(['read_app_settings'])
+            <div class="my-2 col-12">
+                <a href="{{ route('web.crud.Statistics', app()->getLocale()) }}" class="text-dark" style="text-decoration: none;">
+                    <div class="Scard card shadow-lg border-2 rounded-lg">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <div class="align-self-center">
+                                    {{ __('Control Page') }} <i class="bi bi-menu-button"></i>
+                                </div>
+                                <div class="media d-flex">
+                                    <div class="media-body text-right">
+                                        <h5>{{ __('Statistics') }}</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        @endcanany
         @canany(['read_users', 'create_users', 'edit_users', 'delete_users'])
             <div class="my-2 col-xl-4 col-sm-6 col-12">
-                <a href="{{ route('web.crud.Users', app()->getLocale()) }}" class="text-dark" style="text-decoration: none;">
+                <a href="{{ route('web.crud.Users', app()->getLocale()) }}" class="text-dark"
+                    style="text-decoration: none;">
                     <div class="Scard card shadow-lg border-2 rounded-lg">
                         <div class="card-content">
                             <div class="card-body">

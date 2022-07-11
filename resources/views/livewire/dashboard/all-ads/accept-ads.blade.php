@@ -106,20 +106,20 @@
                             <button class="btn btn-block w-50 mt-2 btn-outline-dark mx-1"
                                 wire:click.prevent="accept(1,{{ $car->car_id }})">{{ __('Accept') }}</button>
                             <button class="btn btn-block w-50 mt-2 btn-outline-danger mx-1" data-bs-toggle="modal"
-                                data-bs-target="#exampleModal">{{ __('Reject') }}</button>
+                                data-bs-target="#exampleModal1{{ $car->car_id }}">{{ __('Reject') }}</button>
                             <!-- Modal -->
-                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                                aria-hidden="true">
+                            <div class="modal fade" id="exampleModal1{{ $car->car_id }}" tabindex="-1"
+                                aria-labelledby="exampleModal1{{ $car->car_id }}Label" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">
+                                            <h5 class="modal-title" id="exampleModal1{{ $car->car_id }}Label">
                                                 {{ __('Rejected Reason') }}</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <textarea wire:model="rejected_reason" id="" cols="30" rows="10" class="form-control"
+                                            <textarea wire:model.defer="rejected_reason" id="" cols="30" rows="10" class="form-control"
                                                 placeholder="{{ __('Rejected Reason') }}"></textarea>
                                         </div>
                                         <div class="modal-footer">
@@ -131,7 +131,6 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 @empty
@@ -194,8 +193,35 @@
                         <div class="d-flex justify-content-center">
                             <button class="btn btn-block w-50 mt-2 btn-outline-dark mx-1"
                                 wire:click.prevent="accept(2,{{ $real_estate->real_estate_id }})">{{ __('Accept') }}</button>
-                            <button class="btn btn-block w-50 mt-2 btn-outline-danger mx-1"
-                                wire:click.prevent="reject(2,{{ $real_estate->real_estate_id }})">{{ __('Reject') }}</button>
+                            <button class="btn btn-block w-50 mt-2 btn-outline-danger mx-1" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal2{{ $real_estate->real_estate_id }}">{{ __('Reject') }}</button>
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal2{{ $real_estate->real_estate_id }}"
+                                tabindex="-1"
+                                aria-labelledby="exampleModal2{{ $real_estate->real_estate_id }}Label"
+                                aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title"
+                                                id="exampleModal2{{ $real_estate->real_estate_id }}Label">
+                                                {{ __('Rejected Reason') }}</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <textarea wire:model.defer="rejected_reason" id="" cols="30" rows="10" class="form-control"
+                                                placeholder="{{ __('Rejected Reason') }}"></textarea>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-outline-secondary"
+                                                data-bs-dismiss="modal">{{ __('Close') }}</button>
+                                            <button type="button" class="btn btn-outline-danger"
+                                                wire:click.prevent="reject(2,{{ $real_estate->real_estate_id }})">{{ __('Reject') }}</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 @empty
@@ -258,8 +284,32 @@
                         <div class="d-flex justify-content-center">
                             <button class="btn btn-block w-50 mt-2 btn-outline-dark mx-1"
                                 wire:click.prevent="accept(3,{{ $job->job_id }})">{{ __('Accept') }}</button>
-                            <button class="btn btn-block w-50 mt-2 btn-outline-danger mx-1"
-                                wire:click.prevent="reject(3,{{ $job->job_id }})">{{ __('Reject') }}</button>
+                            <button class="btn btn-block w-50 mt-2 btn-outline-danger mx-1" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal3{{ $job->job_id }}">{{ __('Reject') }}</button>
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal3{{ $job->job_id }}" tabindex="-1"
+                                aria-labelledby="exampleModal3{{ $job->job_id }}Label" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModal3{{ $job->job_id }}Label">
+                                                {{ __('Rejected Reason') }}</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <textarea wire:model.defer="rejected_reason" id="" cols="30" rows="10" class="form-control"
+                                                placeholder="{{ __('Rejected Reason') }}"></textarea>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-outline-secondary"
+                                                data-bs-dismiss="modal">{{ __('Close') }}</button>
+                                            <button type="button" class="btn btn-outline-danger"
+                                                wire:click.prevent="reject(3,{{ $job->job_id }})">{{ __('Reject') }}</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 @empty

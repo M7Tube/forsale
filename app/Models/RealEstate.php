@@ -24,6 +24,7 @@ class RealEstate extends Model
         'en_desc',
         'phone_number',
         'manger_accept',
+        'rejected_reason',
         'isPhone_visable',
         'price',//done
         'picture',//done

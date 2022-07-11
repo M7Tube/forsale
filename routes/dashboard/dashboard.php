@@ -124,6 +124,11 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth', 'as' => 'web.crud
         ->middleware([
             'middleware' => 'permission:edit_cars|edit_jobs|edit_real_estate'
         ]);
+    //PAGE FOR CONTROLE Governorates
+    Route::view('Statistics', 'Dashboard.AppSettings.Statistics')->name('Statistics')
+        ->middleware([
+            'middleware' => 'permission:read_app_settings'
+        ]);
     //PAGE FOR SEND GENERAL Notification
     Route::view('SendNotification', 'Dashboard.Notification.send')->name('sendGeneralNoti');
 

@@ -23,6 +23,7 @@ class CreateJobsTable extends Migration
             $table->integer('manger_accept'); //HERE THIS COULMN CONTAINS (3) VALUE 0-> REJECTED 1-> NEED APPROVAL 2-> ACCEPTED
             $table->boolean('isPhone_visable');
             $table->string('qualification')->nullable();
+            $table->string('rejected_reason')->nullable();
             $table->bigInteger('age')->nullable();
             $table->bigInteger('salary')->nullable();
             $table->bigInteger('work_hour')->nullable();

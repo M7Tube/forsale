@@ -3,6 +3,7 @@
   'dashboard.ad-status.index' => 'App\\Http\\Livewire\\Dashboard\\AdStatus\\Index',
   'dashboard.all-ads.accept-ads' => 'App\\Http\\Livewire\\Dashboard\\AllAds\\AcceptAds',
   'dashboard.apartment-status.index' => 'App\\Http\\Livewire\\Dashboard\\ApartmentStatus\\Index',
+  'dashboard.app-settings.statistics' => 'App\\Http\\Livewire\\Dashboard\\AppSettings\\Statistics',
   'dashboard.area.index' => 'App\\Http\\Livewire\\Dashboard\\Area\\Index',
   'dashboard.building-status.index' => 'App\\Http\\Livewire\\Dashboard\\BuildingStatus\\Index',
   'dashboard.car-status.index' => 'App\\Http\\Livewire\\Dashboard\\CarStatus\\Index',

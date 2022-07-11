@@ -23,6 +23,7 @@ class Cars extends Model
         'ar_desc',
         'en_desc',
         'phone_number',
+        'rejected_reason',
         'manger_accept',
         'isPhone_visable',
         'price', // range filter (static)
