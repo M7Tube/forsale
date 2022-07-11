@@ -388,13 +388,13 @@ class SpicalAPIController extends Controller
         if ($lang == 'ar') {
             $data = Favorite::where('user_id', auth()->user()['user_id'])->with(
                 ['car' => function ($query) {
-                    $query->select(['car_id', 'ar_title', 'ar_desc', 'phone_number', 'picture', 'is_special', 'price', 'governorate_id', 'created_at']);
+                    $query->select(['car_id', 'ar_title', 'ar_desc', 'phone_number', 'en_title', 'en_desc', 'picture', 'is_special', 'price', 'governorate_id', 'created_at']);
                 }],
                 ['real_estate' => function ($query) {
-                    $query->select(['real_estate_id', 'ar_title', 'ar_desc', 'phone_number', 'picture', 'is_special', 'price', 'governorate_id', 'created_at']);
+                    $query->select(['real_estate_id', 'ar_title', 'ar_desc', 'en_title', 'en_desc', 'phone_number', 'picture', 'is_special', 'price', 'governorate_id', 'created_at']);
                 }],
                 ['job' => function ($query) {
-                    $query->select(['job_id', 'ar_title', 'ar_desc', 'phone_number', 'picture', 'is_special', 'salary', 'governorate_id', 'created_at']);
+                    $query->select(['job_id', 'ar_title', 'ar_desc', 'en_title', 'en_desc', 'phone_number', 'picture', 'is_special', 'salary', 'governorate_id', 'created_at']);
                 }]
             )->paginate($per_page);
             if ($data) {
@@ -405,13 +405,13 @@ class SpicalAPIController extends Controller
         } else {
             $data = Favorite::where('user_id', auth()->user()['user_id'])->with(
                 ['car' => function ($query) {
-                    $query->select(['car_id', 'en_title', 'en_desc', 'phone_number', 'picture', 'is_special', 'price', 'manger_accept', 'governorate_id', 'created_at']);
+                    $query->select(['car_id', 'en_title', 'en_desc', 'ar_title', 'ar_desc', 'phone_number', 'picture', 'is_special', 'price', 'manger_accept', 'governorate_id', 'created_at']);
                 }],
                 ['real_estate' => function ($query) {
-                    $query->select(['real_estate_id', 'en_title', 'en_desc', 'phone_number', 'picture', 'is_special', 'price', 'manger_accept', 'governorate_id', 'created_at']);
+                    $query->select(['real_estate_id', 'en_title', 'en_desc', 'ar_title', 'ar_desc', 'phone_number', 'picture', 'is_special', 'price', 'manger_accept', 'governorate_id', 'created_at']);
                 }],
                 ['job' => function ($query) {
-                    $query->select(['job_id', 'en_title', 'en_desc', 'picture', 'is_special', 'salary', 'manger_accept', 'governorate_id', 'created_at']);
+                    $query->select(['job_id', 'en_title', 'en_desc', 'ar_title', 'ar_desc', 'picture', 'is_special', 'salary', 'manger_accept', 'governorate_id', 'created_at']);
                 }]
             )->get();
             if ($data) {
