@@ -289,9 +289,6 @@ class AddNewAd extends Component
                 'en_title' => ['required_without:ar_title', 'nullable', 'string', 'max:144'],
                 'ar_desc' => ['required_without:en_desc', 'nullable', 'string', 'max:1440'],
                 'en_desc' => ['required_without:ar_desc', 'nullable', 'string', 'max:1440'],
-                'phone_number' => ['required', 'string'],
-                'isPhone_visable' => ['required', 'boolean'],
-                'salary' => ['required', 'integer'],
                 'picture.*' => ['required', 'mimes:jpg,png,jpeg'],
             ]);
             $listOfPicture = ['defualt.png'];
