@@ -70,6 +70,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
         //for get the add ad info to select from
         Route::get('getAddNewAdInfo/lang/{lang}/category/{category}', [AddNewAdController::class, 'getAddNewAdInfo'])->name('getAddNewAdInfo');
         //for add new ad to the app
+        Route::post('AddNewAd/category/{category}', [AddNewAdController::class, 'AddNewAd'])->name('AddNewAd');
         //api for contact with manger(chat system) pages
         Route::group(['as' => 'Auth.AdminMessage'], function () {
             //for send new message
@@ -79,7 +80,6 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
         });
     });
 });
-Route::post('AddNewAd/category/{category}', [AddNewAdController::class, 'AddNewAd'])->name('AddNewAd');
 
 //unProtected Route
 Route::group(['as' => 'noAuth.'], function () {
