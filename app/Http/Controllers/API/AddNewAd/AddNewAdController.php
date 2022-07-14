@@ -275,10 +275,12 @@ class AddNewAdController extends Controller
                 'ad_statuse_id' => ['integer', 'exists:ad_statuses,ad_statuse_id'],
             ]);
             $listOfPicture = [];
-            foreach ($request->file('picture') as $pic) {
-                $name = $pic->getClientOriginalName() . time() . '.jpg';
-                $img = Image::make($pic)->resize(1024, 640)->encode('jpg', 100)->interlace()->insert(storage_path('app/img/watermark.png'), 'bottom')->save(storage_path('app/img/' . $name));
-                array_push($listOfPicture, $name);
+            if ($request->file('picture')) {
+                foreach ($request->file('picture') as $pic) {
+                    $name = $pic->getClientOriginalName() . time() . '.jpg';
+                    $img = Image::make($pic)->resize(1024, 640)->encode('jpg', 100)->interlace()->insert(storage_path('app/img/watermark.png'), 'bottom')->save(storage_path('app/img/' . $name));
+                    array_push($listOfPicture, $name);
+                }
             }
             $is_spcial = AdType::where('user_id', $request->user_id)->where('ad_type_id', $request->ad_type_id)->first();
 
@@ -331,10 +333,12 @@ class AddNewAdController extends Controller
                 'REMC_id' => ['required', 'integer', 'exists:real_estate_main_categories,REMC_id'],
             ]);
             $listOfPicture = [];
-            foreach ($request->picture as $pic) {
-                $name = $pic->getClientOriginalName();
-                array_push($listOfPicture, $name);
-                $pic->storeAs('img', $name);
+            if ($request->file('picture')) {
+                foreach ($request->file('picture') as $pic) {
+                    $name = $pic->getClientOriginalName();
+                    array_push($listOfPicture, $name);
+                    $pic->storeAs('img', $name);
+                }
             }
             $is_spcial = AdType::where('user_id', $request->user_id)->where('ad_type_id', $request->ad_type_id)->first();
 
@@ -390,10 +394,12 @@ class AddNewAdController extends Controller
                 'picture.*' => ['required', 'mimes:jpg,png,jpeg'],
             ]);
             $listOfPicture = [];
-            foreach ($request->picture as $pic) {
-                $name = $pic->getClientOriginalName();
-                array_push($listOfPicture, $name);
-                $pic->storeAs('img', $name);
+            if ($request->file('picture')) {
+                foreach ($request->file('picture') as $pic) {
+                    $name = $pic->getClientOriginalName();
+                    array_push($listOfPicture, $name);
+                    $pic->storeAs('img', $name);
+                }
             }
             $is_spcial = AdType::where('user_id', $request->user_id)->where('ad_type_id', $request->ad_type_id)->first();
 
