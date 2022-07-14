@@ -69,7 +69,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
         Route::post('MyNotification', [SpicalAPIController::class, 'MyNotification'])->name('MyNotification');
         //for get the add ad info to select from
         Route::get('getAddNewAdInfo/lang/{lang}/category/{category}', [AddNewAdController::class, 'getAddNewAdInfo'])->name('getAddNewAdInfo');
-        //for add new ad to the app
+        //for add new ad to the app ! done !
         Route::post('AddNewAd/category/{category}', [AddNewAdController::class, 'AddNewAd'])->name('AddNewAd');
         //api for contact with manger(chat system) pages
         Route::group(['as' => 'Auth.AdminMessage'], function () {
@@ -80,7 +80,8 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
         });
     });
 });
-//unProtected Routed
+
+//unProtected Route
 Route::group(['as' => 'noAuth.'], function () {
     //for homepage
     Route::get('homepage', HomePageController::class)->name('homepage');
