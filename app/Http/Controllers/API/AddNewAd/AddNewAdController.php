@@ -335,9 +335,9 @@ class AddNewAdController extends Controller
             $listOfPicture = [];
             if ($request->file('picture')) {
                 foreach ($request->file('picture') as $pic) {
-                    $name = $pic->getClientOriginalName();
+                    $name = $pic->getClientOriginalName() . time() . '.jpg';
+                    $img = Image::make($pic)->resize(1024, 640)->encode('jpg', 100)->interlace()->insert(storage_path('app/img/watermark.png'), 'bottom')->save(storage_path('app/img/' . $name));
                     array_push($listOfPicture, $name);
-                    $pic->storeAs('img', $name);
                 }
             }
             $is_spcial = AdType::where('user_id', $request->user_id)->where('ad_type_id', $request->ad_type_id)->first();
@@ -396,9 +396,9 @@ class AddNewAdController extends Controller
             $listOfPicture = [];
             if ($request->file('picture')) {
                 foreach ($request->file('picture') as $pic) {
-                    $name = $pic->getClientOriginalName();
+                    $name = $pic->getClientOriginalName() . time() . '.jpg';
+                    $img = Image::make($pic)->resize(1024, 640)->encode('jpg', 100)->interlace()->insert(storage_path('app/img/watermark.png'), 'bottom')->save(storage_path('app/img/' . $name));
                     array_push($listOfPicture, $name);
-                    $pic->storeAs('img', $name);
                 }
             }
             $is_spcial = AdType::where('user_id', $request->user_id)->where('ad_type_id', $request->ad_type_id)->first();
@@ -446,5 +446,5 @@ class AddNewAdController extends Controller
             return $this->fails();
         }
     }
-//aw
+    //aw
 }
