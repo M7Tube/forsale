@@ -80,7 +80,6 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
         });
     });
 });
-
 //unProtected Route
 Route::group(['as' => 'noAuth.'], function () {
     //for homepage
