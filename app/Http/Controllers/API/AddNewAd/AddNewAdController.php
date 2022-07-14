@@ -446,5 +446,5 @@ class AddNewAdController extends Controller
             return $this->fails();
         }
     }
-    //aw
 }
+//as
