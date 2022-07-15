@@ -60,7 +60,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
         //for get the user wallet info
         Route::get('MyWallet', [WalletController::class, 'MyWallet'])->name('MyWallet');
         //for get the user favorite
-        Route::get('MyFavorite/lang/{lang}/perpagse/{perpage}', [SpicalAPIController::class, 'MyFavorite'])->name('MyFavorite');
+        Route::get('MyFavorite/lang/{lang}/perpage/{perpage}', [SpicalAPIController::class, 'MyFavorite'])->name('MyFavorite');
         //for add new AD to favorite list
         Route::post('AddToFavorite', [SpicalAPIController::class, 'AddToFavorite'])->name('AddToFavorite');
         //for logout the user
