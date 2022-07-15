@@ -80,6 +80,8 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
         });
     });
 });
+//fsda
+
 //unProtected Route
 Route::group(['as' => 'noAuth.'], function () {
     //for homepage
