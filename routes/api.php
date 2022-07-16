@@ -89,7 +89,7 @@ Route::group(['as' => 'noAuth.'], function () {
     //for view ads page
     Route::get('viewads/lang/{lang}/perpage/{per_page}/category/{category}', [ApiFilterController::class, 'view'])->name('viewads');
     //for view spcific ad
-    Route::get('ad/lang/{lang}/category/{category}/adid/{adid}', [SpicalAPIController::class, 'showAd'])->name('SingleAd');
+    Route::get('ad/lang/{lang}/category/{category}/adid/{adid}/user/{user_id?}', [SpicalAPIController::class, 'showAd'])->name('SingleAd');
     //for show spcific spcial ad
     Route::get('spcialAd/{id}', [SpicalAPIController::class, 'spcialAd'])->name('spcialAd');
     //for search in main page **MYBE NEED TO BE EDITED**

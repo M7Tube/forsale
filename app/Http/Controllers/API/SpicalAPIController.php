@@ -39,17 +39,19 @@ class SpicalAPIController extends Controller
         $img = Image::make(storage_path('app/img/defualt.png'))->resize(1024, 640)->encode('jpg', 100)->interlace()->insert(storage_path('app/img/watermark.png'), 'bottom')->save(storage_path('app/img/' . $name));
         return $img->response('jpg');
     }
-    public function showAd($lang, $category, $adid)
+    public function showAd($lang, $category, $adid, $user_id = null)
     {
         //validate the parameters
         $request = [
             'category' => $category,
             'adid' => $adid,
+            'user_id' => $user_id,
         ];
 
         $validator = Validator::make($request, [
             'category' => ['required', 'integer'],
             'adid' => ['required', 'integer'],
+            'user_id' => ['nullable', 'integer', 'exists:users,user_id'],
         ]);
 
         if ($validator->fails())
@@ -83,6 +85,16 @@ class SpicalAPIController extends Controller
                     'created_at',
                 ]);
                 if ($ad) {
+                    if ($request['user_id']) {
+                        $is_favorite = 0;
+                        $checkFav = Favorite::where([['car_id', $adid], ['user_id', $request['user_id']]])->first();
+                        if ($checkFav) {
+                            $is_favorite = 1;
+                        } else {
+                            $is_favorite = 0;
+                        }
+                        return $this->success('ad', [SingleCarResource::collection([$ad]), ['is_favorite' => $is_favorite]]);
+                    }
                     return $this->success('ad', SingleCarResource::collection([$ad]));
                 } else {
                     return $this->fails();
@@ -115,11 +127,20 @@ class SpicalAPIController extends Controller
                     'created_at',
                 ]);
                 if ($ad) {
+                    if ($request['user_id']) {
+                        $is_favorite = 0;
+                        $checkFav = Favorite::where([['car_id', $adid], ['user_id', $request['user_id']]])->first();
+                        if ($checkFav) {
+                            $is_favorite = 1;
+                        } else {
+                            $is_favorite = 0;
+                        }
+                        return $this->success('ad', [SingleCarResource::collection([$ad]), ['is_favorite' => $is_favorite]]);
+                    }
                     return $this->success('ad', SingleCarResource::collection([$ad]));
                 } else {
                     return $this->fails();
                 }
-                return $this->success('ad', SingleCarResource::collection([$ad]));
             }
         } else if ($category == 2) { //this ad belong to real estate category
             if ($lang == 'ar') {
@@ -154,6 +175,16 @@ class SpicalAPIController extends Controller
                     'created_at',
                 ]);
                 if ($ad) {
+                    if ($request['user_id']) {
+                        $is_favorite = 0;
+                        $checkFav = Favorite::where([['real_estate_id', $adid], ['user_id', $request['user_id']]])->first();
+                        if ($checkFav) {
+                            $is_favorite = 1;
+                        } else {
+                            $is_favorite = 0;
+                        }
+                        return $this->success('ad', [SingleRealEstateResource::collection([$ad]), ['is_favorite' => $is_favorite]]);
+                    }
                     return $this->success('ad', SingleRealEstateResource::collection([$ad]));
                 } else {
                     return $this->fails();
@@ -190,6 +221,16 @@ class SpicalAPIController extends Controller
                     'created_at',
                 ]);
                 if ($ad) {
+                    if ($request['user_id']) {
+                        $is_favorite = 0;
+                        $checkFav = Favorite::where([['real_estate_id', $adid], ['user_id', $request['user_id']]])->first();
+                        if ($checkFav) {
+                            $is_favorite = 1;
+                        } else {
+                            $is_favorite = 0;
+                        }
+                        return $this->success('ad', [SingleRealEstateResource::collection([$ad]), ['is_favorite' => $is_favorite]]);
+                    }
                     return $this->success('ad', SingleRealEstateResource::collection([$ad]));
                 } else {
                     return $this->fails();
@@ -224,6 +265,16 @@ class SpicalAPIController extends Controller
                     'created_at',
                 ]);
                 if ($ad) {
+                    if ($request['user_id']) {
+                        $is_favorite = 0;
+                        $checkFav = Favorite::where([['job_id', $adid], ['user_id', $request['user_id']]])->first();
+                        if ($checkFav) {
+                            $is_favorite = 1;
+                        } else {
+                            $is_favorite = 0;
+                        }
+                        return $this->success('ad', [SingleJobResource::collection([$ad]), ['is_favorite' => $is_favorite]]);
+                    }
                     return $this->success('ad', SingleJobResource::collection([$ad]));
                 } else {
                     return $this->fails();
@@ -256,6 +307,16 @@ class SpicalAPIController extends Controller
                     'created_at',
                 ]);
                 if ($ad) {
+                    if ($request['user_id']) {
+                        $is_favorite = 0;
+                        $checkFav = Favorite::where([['job_id', $adid], ['user_id', $request['user_id']]])->first();
+                        if ($checkFav) {
+                            $is_favorite = 1;
+                        } else {
+                            $is_favorite = 0;
+                        }
+                        return $this->success('ad', [SingleJobResource::collection([$ad]), ['is_favorite' => $is_favorite]]);
+                    }
                     return $this->success('ad', SingleJobResource::collection([$ad]));
                 } else {
                     return $this->fails();
