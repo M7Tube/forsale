@@ -93,12 +93,14 @@ class SpicalAPIController extends Controller
                         } else {
                             $is_favorite = 0;
                         }
-                        $ad->watch_count++;
-                        $ad->save();
+                        $increment = Cars::find($adid);
+                        $increment->watch_count++;
+                        $increment->save();
                         return $this->success('ad', [SingleCarResource::collection([$ad]), ['is_favorite' => $is_favorite]]);
                     }
-                    $ad->watch_count++;
-                    $ad->save();
+                    $increment = Cars::find($adid);
+                    $increment->watch_count++;
+                    $increment->save();
                     return $this->success('ad', SingleCarResource::collection([$ad]));
                 } else {
                     return $this->fails();
@@ -139,12 +141,14 @@ class SpicalAPIController extends Controller
                         } else {
                             $is_favorite = 0;
                         }
-                        $ad->watch_count++;
-                        $ad->save();
+                        $increment = Cars::find($adid);
+                        $increment->watch_count++;
+                        $increment->save();
                         return $this->success('ad', [SingleCarResource::collection([$ad]), ['is_favorite' => $is_favorite]]);
                     }
-                    $ad->watch_count++;
-                    $ad->save();
+                    $increment = Cars::find($adid);
+                    $increment->watch_count++;
+                    $increment->save();
                     return $this->success('ad', SingleCarResource::collection([$ad]));
                 } else {
                     return $this->fails();
@@ -191,12 +195,14 @@ class SpicalAPIController extends Controller
                         } else {
                             $is_favorite = 0;
                         }
-                        $ad->watch_count++;
-                        $ad->save();
+                        $increment = RealEstate::find($adid);
+                        $increment->watch_count++;
+                        $increment->save();
                         return $this->success('ad', [SingleRealEstateResource::collection([$ad]), ['is_favorite' => $is_favorite]]);
                     }
-                    $ad->watch_count++;
-                    $ad->save();
+                    $increment = RealEstate::find($adid);
+                    $increment->watch_count++;
+                    $increment->save();
                     return $this->success('ad', SingleRealEstateResource::collection([$ad]));
                 } else {
                     return $this->fails();
@@ -241,12 +247,14 @@ class SpicalAPIController extends Controller
                         } else {
                             $is_favorite = 0;
                         }
-                        $ad->watch_count++;
-                        $ad->save();
+                        $increment = RealEstate::find($adid);
+                        $increment->watch_count++;
+                        $increment->save();
                         return $this->success('ad', [SingleRealEstateResource::collection([$ad]), ['is_favorite' => $is_favorite]]);
                     }
-                    $ad->watch_count++;
-                    $ad->save();
+                    $increment = RealEstate::find($adid);
+                    $increment->watch_count++;
+                    $increment->save();
                     return $this->success('ad', SingleRealEstateResource::collection([$ad]));
                 } else {
                     return $this->fails();
@@ -289,12 +297,14 @@ class SpicalAPIController extends Controller
                         } else {
                             $is_favorite = 0;
                         }
-                        $ad->watch_count++;
-                        $ad->save();
+                        $increment = Jobs::find($adid);
+                        $increment->watch_count++;
+                        $increment->save();
                         return $this->success('ad', [SingleJobResource::collection([$ad]), ['is_favorite' => $is_favorite]]);
                     }
-                    $ad->watch_count++;
-                    $ad->save();
+                    $increment = Jobs::find($adid);
+                    $increment->watch_count++;
+                    $increment->save();
                     return $this->success('ad', SingleJobResource::collection([$ad]));
                 } else {
                     return $this->fails();
@@ -335,12 +345,14 @@ class SpicalAPIController extends Controller
                         } else {
                             $is_favorite = 0;
                         }
-                        $ad->watch_count++;
-                        $ad->save();
+                        $increment = Jobs::find($adid);
+                        $increment->watch_count++;
+                        $increment->save();
                         return $this->success('ad', [SingleJobResource::collection([$ad]), ['is_favorite' => $is_favorite]]);
                     }
-                    $ad->watch_count++;
-                    $ad->save();
+                    $increment = Jobs::find($adid);
+                    $increment->watch_count++;
+                    $increment->save();
                     return $this->success('ad', SingleJobResource::collection([$ad]));
                 } else {
                     return $this->fails();
