@@ -99,10 +99,20 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth', 'as' => 'web.crud
         ->middleware([
             'middleware' => 'permission:read_ad_status|create_ad_status|edit_ad_status|delete_ad_status'
         ]);
-    //PAGE FOR CONTROLE Users
+    //PAGE FOR CONTROLE Admin Users
     Route::view('Users', 'Dashboard.Users.index')->name('Users')
         ->middleware([
-            'middleware' => 'permission:read_users|create_users|edit_users|delete_users'
+            'middleware' => 'permission:read_users|edit_users|delete_users'
+        ]);
+    //PAGE FOR CONTROLE Web/App Personal Users
+    Route::view('WebAppPersonalUsers', 'Dashboard.Users.WebAppindex')->name('WebAppPersonalUsers')
+        ->middleware([
+            'middleware' => 'permission:read_users|edit_users|delete_users'
+        ]);
+    //PAGE FOR CONTROLE Web/App Commercial Users
+    Route::view('WebAppCommercialUsers', 'Dashboard.Users.WebAppindex2')->name('WebAppCommercialUsers')
+        ->middleware([
+            'middleware' => 'permission:read_users|edit_users|delete_users'
         ]);
     //PAGE FOR CONTROLE SpcialAd
     Route::view('AdminAd', 'Dashboard.spcialAd.index')->name('SpcialAd')

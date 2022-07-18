@@ -51,7 +51,6 @@
             transform: scale(1.01);
             box-shadow: 0 10px 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06);
         }
-
     </style>
     <title><?php echo e(__('Dashboard')); ?></title>
     <?php echo \Livewire\Livewire::styles(); ?>
@@ -107,18 +106,19 @@
                                     class="bi bi-translate"></i> <?php echo e(__('Change To English')); ?></a>
                         </li>
                     <?php endif; ?>
-
                 <?php endif; ?>
                 
-                <li class="">
-                    <a href="<?php echo e(route('register', app()->getLocale())); ?>"><i
-                        class="bi bi-person-plus-fill"></i>
-                    <?php echo e(__('Create New Account')); ?></a>
-                </li>
+                <?php if(auth()->user()->can('create_users')): ?>
+                    <li class="">
+                        <a href="<?php echo e(route('register', app()->getLocale())); ?>"><i class="bi bi-person-plus-fill"></i>
+                            <?php echo e(__('Create New Account')); ?></a>
+                    </li>
+                <?php endif; ?>
                 <li>
                     <form method="POST" action="<?php echo e(route('logout', app()->getLocale())); ?>">
                         <?php echo csrf_field(); ?>
-                        <a class="dropdown-item" href="<?php echo e(route('logout', app()->getLocale())); ?>" onclick="event.preventDefault();
+                        <a class="dropdown-item" href="<?php echo e(route('logout', app()->getLocale())); ?>"
+                            onclick="event.preventDefault();
                                                 this.closest('form').submit();">
                             <i class="bi bi-box-arrow-left"></i> <?php echo e(__('Log Out')); ?>
 

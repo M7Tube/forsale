@@ -24,11 +24,26 @@ class Register extends Component
     public $permission = [];
     public $allPermissions;
 
+    public $select_all = false;
+
     public function __construct()
     {
         $this->authorize(['permission:create_users']);
     }
 
+    public function updatedSelectAll($value)
+    {
+        if ($value) {
+            foreach ($this->getPermissions() as $data) {
+                array_push($this->permission, 'create_' . $data);
+                array_push($this->permission, 'edit_' . $data);
+                array_push($this->permission, 'read_' . $data);
+                array_push($this->permission, 'delete_' . $data);
+            }
+        } else {
+            $this->permission = [];
+        }
+    }
     public function mount()
     {
         $this->allPermissions = $this->getPermissions();
@@ -41,7 +56,7 @@ class Register extends Component
             'last_name' => ['required', 'string', 'max:48'],
             'email' => ['required', 'email', 'unique:users,email'],
             'phone_number' => ['required', 'integer', 'unique:users,phone_number'],
-            'password' => ['required', 'confirmed'],
+            'password' => ['required', 'min:8', 'confirmed'],
             'permission' => ['required', 'min:1'],
         ]);
     }
@@ -53,7 +68,7 @@ class Register extends Component
             'last_name' => ['required', 'string', 'max:48'],
             'email' => ['required', 'email', 'unique:users,email'],
             'phone_number' => ['required', 'integer', 'unique:users,phone_number'],
-            'password' => ['required', 'confirmed'],
+            'password' => ['required', 'min:8', 'confirmed'],
             'permission' => ['required', 'min:1'],
         ]);
     }
@@ -65,7 +80,7 @@ class Register extends Component
             'last_name' => ['required', 'string', 'max:48'],
             'email' => ['required', 'email', 'unique:users,email'],
             'phone_number' => ['required', 'integer', 'unique:users,phone_number'],
-            'password' => ['required', 'confirmed'],
+            'password' => ['required', 'min:8', 'confirmed'],
             'permission' => ['required', 'min:1'],
         ]);
     }
@@ -77,7 +92,7 @@ class Register extends Component
             'last_name' => ['required', 'string', 'max:48'],
             'email' => ['required', 'email', 'unique:users,email'],
             'phone_number' => ['required', 'integer', 'unique:users,phone_number'],
-            'password' => ['required', 'confirmed'],
+            'password' => ['required', 'min:8', 'confirmed'],
             'permission' => ['required', 'min:1'],
         ]);
     }
@@ -89,7 +104,7 @@ class Register extends Component
             'last_name' => ['required', 'string', 'max:48'],
             'email' => ['required', 'email', 'unique:users,email'],
             'phone_number' => ['required', 'integer', 'unique:users,phone_number'],
-            'password' => ['required', 'confirmed'],
+            'password' => ['required', 'min:8', 'confirmed'],
             'permission' => ['required', 'min:1'],
         ]);
     }
@@ -101,7 +116,7 @@ class Register extends Component
             'last_name' => ['required', 'string', 'max:48'],
             'email' => ['required', 'email', 'unique:users,email'],
             'phone_number' => ['required', 'integer', 'unique:users,phone_number'],
-            'password' => ['required', 'confirmed'],
+            'password' => ['required', 'min:8', 'confirmed'],
             'permission' => ['required', 'min:1'],
         ]);
     }
@@ -113,7 +128,7 @@ class Register extends Component
             'last_name' => ['required', 'string', 'max:48'],
             'email' => ['required', 'email', 'unique:users,email'],
             'phone_number' => ['required', 'integer', 'unique:users,phone_number'],
-            'password' => ['required', 'confirmed'],
+            'password' => ['required', 'min:8', 'confirmed'],
             'permission' => ['required', 'min:1'],
         ]);
     }
@@ -125,7 +140,7 @@ class Register extends Component
             'last_name' => ['required', 'string', 'max:48'],
             'email' => ['required', 'email', 'unique:users,email'],
             'phone_number' => ['required', 'integer', 'unique:users,phone_number'],
-            'password' => ['required', 'confirmed'],
+            'password' => ['required', 'min:8', 'confirmed'],
             'permission' => ['required', 'min:1'],
         ]);
     }
@@ -137,7 +152,7 @@ class Register extends Component
             'last_name' => ['required', 'string', 'max:48'],
             'email' => ['required', 'email', 'unique:users,email'],
             'phone_number' => ['required', 'integer', 'unique:users,phone_number'],
-            'password' => ['required', 'confirmed'],
+            'password' => ['required', 'min:8', 'confirmed'],
             'permission' => ['required', 'min:1'],
         ]);
         $user = User::Create([
@@ -152,6 +167,7 @@ class Register extends Component
         $user->syncPermissions($this->permission);
         session()->flash('success', 'User Created Successfully');
         $this->clear();
+        return redirect()->route('web.crud.dashboard', app()->getLocale());
     }
 
     public function clear()

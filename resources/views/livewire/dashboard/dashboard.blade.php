@@ -26,10 +26,10 @@
         {{-- @endcanany --}}
         {{-- @canany(['read_users', 'create_users', 'edit_users', 'delete_users']) --}}
         <div class="my-2 col-xl-4 col-sm-6 col-12">
-            <a href="{{ auth()->user()->canany(['read_users', 'create_users', 'edit_users', 'delete_users']) == false? '': route('web.crud.Users', app()->getLocale()) }}"
+            <a href="{{ auth()->user()->canany(['read_users', 'edit_users', 'delete_users']) == false? '': route('web.crud.Users', app()->getLocale()) }}"
                 class="text-dark" style="text-decoration: none;">
                 <div
-                    class="{{ auth()->user()->canany(['read_users', 'create_users', 'edit_users', 'delete_users']) == false? 'opacity-50': 'Scard' }} card shadow-lg border-2 rounded-lg">
+                    class="{{ auth()->user()->canany(['read_users', 'edit_users', 'delete_users']) == false? 'opacity-50': 'Scard' }} card shadow-lg border-2 rounded-lg">
                     <div class="card-content">
                         <div class="card-body">
                             <div class="align-self-center">
@@ -48,6 +48,50 @@
             </a>
         </div>
         {{-- @endcanany --}}
+        <div class="my-2 col-xl-4 col-sm-6 col-12">
+            <a href="{{ auth()->user()->canany(['read_users', 'edit_users', 'delete_users']) == false? '': route('web.crud.WebAppPersonalUsers', app()->getLocale()) }}"
+                class="text-dark" style="text-decoration: none;">
+                <div
+                    class="{{ auth()->user()->canany(['read_users', 'edit_users', 'delete_users']) == false? 'opacity-50': 'Scard' }} card shadow-lg border-2 rounded-lg">
+                    <div class="card-content">
+                        <div class="card-body">
+                            <div class="align-self-center">
+                                {{ __('Control Page') }} <i class="bi bi-menu-button"></i>
+                            </div>
+                            <div class="media d-flex">
+                                <div class="media-body text-right">
+                                    <h5>{{ __('Web/App Personal Users') }}</h5>
+                                    {{-- <span>Feel Free to Ban Some People <i
+                                                        class="bi bi-emoji-angry-fill"></i></span>. --}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="my-2 col-xl-4 col-sm-6 col-12">
+            <a href="{{ auth()->user()->canany(['read_users', 'edit_users', 'delete_users']) == false? '': route('web.crud.WebAppCommercialUsers', app()->getLocale()) }}"
+                class="text-dark" style="text-decoration: none;">
+                <div
+                    class="{{ auth()->user()->canany(['read_users', 'edit_users', 'delete_users']) == false? 'opacity-50': 'Scard' }} card shadow-lg border-2 rounded-lg">
+                    <div class="card-content">
+                        <div class="card-body">
+                            <div class="align-self-center">
+                                {{ __('Control Page') }} <i class="bi bi-menu-button"></i>
+                            </div>
+                            <div class="media d-flex">
+                                <div class="media-body text-right">
+                                    <h5>{{ __('Web/App Commercial Users') }}</h5>
+                                    {{-- <span>Feel Free to Ban Some People <i
+                                                        class="bi bi-emoji-angry-fill"></i></span>. --}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
         {{-- @canany(['read_color', 'create_color', 'edit_color', 'delete_color']) --}}
         <div class="my-2 col-xl-4 col-sm-6 col-12">
             <a href="{{ auth()->user()->canany(['read_color', 'create_color', 'edit_color', 'delete_color']) == false? '': route('web.crud.Color', app()->getLocale()) }}"

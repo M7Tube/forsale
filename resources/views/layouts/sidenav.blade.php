@@ -51,7 +51,6 @@
             transform: scale(1.01);
             box-shadow: 0 10px 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06);
         }
-
     </style>
     <title>{{ __('Dashboard') }}</title>
     @livewireStyles
@@ -106,7 +105,6 @@
                                     class="bi bi-translate"></i> {{ __('Change To English') }}</a>
                         </li>
                     @endif
-
                 @endif
                 {{-- <li class="active">
                     <a href="{{ route('web.crud.Users', app()->getLocale()) }}"><i class="bi bi-menu-button"></i>
@@ -209,15 +207,17 @@
                             class="bi bi-menu-button"></i>
                         {{ __('Send General Notification') }}</a>
                 </li> --}}
-                <li class="">
-                    <a href="{{ route('register', app()->getLocale()) }}"><i
-                        class="bi bi-person-plus-fill"></i>
-                    {{ __('Create New Account') }}</a>
-                </li>
+                @if (auth()->user()->can('create_users'))
+                    <li class="">
+                        <a href="{{ route('register', app()->getLocale()) }}"><i class="bi bi-person-plus-fill"></i>
+                            {{ __('Create New Account') }}</a>
+                    </li>
+                @endif
                 <li>
                     <form method="POST" action="{{ route('logout', app()->getLocale()) }}">
                         @csrf
-                        <a class="dropdown-item" href="{{ route('logout', app()->getLocale()) }}" onclick="event.preventDefault();
+                        <a class="dropdown-item" href="{{ route('logout', app()->getLocale()) }}"
+                            onclick="event.preventDefault();
                                                 this.closest('form').submit();">
                             <i class="bi bi-box-arrow-left"></i> {{ __('Log Out') }}
                         </a>

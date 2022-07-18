@@ -2,16 +2,16 @@
 
 namespace App\Http\Livewire\Dashboard\Users;
 
-use App\Models\User;
-use Livewire\Component;
 use App\Http\Traits\LivewireDashboardTrait;
+use App\Models\User;
 use Livewire\WithPagination as LivewireWithPagination;
+use Livewire\Component;
 
-
-class Index extends Component
+class WebAppIndex2 extends Component
 {
     use LivewireDashboardTrait;
     use LivewireWithPagination;
+    protected $paginationTheme = 'bootstrap';
 
     public $user_id;
     public $first_name;
@@ -24,20 +24,6 @@ class Index extends Component
     public $orderBy = 'first_name';
     public $orderAsc = true;
     public $search = '';
-
-    // public function Create()
-    // {
-    //     $this->livewire_create(
-    //         [
-    //             'en_name' => ['required', 'string', 'max:72'],
-    //             'ar_name' => ['required', 'string', 'max:72'],
-    //         ],
-    //         'App\Models\User',
-    //         ['en_name', 'ar_name'],
-    //         'User Created Successfully',
-    //         'Created'
-    //     );
-    // }
 
     public function edit($id)
     {
@@ -65,30 +51,6 @@ class Index extends Component
         ]);
     }
 
-    // public function update()
-    // {
-    //     $this->livewire_update(
-    //         [
-    //             'en_name' => ['string', 'max:72'],
-    //             'ar_name' => ['string', 'max:72'],
-    //         ],
-    //         'User',
-    //         'App\Models\User',
-    //         $this->user_id,
-    //         [
-    //             'user_id',
-    //             'first_name',
-    //             'last_name',
-    //             'phone_number',
-    //             'email',
-    //             'is_personal',
-    //             'birth_date',
-    //         ],
-    //         'User Updated Successfully',
-    //         'You Can Not Edit This User',
-    //         'Updated'
-    //     );
-    // }
 
     public function disable($id)
     {
@@ -112,19 +74,14 @@ class Index extends Component
         }
     }
 
-    // public function delete()
-    // {
-    //     $this->livewire_delete('App\Models\User', 'user_id', $this->user_id, 'User Deleted Successfully', 'Updated');
-    // }
-
     public function render()
     {
         return view(
-            'livewire.dashboard.users.index',
+            'livewire.dashboard.users.web-app-index2',
             [
-                'Users' => User::search($this->search)->where('is_admin', 1)
+                'Users' => User::search($this->search)->where([['is_admin', 0], ['is_personal', 1]])
                     ->orderBy($this->orderBy, $this->orderAsc ? 'asc' : 'desc')
-                    ->simplePaginate(5),
+                    ->paginate(5),
             ]
         );
     }

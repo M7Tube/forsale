@@ -31,6 +31,8 @@
   'dashboard.spcial-ad.edit-picture' => 'App\\Http\\Livewire\\Dashboard\\SpcialAd\\EditPicture',
   'dashboard.spcial-ad.index' => 'App\\Http\\Livewire\\Dashboard\\SpcialAd\\Index',
   'dashboard.users.index' => 'App\\Http\\Livewire\\Dashboard\\Users\\Index',
+  'dashboard.users.web-app-index' => 'App\\Http\\Livewire\\Dashboard\\Users\\WebAppIndex',
+  'dashboard.users.web-app-index2' => 'App\\Http\\Livewire\\Dashboard\\Users\\WebAppIndex2',
   'dashboard.wallet.index' => 'App\\Http\\Livewire\\Dashboard\\Wallet\\Index',
   'dashboard.years-of-experience.index' => 'App\\Http\\Livewire\\Dashboard\\YearsOfExperience\\Index',
   'website.ad' => 'App\\Http\\Livewire\\Website\\Ad',
