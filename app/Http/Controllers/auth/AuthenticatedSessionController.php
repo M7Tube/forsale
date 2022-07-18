@@ -30,7 +30,7 @@ class AuthenticatedSessionController extends Controller
     public function store(LoginRequest $request)
     {
         $checkUser = User::where('email', $request->email)->first();
-        if ($checkUser->is_admin == 1) {
+        if ($checkUser->is_admin == 1 && $checkUser->is_active == 1) {
             $request->authenticate();
             $request->session()->regenerate();
             return redirect()->intended(RouteServiceProvider::HOME);

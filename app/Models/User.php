@@ -32,6 +32,7 @@ class User extends Authenticatable
         'serial_number',
         'is_personal',
         'is_admin',
+        'is_active',
         'birth_date',
         'password',
     ];

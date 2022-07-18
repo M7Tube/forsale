@@ -123,7 +123,7 @@
                                                             wire:model="is_personal" id="is_personal2"
                                                             autocomplete="off" value="1">
                                                         <label class="btn btn-outline-secondary"
-                                                            for="is_personal2">{{ __('Mediator') }}
+                                                            for="is_personal2">{{ __('Commercial') }}
                                                         </label>
                                                     </div>
                                                     <span class="text-danger">

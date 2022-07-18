@@ -51,6 +51,7 @@ class Index extends Component
             'birth_date',
         ], 'WrongUser', 'You Can Not Edit This User');
     }
+
     public function clear()
     {
         $this->livewire_clear([
@@ -63,6 +64,7 @@ class Index extends Component
             'birth_date',
         ]);
     }
+
     public function update()
     {
         $this->livewire_update(
@@ -88,16 +90,39 @@ class Index extends Component
         );
     }
 
-    public function delete()
+    public function disable($id)
     {
-        $this->livewire_delete('App\Models\User', 'user_id', $this->user_id, 'User Deleted Successfully', 'Updated');
+        $user = User::find($id);
+        if ($user) {
+            if ($user->is_admin != 1 || $user->hasRole('Super-Admin') == 0) {
+                $user->is_active = 0;
+                $user->save();
+            }
+        }
     }
+
+    public function active($id)
+    {
+        $user = User::find($id);
+        if ($user) {
+            if ($user->is_admin != 1 || $user->hasRole('Super-Admin') == 0) {
+                $user->is_active = 1;
+                $user->save();
+            }
+        }
+    }
+
+    // public function delete()
+    // {
+    //     $this->livewire_delete('App\Models\User', 'user_id', $this->user_id, 'User Deleted Successfully', 'Updated');
+    // }
+
     public function render()
     {
         return view(
             'livewire.dashboard.users.index',
             [
-                'Users' => User::search($this->search)
+                'Users' => User::search($this->search)->where('is_admin', 1)
                     ->orderBy($this->orderBy, $this->orderAsc ? 'asc' : 'desc')
                     ->simplePaginate(5),
             ]
