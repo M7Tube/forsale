@@ -33,12 +33,12 @@ class SpicalAPIController extends Controller
     use MessageTrait;
     //sdfa
 
-    public function testimage()
-    {
-        $name = 'defualt' . time() . '.jpg';
-        $img = Image::make(storage_path('app/img/defualt.png'))->resize(1024, 640)->encode('jpg', 100)->interlace()->insert(storage_path('app/img/watermark.png'), 'bottom')->save(storage_path('app/img/' . $name));
-        return $img->response('jpg');
-    }
+    // public function testimage()
+    // {
+    //     $name = 'defualt' . time() . '.jpg';
+    //     $img = Image::make(storage_path('app/img/defualt.png'))->resize(1024, 640)->encode('jpg', 100)->interlace()->insert(storage_path('app/img/watermark.png'), 'bottom')->save(storage_path('app/img/' . $name));
+    //     return $img->response('jpg');
+    // }
     public function showAd($lang, $category, $adid, $user_id = null)
     {
         //validate the parameters
@@ -101,7 +101,7 @@ class SpicalAPIController extends Controller
                     $increment = Cars::find($adid);
                     $increment->watch_count++;
                     $increment->save();
-                    return $this->success('ad', SingleCarResource::collection([$ad]));
+                    return $this->success('ad', [SingleCarResource::collection([$ad]), ['is_favorite' => null]]);
                 } else {
                     return $this->fails();
                 }
@@ -149,7 +149,7 @@ class SpicalAPIController extends Controller
                     $increment = Cars::find($adid);
                     $increment->watch_count++;
                     $increment->save();
-                    return $this->success('ad', SingleCarResource::collection([$ad]));
+                    return $this->success('ad', [SingleCarResource::collection([$ad]), ['is_favorite' => null]]);
                 } else {
                     return $this->fails();
                 }
@@ -203,7 +203,7 @@ class SpicalAPIController extends Controller
                     $increment = RealEstate::find($adid);
                     $increment->watch_count++;
                     $increment->save();
-                    return $this->success('ad', SingleRealEstateResource::collection([$ad]));
+                    return $this->success('ad', [SingleRealEstateResource::collection([$ad]), ['is_favorite' => null]]);
                 } else {
                     return $this->fails();
                 }
@@ -255,7 +255,7 @@ class SpicalAPIController extends Controller
                     $increment = RealEstate::find($adid);
                     $increment->watch_count++;
                     $increment->save();
-                    return $this->success('ad', SingleRealEstateResource::collection([$ad]));
+                    return $this->success('ad', [SingleRealEstateResource::collection([$ad]), ['is_favorite' => null]]);
                 } else {
                     return $this->fails();
                 }
@@ -305,7 +305,7 @@ class SpicalAPIController extends Controller
                     $increment = Jobs::find($adid);
                     $increment->watch_count++;
                     $increment->save();
-                    return $this->success('ad', SingleJobResource::collection([$ad]));
+                    return $this->success('ad', [SingleJobResource::collection([$ad]), ['is_favorite' => null]]);
                 } else {
                     return $this->fails();
                 }
@@ -353,7 +353,7 @@ class SpicalAPIController extends Controller
                     $increment = Jobs::find($adid);
                     $increment->watch_count++;
                     $increment->save();
-                    return $this->success('ad', SingleJobResource::collection([$ad]));
+                    return $this->success('ad', [SingleJobResource::collection([$ad]), ['is_favorite' => null]]);
                 } else {
                     return $this->fails();
                 }
