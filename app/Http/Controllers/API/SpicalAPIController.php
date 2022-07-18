@@ -31,13 +31,13 @@ use Image;
 class SpicalAPIController extends Controller
 {
     use MessageTrait;
-    //sdfa
 
     // public function testimage()
     // {
     //     $name = 'defualt' . time() . '.jpg';
     //     $img = Image::make(storage_path('app/img/defualt.png'))->resize(1024, 640)->encode('jpg', 100)->interlace()->insert(storage_path('app/img/watermark.png'), 'bottom')->save(storage_path('app/img/' . $name));
     //     return $img->response('jpg');
+    //sfd
     // }
     public function showAd($lang, $category, $adid, $user_id = null)
     {
