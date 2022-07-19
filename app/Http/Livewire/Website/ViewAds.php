@@ -34,6 +34,9 @@ class ViewAds extends Component
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
 
+    public $category;
+
+    protected $ads;
     public $readyToLoad = false;
 
     public $governorates;
@@ -112,9 +115,7 @@ class ViewAds extends Component
     public $age_to;
 
 
-    public $category;
 
-    protected $ads;
 
     protected $queryString = [
         'governorate_id', 'car_type_id',
@@ -137,27 +138,35 @@ class ViewAds extends Component
             $this->carTypes = CarType::all();
             $this->motion_vectors = MotionVector::all();
             $this->car_status = CarStatus::all();
+            $this->governorates = Governorate::all();
+            $this->continents = ContinentOfOrigin::all();
+            $this->rentalTimes = RentalTime::all();
+            $this->ad_statuses = AdStatus::all();
+            $this->rentalTimes = RentalTime::all();
+            $this->countryOfmans = CountryOfManufacture::all();
+            $this->ross = RentOrSale::all();
         } else if ($this->category == 2) { //real estate
             $this->REMCs = RealEstateMainCategory::all();
             $this->building_statuse = BuildingStatus::all();
+            $this->governorates = Governorate::all();
             $this->CAATs = CommercialAndArtificialType::all();
             $this->land_types = LandType::all();
             $this->apartment_status = ApartmentStatus::all();
+            $this->ad_statuses = AdStatus::all();
+            $this->ross = RentOrSale::all();
+            $this->rentalTimes = RentalTime::all();
+            $this->neighborhoods = Neighborhood::all();
+            $this->areas = Area::all();
         } else if ($this->category == 3) { //jobs
             $this->jobs_categories = JobsCategory::all();
+            $this->governorates = Governorate::all();
             $this->YOEs = YearsOfExperience::all();
             $this->langs = PersonLangueges::all();
+            $this->ad_statuses = AdStatus::all();
+            $this->areas = Area::all();
         }
-        $this->governorates = Governorate::all();
-        $this->neighborhoods = Neighborhood::all();
-        $this->areas = Area::all();
-        $this->continents = ContinentOfOrigin::all();
-        $this->countryOfmans = CountryOfManufacture::all();
-        $this->rentalTimes = RentalTime::all();
-        $this->ad_statuses = AdStatus::all();
-        $this->ross = RentOrSale::all();
     }
-//ds
+    //ds
     public function loadData()
     {
         $this->readyToLoad = true;
@@ -200,7 +209,7 @@ class ViewAds extends Component
                     return $query->whereBetween('price', [$this->P_from, $this->P_to]);
                 })->when($this->MY_from && $this->MY_to, function ($query) {
                     return $query->whereBetween('manufacturing_year', [$this->MY_from, $this->MY_to]);
-                })->latest()->paginate(20, ['car_id', 'ar_title', 'ar_desc', 'en_title', 'en_desc', 'phone_number', 'manufacturing_year', 'picture', 'is_special', 'price', 'manger_accept', 'governorate_id', 'created_at'])
+                })->latest()->with('governorate')->paginate(20, ['car_id', 'ar_title', 'ar_desc', 'en_title', 'en_desc', 'phone_number', 'manufacturing_year', 'picture', 'is_special', 'price', 'manger_accept', 'governorate_id', 'created_at'])
             ]);
         } else if ($this->category == 2) {
             $this->emit('gotoTop');
@@ -249,7 +258,7 @@ class ViewAds extends Component
                     return $query->where('is_special', 1);
                 })->when($this->P_from && $this->P_to, function ($query) {
                     return $query->whereBetween('price', [$this->P_from, $this->P_to]);
-                })->latest()->paginate(20, ['real_estate_id', 'ar_title', 'ar_desc', 'en_title', 'en_desc', 'phone_number', 'picture', 'is_special', 'price', 'manger_accept', 'governorate_id', 'created_at'])
+                })->latest()->with('governorate')->paginate(20, ['real_estate_id', 'ar_title', 'ar_desc', 'en_title', 'en_desc', 'phone_number', 'picture', 'is_special', 'price', 'manger_accept', 'governorate_id', 'created_at'])
             ]);
         } else if ($this->category == 3) {
             $this->emit('gotoTop');
@@ -284,7 +293,7 @@ class ViewAds extends Component
                     return $query->where('is_special', 1);
                 })->when($this->P_from && $this->P_to, function ($query) {
                     return $query->whereBetween('salary', [$this->P_from, $this->P_to]);
-                })->latest()->paginate(20, ['job_id', 'ar_title', 'ar_desc', 'en_title', 'en_desc', 'phone_number', 'picture', 'is_special', 'salary', 'manger_accept', 'governorate_id', 'created_at'])
+                })->latest()->with('governorate')->paginate(20, ['job_id', 'ar_title', 'ar_desc', 'en_title', 'en_desc', 'phone_number', 'picture', 'is_special', 'salary', 'manger_accept', 'governorate_id', 'created_at'])
             ]);
         } else {
             abort(404, __('This Category Is Not Active Yet'));

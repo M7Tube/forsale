@@ -40,19 +40,19 @@ class MyAds extends Component
         $this->resetPage('realestatepage');
         if ($this->category == 'App\Models\Cars') {
             $this->data = [
-                'cars' => Cars::where('user_id', $this->user_id)->where('manger_accept', $this->manger_accept)->paginate(8, ['car_id', 'en_title', 'ar_title', 'price', 'picture', 'manger_accept', 'governorate_id', 'created_at'], 'carspage'),
+                'cars' => Cars::where('user_id', $this->user_id)->where('manger_accept', $this->manger_accept)->with('governorate')->paginate(8, ['car_id', 'en_title', 'ar_title', 'price', 'picture', 'manger_accept', 'governorate_id', 'created_at'], 'carspage'),
                 'jobs' => [],
                 'real_estate' => [],
             ];
         } else if ($this->category == 'App\Models\Jobs') {
             $this->data = [
-                'real_estate' => RealEstate::where('user_id', $this->user_id)->where('manger_accept', $this->manger_accept)->paginate(8, ['real_estate_id', 'en_title', 'ar_title', 'price', 'picture', 'manger_accept', 'governorate_id', 'created_at'], 'realestatepage'),
+                'real_estate' => RealEstate::where('user_id', $this->user_id)->where('manger_accept', $this->manger_accept)->with('governorate')->paginate(8, ['real_estate_id', 'en_title', 'ar_title', 'price', 'picture', 'manger_accept', 'governorate_id', 'created_at'], 'realestatepage'),
                 'cars' => [],
                 'jobs' => [],
             ];
         } else if ($this->category == 'App\Models\RealEstate') {
             $this->data = [
-                'jobs' => Jobs::where('user_id', $this->user_id)->where('manger_accept', $this->manger_accept)->paginate(8, ['job_id', 'en_title', 'ar_title', 'salary', 'picture', 'manger_accept', 'governorate_id', 'created_at'], 'jobspage'),
+                'jobs' => Jobs::where('user_id', $this->user_id)->where('manger_accept', $this->manger_accept)->with('governorate')->paginate(8, ['job_id', 'en_title', 'ar_title', 'salary', 'picture', 'manger_accept', 'governorate_id', 'created_at'], 'jobspage'),
                 'cars' => [],
                 'real_estate' => [],
             ];
@@ -73,7 +73,7 @@ class MyAds extends Component
                 [
                     'data' => $this->readyToLoad
                         ? $this->data = [
-                            'cars' => $this->category::where('user_id', $this->user_id)->where('manger_accept', $this->manger_accept)->paginate(8, ['car_id', 'en_title', 'ar_title', 'price', 'picture', 'manger_accept', 'governorate_id', 'created_at'], 'carspage'),
+                            'cars' => $this->category::where('user_id', $this->user_id)->where('manger_accept', $this->manger_accept)->with('governorate')->paginate(8, ['car_id', 'en_title', 'ar_title', 'price', 'picture', 'manger_accept', 'governorate_id', 'created_at'], 'carspage'),
                             'jobs' => [],
                             'real_estate' => [],
                         ]
@@ -86,7 +86,7 @@ class MyAds extends Component
                 [
                     'data' => $this->readyToLoad
                         ?  $this->data = [
-                            'real_estate' => $this->category::where('user_id', $this->user_id)->where('manger_accept', $this->manger_accept)->paginate(8, ['real_estate_id', 'en_title', 'ar_title', 'price', 'picture', 'manger_accept', 'governorate_id', 'created_at'], 'realestatepage'),
+                            'real_estate' => $this->category::where('user_id', $this->user_id)->where('manger_accept', $this->manger_accept)->with('governorate')->paginate(8, ['real_estate_id', 'en_title', 'ar_title', 'price', 'picture', 'manger_accept', 'governorate_id', 'created_at'], 'realestatepage'),
                             'cars' => [],
                             'jobs' => [],
                         ]
@@ -99,7 +99,7 @@ class MyAds extends Component
                 [
                     'data' => $this->readyToLoad
                         ?  $this->data = [
-                            'jobs' => $this->category::where('user_id', $this->user_id)->where('manger_accept', $this->manger_accept)->paginate(8, ['job_id', 'en_title', 'ar_title', 'salary', 'picture', 'manger_accept', 'governorate_id', 'created_at'], 'jobspage'),
+                            'jobs' => $this->category::where('user_id', $this->user_id)->where('manger_accept', $this->manger_accept)->with('governorate')->paginate(8, ['job_id', 'en_title', 'ar_title', 'salary', 'picture', 'manger_accept', 'governorate_id', 'created_at'], 'jobspage'),
                             'cars' => [],
                             'real_estate' => [],
                         ]

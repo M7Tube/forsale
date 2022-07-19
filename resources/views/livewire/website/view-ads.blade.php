@@ -1,7 +1,20 @@
 <div class="container-fluid">
+    <div class="d-flex justify-content-center">
+        <div wire:loading>
+            <div class="lds-roller mx-auto">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </div>
     @if ($category == 1)
         <h5 class="mb-5">{{ __('Cars') }}</h5>
-        <div class="accordion accordion-flush" id="accordionFlushExample">
+        <div class="accordion accordion-flush" id="accordionFlushExample" wire:loading.remove>
             <div class="accordion-item">
                 <h2 class="accordion-header" id="flush-headingOne">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
@@ -752,7 +765,7 @@
                 </div>
             </div>
         </div>
-        <div class="d-flex justify-content-center">
+        {{-- <div class="d-flex justify-content-center">
             <div wire:loading>
                 <div class="lds-roller mx-auto">
                     <div></div>
@@ -764,7 +777,7 @@
                     <div></div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <div class="row" id="ads" wire:init="loadData" wire:loading.remove>
             @if ($ads)
                 @forelse ($ads as $ad)
@@ -862,7 +875,7 @@
     @endif
     @if ($category == 2)
         <h5 class="mb-5">{{ __('Real Estate') }}</h5>
-        <div class="accordion accordion-flush" id="accordionFlushExample">
+        <div class="accordion accordion-flush" id="accordionFlushExample" wire:loading.remove>
             <div class="accordion-item">
                 <h2 class="accordion-header" id="flush-headingOne">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
@@ -1825,7 +1838,7 @@
                 </div>
             </div>
         </div>
-        <div class="d-flex justify-content-center">
+        {{-- <div class="d-flex justify-content-center">
             <div wire:loading>
                 <div class="lds-roller mx-auto">
                     <div></div>
@@ -1837,7 +1850,7 @@
                     <div></div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <div class="row" id="ads" wire:init="loadData" wire:loading.remove>
             @if ($ads)
                 @forelse ($ads as $ad)
@@ -1935,7 +1948,7 @@
     @endif
     @if ($category == 3)
         <h5 class="mb-5">{{ __('Jobs') }}</h5>
-        <div class="accordion accordion-flush" id="accordionFlushExample">
+        <div class="accordion accordion-flush" id="accordionFlushExample" wire:loading.remove>
             <div class="accordion-item">
                 <h2 class="accordion-header" id="flush-headingOne">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
@@ -2594,7 +2607,7 @@
                 </div>
             </div>
         </div>
-        <div class="d-flex justify-content-center">
+        {{-- <div class="d-flex justify-content-center">
             <div wire:loading>
                 <div class="lds-roller mx-auto">
                     <div></div>
@@ -2606,7 +2619,7 @@
                     <div></div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <div class="row" id="ads" wire:init="loadData" wire:loading.remove>
             @if ($ads)
                 @forelse ($ads as $ad)
