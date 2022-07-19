@@ -157,8 +157,7 @@ class ViewAds extends Component
         $this->ad_statuses = AdStatus::all();
         $this->ross = RentOrSale::all();
     }
-
-
+//ds
     public function loadData()
     {
         $this->readyToLoad = true;
