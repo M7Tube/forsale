@@ -132,43 +132,37 @@ class ViewAds extends Component
     public function boot()
     {
         $this->category = request('category');
+        if ($this->category == 1) { //cars
+            $this->colors = Color::all();
+            $this->carTypes = CarType::all();
+            $this->motion_vectors = MotionVector::all();
+            $this->car_status = CarStatus::all();
+        } else if ($this->category == 2) { //real estate
+            $this->REMCs = RealEstateMainCategory::all();
+            $this->building_statuse = BuildingStatus::all();
+            $this->CAATs = CommercialAndArtificialType::all();
+            $this->land_types = LandType::all();
+            $this->apartment_status = ApartmentStatus::all();
+        } else if ($this->category == 3) { //jobs
+            $this->jobs_categories = JobsCategory::all();
+            $this->YOEs = YearsOfExperience::all();
+            $this->langs = PersonLangueges::all();
+        }
         $this->governorates = Governorate::all();
         $this->neighborhoods = Neighborhood::all();
-        $this->REMCs = RealEstateMainCategory::all();
-        $this->building_statuse = BuildingStatus::all();
         $this->areas = Area::all();
-        $this->CAATs = CommercialAndArtificialType::all();
-        $this->land_types = LandType::all();
-        $this->apartment_status = ApartmentStatus::all();
-        $this->carTypes = CarType::all();
-        $this->colors = Color::all();
         $this->continents = ContinentOfOrigin::all();
         $this->countryOfmans = CountryOfManufacture::all();
         $this->rentalTimes = RentalTime::all();
-        $this->motion_vectors = MotionVector::all();
-        $this->car_status = CarStatus::all();
         $this->ad_statuses = AdStatus::all();
         $this->ross = RentOrSale::all();
-
-        $this->YOEs = YearsOfExperience::all();
-        $this->jobs_categories = JobsCategory::all();
-        $this->langs = PersonLangueges::all();
     }
 
-    public function mount()
-    {
-    }
 
     public function loadData()
     {
         $this->readyToLoad = true;
     }
-
-    // public function updatedGovernorateId()
-    // {
-    //     // dd($this->queryString['governorate_id']);
-    //     $this->loadData();
-    // }
 
     public function render()
     {
@@ -293,7 +287,8 @@ class ViewAds extends Component
                     return $query->whereBetween('salary', [$this->P_from, $this->P_to]);
                 })->latest()->paginate(20, ['job_id', 'ar_title', 'ar_desc', 'en_title', 'en_desc', 'phone_number', 'picture', 'is_special', 'salary', 'manger_accept', 'governorate_id', 'created_at'])
             ]);
+        } else {
+            abort(404, __('This Category Is Not Active Yet'));
         }
-        // return view('livewire.website.view-ads');
     }
 }
