@@ -41,9 +41,9 @@ class Ad extends Component
             $ad = Cars::find(request('id'));
             if ($ad) {
                 // if ($ad->manger_accept == 2) {
+                $this->ad = $ad;
                 $ad->watch_count++;
                 $ad->save();
-                $this->ad = $ad;
                 // } else {
                 //     abort(404, __('This Ad Is Not Active Yet'));
                 // }
@@ -54,30 +54,30 @@ class Ad extends Component
             $ad = RealEstate::find(request('id'));
             if ($ad) {
                 // if ($ad->manger_accept == 2) {
+                $this->ad = $ad;
                 $ad->watch_count++;
                 $ad->save();
-                $this->ad = $ad;
                 // } else {
                 //     abort(404, __('This Ad Is Not Active Yet'));
                 // }
             } else {
                 abort(404);
             }
-            $this->ad = $ad;
+            // $this->ad = $ad;
         } else if (request('category') == 3) { //job
             $ad =  Jobs::find(request('id'));
             if ($ad) {
                 // if ($ad->manger_accept == 2) {
+                $this->ad = $ad;
                 $ad->watch_count++;
                 $ad->save();
-                $this->ad = $ad;
                 // } else {
                 //     abort(404, __('This Ad Is Not Active Yet'));
                 // }
             } else {
                 abort(404);
             }
-            $this->ad = $ad;
+            // $this->ad = $ad;
         }
     }
 

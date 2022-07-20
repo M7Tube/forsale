@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-@if (app()->getLocale() == 'en')
-    <html lang="{{ app()->getLocale() }}" dir="ltr">
-@else
-    <html lang="{{ app()->getLocale() }}" dir="rtl">
-@endif
+<?php if(app()->getLocale() == 'en'): ?>
+    <html lang="<?php echo e(app()->getLocale()); ?>" dir="ltr">
+<?php else: ?>
+    <html lang="<?php echo e(app()->getLocale()); ?>" dir="rtl">
+<?php endif; ?>
 
 <head>
-    @livewireStyles
+    <?php echo \Livewire\Livewire::styles(); ?>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no">
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
@@ -21,19 +22,19 @@
 
     <!-- Vendor CSS Files -->
 
-    <link href="{{ asset('css/spcial.css') }}" rel="stylesheet" />
-    {{-- <link href="{{ asset('favicon.ico') }}" rel="shortcut icon" /> --}}
-    <link rel="icon" href="{{ asset('img/wasetcomLogo.png') }}" type="image/icon type">
-    <link href="{{ asset('css/aaa.css') }}" rel="stylesheet" />
+    <link href="<?php echo e(asset('css/spcial.css')); ?>" rel="stylesheet" />
+    
+    <link rel="icon" href="<?php echo e(asset('img/wasetcomLogo.png')); ?>" type="image/icon type">
+    <link href="<?php echo e(asset('css/aaa.css')); ?>" rel="stylesheet" />
 
-    <link href="{{ asset('vendor2/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('vendor2/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
-    <link href="{{ asset('vendor2/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('vendor2/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
+    <link href="<?php echo e(asset('vendor2/bootstrap/css/bootstrap.min.css')); ?>" rel="stylesheet">
+    <link href="<?php echo e(asset('vendor2/bootstrap-icons/bootstrap-icons.css')); ?>" rel="stylesheet">
+    <link href="<?php echo e(asset('vendor2/glightbox/css/glightbox.min.css')); ?>" rel="stylesheet">
+    <link href="<?php echo e(asset('vendor2/swiper/swiper-bundle.min.css')); ?>" rel="stylesheet">
 
     <!-- Template Main CSS File -->
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-    @yield('head')
+    <link href="<?php echo e(asset('css/style.css')); ?>" rel="stylesheet">
+    <?php echo $__env->yieldContent('head'); ?>
     <style>
         :root {
             touch-action: pan-x pan-y;
@@ -113,7 +114,7 @@
             background-color: #1e90ff;
         }
     </style>
-    <title>@yield('title')</title>
+    <title><?php echo $__env->yieldContent('title'); ?></title>
 </head>
 
 <body>
@@ -122,65 +123,63 @@
     <header id="header" class="fixed-top" style="background-color: #000">
         <div class="container d-flex align-items-center justify-content-between">
 
-            {{-- <h1 class="logo"><a href="index.html">DevFolio</a></h1> --}}
+            
             <!-- Uncomment below if you prefer to use an image logo -->
-            <a href="{{ route('website.homepage', app()->getLocale()) }}" class="logo"><img
-                    src="{{ asset('upload/logo.png') }}" alt="" class="img-fluid"></a>
+            <a href="<?php echo e(route('website.homepage', app()->getLocale())); ?>" class="logo"><img
+                    src="<?php echo e(asset('upload/logo.png')); ?>" alt="" class="img-fluid"></a>
 
             <nav id="navbar" class="navbar">
                 <ul>
-                    <li><a class="nav-link scrollto" href="{{ route('website.homepage', app()->getLocale()) }}"><i
-                                class="bi bi-house"></i> {{ __('Home Page') }}</a></li>
-                    @if (!session()->get('WebLoggedIn', []))
-                        <li><a class="nav-link scrollto " href="{{ route('website.login', app()->getLocale()) }}"><i
-                                    class="bi bi-box-arrow-in-right"></i> {{ __('Login') }}</a></li>
+                    <li><a class="nav-link scrollto" href="<?php echo e(route('website.homepage', app()->getLocale())); ?>"><i
+                                class="bi bi-house"></i> <?php echo e(__('Home Page')); ?></a></li>
+                    <?php if(!session()->get('WebLoggedIn', [])): ?>
+                        <li><a class="nav-link scrollto " href="<?php echo e(route('website.login', app()->getLocale())); ?>"><i
+                                    class="bi bi-box-arrow-in-right"></i> <?php echo e(__('Login')); ?></a></li>
                         <li><a class="nav-link scrollto "
-                                href="{{ route('website.register', app()->getLocale()) }}"><i
-                                    class="bi bi-person-plus"></i> {{ __('Register') }}</a></li>
-                    @else
+                                href="<?php echo e(route('website.register', app()->getLocale())); ?>"><i
+                                    class="bi bi-person-plus"></i> <?php echo e(__('Register')); ?></a></li>
+                    <?php else: ?>
                         <li class="dropdown"><a href="#"><span><i class="bi bi-person"></i>
-                                    {{ __('My Account') }}</span> <i class="bi bi-chevron-down"></i></a>
+                                    <?php echo e(__('My Account')); ?></span> <i class="bi bi-chevron-down"></i></a>
                             <ul>
-                                <li><a href="{{ route('website.myads', app()->getLocale()) }}">{{ __('My Ads') }}
+                                <li><a href="<?php echo e(route('website.myads', app()->getLocale())); ?>"><?php echo e(__('My Ads')); ?>
+
                                         <i class="bi bi-pencil-square"></i></a></li>
-                                <li><a href="{{ route('website.myFavorite', app()->getLocale()) }}">{{ __('My Favorite') }}
+                                <li><a href="<?php echo e(route('website.myFavorite', app()->getLocale())); ?>"><?php echo e(__('My Favorite')); ?>
+
                                         <i class="bi bi-heart"></i></a></li>
-                                <li><a href="{{ route('website.my-wallet', app()->getLocale()) }}">{{ __('My Wallet') }}
+                                <li><a href="<?php echo e(route('website.my-wallet', app()->getLocale())); ?>"><?php echo e(__('My Wallet')); ?>
+
                                         <i class="bi bi-wallet2"></i></a></li>
-                                <li><a href="{{ route('website.contact-with-manger', app()->getLocale()) }}">{{ __('Contact With Manger') }}
+                                <li><a href="<?php echo e(route('website.contact-with-manger', app()->getLocale())); ?>"><?php echo e(__('Contact With Manger')); ?>
+
                                         <i class="bi bi-chat-square-text"></i></a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a href="{{ route('website.terms', app()->getLocale()) }}">{{ __('Terms and Conditions') }}
+                                <li><a href="<?php echo e(route('website.terms', app()->getLocale())); ?>"><?php echo e(__('Terms and Conditions')); ?>
+
                                         <i class="bi bi-file-text"></i></a></li>
-                                <li><a href="{{ route('website.logout', app()->getLocale()) }}">{{ __('Log Out') }}
+                                <li><a href="<?php echo e(route('website.logout', app()->getLocale())); ?>"><?php echo e(__('Log Out')); ?>
+
                                         <i class="bi bi-box-arrow-left" style="color: red;"></i></a></li>
-                                {{-- <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i
-                                            class="bi bi-chevron-right"></i></a>
-                                    <ul>
-                                        <li><a href="#">Deep Drop Down 1</a></li>
-                                        <li><a href="#">Deep Drop Down 2</a></li>
-                                        <li><a href="#">Deep Drop Down 3</a></li>
-                                        <li><a href="#">Deep Drop Down 4</a></li>
-                                        <li><a href="#">Deep Drop Down 5</a></li>
-                                    </ul>
-                                </li> --}}
+                                
                             </ul>
                         </li>
-                    @endif
+                    <?php endif; ?>
                     <li><a class="nav-link scrollto"
-                            href="{{ route('website.add-new-ad', app()->getLocale()) }}">{{ __('Add New Ad') }}
+                            href="<?php echo e(route('website.add-new-ad', app()->getLocale())); ?>"><?php echo e(__('Add New Ad')); ?>
+
                             <i class="bi bi-plus-circle"></i></a></li>
-                    @if (app()->getLocale() == 'en')
+                    <?php if(app()->getLocale() == 'en'): ?>
                         <li><a class="nav-link scrollto"
-                                href="{{ route('website.changLang', app()->getLocale()) }}"><i
+                                href="<?php echo e(route('website.changLang', app()->getLocale())); ?>"><i
                                     class="bi bi-translate"></i> عربي <i class="bi bi-arrow-repeat"></i></a></li>
-                    @else
+                    <?php else: ?>
                         <li><a class="nav-link scrollto"
-                                href="{{ route('website.changLang', app()->getLocale()) }}"><i
+                                href="<?php echo e(route('website.changLang', app()->getLocale())); ?>"><i
                                     class="bi bi-translate"></i> English <i class="bi bi-arrow-repeat"></i></a></li>
-                    @endif
+                    <?php endif; ?>
 
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
@@ -190,7 +189,7 @@
     </header><!-- End Header -->
     <div style="margin-bottom: 65px"></div>
 
-    @yield('body')
+    <?php echo $__env->yieldContent('body'); ?>
     <div style="margin-bottom: 800px"></div>
 
     <div id="preloader"></div>
@@ -202,31 +201,28 @@
                 <div class="row mt-3">
                     <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
                         <h6 class="text-uppercase fw-bold mb-4">
-                            <i class="fas fa-gem me-3"></i>{{ __('Waseetco') }}
+                            <i class="fas fa-gem me-3"></i><?php echo e(__('Waseetco')); ?>
+
                         </h6>
                         <p>
                             <a class="text-dark"
-                                href="{{ route('website.terms', app()->getLocale()) }}">{{ __('Terms And Conditions') }}</a>
+                                href="<?php echo e(route('website.terms', app()->getLocale())); ?>"><?php echo e(__('Terms And Conditions')); ?></a>
                         </p>
                     </div>
                     <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
                         <h6 class="text-uppercase fw-bold mb-4">
-                            {{ __('Useful links') }}
+                            <?php echo e(__('Useful links')); ?>
+
                         </h6>
 
-                        {{-- <p>
-                                    <a href="/public/{{ App::getLocale() }}/terms"
-                                        class="text-reset">{{ __('Settings') }}</a>
-                                </p>
-                                <p>
-                                    <a href="#!" class="text-reset">{{ __('Help') }}</a>
-                                </p> --}}
+                        
                     </div>
                     <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
                         <h6 class="text-uppercase fw-bold mb-4">
-                            {{ __('Contact') }}
+                            <?php echo e(__('Contact')); ?>
+
                         </h6>
-                        <p><i class="fas fa-home me-3"></i>{{ __('Syria') }}</p>
+                        <p><i class="fas fa-home me-3"></i><?php echo e(__('Syria')); ?></p>
                         <p>
                             <i class="fas fa-envelope me-3"></i>
                             info@example.com
@@ -238,12 +234,14 @@
             </div>
         </section>
         <div class="text-center p-4" style="background-color: #000; color: white;">
-            {{ __('© 2021 Copyright:') }}
+            <?php echo e(__('© 2021 Copyright:')); ?>
+
             <a class="text-reset fw-bold" href="#">Waseetcom.com</a>
         </div>
     </footer>
-    @livewireScripts
-    @yield('scripts')
+    <?php echo \Livewire\Livewire::scripts(); ?>
+
+    <?php echo $__env->yieldContent('scripts'); ?>
     <script>
         var expanded = false;
 
@@ -272,16 +270,17 @@
         }
     </script>
     <!-- Vendor JS Files -->
-    <script src="{{ asset('vendor2/purecounter/purecounter.js') }}"></script>
-    <script src="{{ asset('vendor2/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('vendor2/glightbox/js/glightbox.min.js') }}"></script>
-    <script src="{{ asset('vendor2/swiper/swiper-bundle.min.js') }}"></script>
-    <script src="{{ asset('vendor2/typed.js/typed.min.js') }}"></script>
-    <script src="{{ asset('vendor2/php-email-form/validate.js') }}"></script>
+    <script src="<?php echo e(asset('vendor2/purecounter/purecounter.js')); ?>"></script>
+    <script src="<?php echo e(asset('vendor2/bootstrap/js/bootstrap.bundle.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('vendor2/glightbox/js/glightbox.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('vendor2/swiper/swiper-bundle.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('vendor2/typed.js/typed.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('vendor2/php-email-form/validate.js')); ?>"></script>
 
     <!-- Template Main JS File -->
-    <script src="{{ asset('js/main.js') }}"></script>
+    <script src="<?php echo e(asset('js/main.js')); ?>"></script>
 
 </body>
 
 </html>
+<?php /**PATH C:\Users\Abo Samer\Desktop\Work\Waseetcom\_public_htewrml\_public_html\resources\views/Website/layout.blade.php ENDPATH**/ ?>

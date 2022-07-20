@@ -20,6 +20,7 @@ use App\Http\Resources\API\JobsResource;
 use App\Http\Resources\API\LandTypeResource;
 use App\Http\Resources\API\NeighborhoodResource;
 use App\Http\Resources\API\PersonLanguegesResource;
+use App\Http\Resources\API\RealEstateMainCategoryResource;
 use App\Http\Resources\API\RealEstateResource;
 use App\Http\Resources\API\RentalTimeResource;
 use App\Http\Resources\API\RentOrSaleResource;
@@ -43,6 +44,7 @@ use App\Models\LandType;
 use App\Models\Neighborhood;
 use App\Models\PersonLangueges;
 use App\Models\RealEstate;
+use App\Models\RealEstateMainCategory;
 use App\Models\RentalTime;
 use App\Models\RentOrSale;
 use App\Models\YearsOfExperience;
@@ -185,7 +187,9 @@ class ApiFilterController extends Controller
                         ];
                     }
                 } else {
-                    $filters = null;
+                    $filters = [
+                        'RealEstateMainCategory' => RealEstateMainCategoryResource::collection(RealEstateMainCategory::all(['REMC_id', 'ar_name'])),
+                    ];
                 }
             } else if ($lang == 'en') {
                 //filter resualt
@@ -249,7 +253,9 @@ class ApiFilterController extends Controller
                         ];
                     }
                 } else {
-                    $filters = null;
+                    $filters = [
+                        'RealEstateMainCategory' => RealEstateMainCategoryResource::collection(RealEstateMainCategory::all(['REMC_id', 'en_name'])),
+                    ];
                 }
             }
             //return date
