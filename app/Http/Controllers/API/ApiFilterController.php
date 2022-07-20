@@ -81,17 +81,19 @@ class ApiFilterController extends Controller
                     return $query->where('picture', json_encode(['defualt.png']));
                 })->ignoreRequest(['without_picture'])->filter()->paginate($per_page, ['car_id', 'ar_title', 'ar_desc', 'phone_number', 'picture', 'is_special', 'price', 'manger_accept', 'governorate_id', 'created_at']);
                 //count ads
-                $count = Cars::where('manger_accept', 2)->filter()->count();
+                $count = Cars::where('manger_accept', 2)->when(request()->query('without_picture'), function ($query) {
+                    return $query->where('picture', json_encode(['defualt.png']));
+                })->ignoreRequest(['without_picture'])->filter()->count();
                 //get the filters
                 $filters = [
-                    'RentOrSale' => RentOrSaleResource::collection(RentOrSale::all(['ros_id', 'ar_name'])),
+                    'Rent Or Sale' => RentOrSaleResource::collection(RentOrSale::all(['ros_id', 'ar_name'])),
                     'Governorate' => GovernorateResource::collection(Governorate::all(['governorate_id', 'ar_name'])),
-                    'CarType' => CarTypeResource::collection(CarType::all(['car_type_id', 'ar_name'])),
-                    'CarStatus' => CarStatusResource::collection(CarStatus::all(['car_status_id', 'ar_name'])),
-                    'CountryOfManufacture' => CountryOfManufactureResource::collection(CountryOfManufacture::all(['cof_id', 'ar_name'])),
+                    'Car Type' => CarTypeResource::collection(CarType::all(['car_type_id', 'ar_name'])),
+                    'Car Status' => CarStatusResource::collection(CarStatus::all(['car_status_id', 'ar_name'])),
+                    'Country Of Manufacture' => CountryOfManufactureResource::collection(CountryOfManufacture::all(['cof_id', 'ar_name'])),
                     'Color' => ColorResource::collection(Color::all(['color_id', 'ar_name'])),
-                    'AdStatus' => AdStatusResource::collection(AdStatus::all(['ad_statuse_id', 'ar_name'])),
-                    'RentalTime' => RentalTimeResource::collection(RentalTime::all(['rental_time_id', 'ar_rent_name'])),
+                    'Ad Status' => AdStatusResource::collection(AdStatus::all(['ad_statuse_id', 'ar_name'])),
+                    'Rental Time' => RentalTimeResource::collection(RentalTime::all(['rental_time_id', 'ar_rent_name'])),
                 ];
             } else if ($lang == 'en') {
                 //filter resualt
@@ -99,17 +101,19 @@ class ApiFilterController extends Controller
                     return $query->where('picture', json_encode(['defualt.png']));
                 })->ignoreRequest(['without_picture'])->filter()->paginate($per_page, ['car_id', 'en_title', 'en_desc', 'phone_number', 'picture', 'is_special', 'price', 'manger_accept', 'governorate_id', 'created_at']);
                 //count ads
-                $count = Cars::where('manger_accept', 2)->filter()->count();
+                $count = Cars::where('manger_accept', 2)->when(request()->query('without_picture'), function ($query) {
+                    return $query->where('picture', json_encode(['defualt.png']));
+                })->ignoreRequest(['without_picture'])->filter()->count();
                 //get the filters
                 $filters = [
-                    'RentOrSale' => RentOrSaleResource::collection(RentOrSale::all(['ros_id', 'en_name'])),
+                    'Rent Or Sale' => RentOrSaleResource::collection(RentOrSale::all(['ros_id', 'en_name'])),
                     'Governorate' => GovernorateResource::collection(Governorate::all(['governorate_id', 'en_name'])),
-                    'CarType' => CarTypeResource::collection(CarType::all(['car_type_id', 'en_name'])),
-                    'CarStatus' => CarStatusResource::collection(CarStatus::all(['car_status_id', 'en_name'])),
-                    'CountryOfManufacture' => CountryOfManufactureResource::collection(CountryOfManufacture::all(['cof_id', 'en_name'])),
+                    'Car Type' => CarTypeResource::collection(CarType::all(['car_type_id', 'en_name'])),
+                    'Car Status' => CarStatusResource::collection(CarStatus::all(['car_status_id', 'en_name'])),
+                    'Country Of Manufacture' => CountryOfManufactureResource::collection(CountryOfManufacture::all(['cof_id', 'en_name'])),
                     'Color' => ColorResource::collection(Color::all(['color_id', 'en_name'])),
-                    'AdStatus' => AdStatusResource::collection(AdStatus::all(['ad_statuse_id', 'en_name'])),
-                    'RentalTime' => RentalTimeResource::collection(RentalTime::all(['rental_time_id', 'en_rent_name'])),
+                    'Ad Status' => AdStatusResource::collection(AdStatus::all(['ad_statuse_id', 'en_name'])),
+                    'Rental Time' => RentalTimeResource::collection(RentalTime::all(['rental_time_id', 'en_rent_name'])),
                 ];
             }
             //return date
@@ -127,9 +131,13 @@ class ApiFilterController extends Controller
             //check lang
             if ($lang == 'ar') {
                 //filter resualt
-                $filterResualt = RealEstate::where('manger_accept', 2)->ignoreRequest(['real_estate_main_category'])->filter()->paginate($per_page, ['real_estate_id', 'ar_title', 'ar_desc', 'phone_number', 'picture', 'is_special', 'price', 'manger_accept', 'governorate_id', 'created_at']);
+                $filterResualt = RealEstate::where('manger_accept', 2)->when(request()->query('without_picture'), function ($query) {
+                    return $query->where('picture', json_encode(['defualt.png']));
+                })->ignoreRequest(['real_estate_main_category', 'without_picture'])->filter()->paginate($per_page, ['real_estate_id', 'ar_title', 'ar_desc', 'phone_number', 'picture', 'is_special', 'price', 'manger_accept', 'governorate_id', 'created_at']);
                 //count ads
-                $count = RealEstate::where('manger_accept', 2)->ignoreRequest(['real_estate_main_category'])->filter()->count();
+                $count = RealEstate::where('manger_accept', 2)->when(request()->query('without_picture'), function ($query) {
+                    return $query->where('picture', json_encode(['defualt.png']));
+                })->ignoreRequest(['real_estate_main_category', 'without_picture'])->filter()->count();
                 //get the filters
                 if (request()->query('real_estate_main_category')) {
                     //filters for the first category of real estate(Lands)
@@ -138,8 +146,8 @@ class ApiFilterController extends Controller
                             'Governorate' => GovernorateResource::collection(Governorate::all(['governorate_id', 'ar_name'])),
                             'Areas' => AreaResource::collection(Area::all(['area_id', 'ar_name'])),
                             'Neighborhoods' => NeighborhoodResource::collection(Neighborhood::all(['neighborhood_id', 'ar_name'])),
-                            'LandType' => LandTypeResource::collection(LandType::all(['land_type_id', 'ar_name'])),
-                            'AdStatus' => AdStatusResource::collection(AdStatus::all(['ad_statuse_id', 'ar_name'])),
+                            'Land Type' => LandTypeResource::collection(LandType::all(['land_type_id', 'ar_name'])),
+                            'Ad Status' => AdStatusResource::collection(AdStatus::all(['ad_statuse_id', 'ar_name'])),
                         ];
                     }
                     //filters for the first category of real estate(Villas - Farms)
@@ -148,8 +156,8 @@ class ApiFilterController extends Controller
                             'Governorate' => GovernorateResource::collection(Governorate::all(['governorate_id', 'ar_name'])),
                             'Areas' => AreaResource::collection(Area::all(['area_id', 'ar_name'])),
                             'Neighborhoods' => NeighborhoodResource::collection(Neighborhood::all(['neighborhood_id', 'ar_name'])),
-                            'LandType' => LandTypeResource::collection(LandType::all(['land_type_id', 'ar_name'])),
-                            'AdStatus' => AdStatusResource::collection(AdStatus::all(['ad_statuse_id', 'ar_name'])),
+                            'Land Type' => LandTypeResource::collection(LandType::all(['land_type_id', 'ar_name'])),
+                            'Ad Status' => AdStatusResource::collection(AdStatus::all(['ad_statuse_id', 'ar_name'])),
                         ];
                     }
                     //filters for the first category of real estate(Apartments)
@@ -158,10 +166,10 @@ class ApiFilterController extends Controller
                             'Governorate' => GovernorateResource::collection(Governorate::all(['governorate_id', 'ar_name'])),
                             'Areas' => AreaResource::collection(Area::all(['area_id', 'ar_name'])),
                             'Neighborhoods' => NeighborhoodResource::collection(Neighborhood::all(['neighborhood_id', 'ar_name'])),
-                            'LandType' => LandTypeResource::collection(LandType::all(['land_type_id', 'ar_name'])),
-                            'ApartmentStatus' => ApartmentStatusResource::collection(ApartmentStatus::all(['apartment_status_id', 'ar_name'])),
-                            'BuildingStatus' => BuildingStatusResource::collection(BuildingStatus::all(['building_statuse_id', 'ar_name'])),
-                            'AdStatus' => AdStatusResource::collection(AdStatus::all(['ad_statuse_id', 'ar_name'])),
+                            'Land Type' => LandTypeResource::collection(LandType::all(['land_type_id', 'ar_name'])),
+                            'Apartment Status' => ApartmentStatusResource::collection(ApartmentStatus::all(['apartment_status_id', 'ar_name'])),
+                            'Building Status' => BuildingStatusResource::collection(BuildingStatus::all(['building_statuse_id', 'ar_name'])),
+                            'Ad Status' => AdStatusResource::collection(AdStatus::all(['ad_statuse_id', 'ar_name'])),
                         ];
                     }
                     //filters for the first category of real estate(Commercial)
@@ -170,9 +178,9 @@ class ApiFilterController extends Controller
                             'Governorate' => GovernorateResource::collection(Governorate::all(['governorate_id', 'ar_name'])),
                             'Areas' => AreaResource::collection(Area::all(['area_id', 'ar_name'])),
                             'Neighborhoods' => NeighborhoodResource::collection(Neighborhood::all(['neighborhood_id', 'ar_name'])),
-                            'LandType' => LandTypeResource::collection(LandType::all(['land_type_id', 'ar_name'])),
-                            'CommercialAndArtificialType' => CommercialAndArtificialTypeResource::collection(CommercialAndArtificialType::all(['CAAT_id', 'ar_name'])),
-                            'AdStatus' => AdStatusResource::collection(AdStatus::all(['ad_statuse_id', 'ar_name'])),
+                            'Land Type' => LandTypeResource::collection(LandType::all(['land_type_id', 'ar_name'])),
+                            'Commercial And Artificial Type' => CommercialAndArtificialTypeResource::collection(CommercialAndArtificialType::all(['CAAT_id', 'ar_name'])),
+                            'Ad Status' => AdStatusResource::collection(AdStatus::all(['ad_statuse_id', 'ar_name'])),
                         ];
                     }
                     //filters for the first category of real estate(Artificial)
@@ -181,21 +189,25 @@ class ApiFilterController extends Controller
                             'Governorate' => GovernorateResource::collection(Governorate::all(['governorate_id', 'ar_name'])),
                             'Areas' => AreaResource::collection(Area::all(['area_id', 'ar_name'])),
                             'Neighborhoods' => NeighborhoodResource::collection(Neighborhood::all(['neighborhood_id', 'ar_name'])),
-                            'LandType' => LandTypeResource::collection(LandType::all(['land_type_id', 'ar_name'])),
-                            'CommercialAndArtificialType' => CommercialAndArtificialTypeResource::collection(CommercialAndArtificialType::all(['CAAT_id', 'ar_name'])),
-                            'AdStatus' => AdStatusResource::collection(AdStatus::all(['ad_statuse_id', 'ar_name'])),
+                            'Land Type' => LandTypeResource::collection(LandType::all(['land_type_id', 'ar_name'])),
+                            'Commercial And Artificial Type' => CommercialAndArtificialTypeResource::collection(CommercialAndArtificialType::all(['CAAT_id', 'ar_name'])),
+                            'Ad Status' => AdStatusResource::collection(AdStatus::all(['ad_statuse_id', 'ar_name'])),
                         ];
                     }
                 } else {
                     $filters = [
-                        'RealEstateMainCategory' => RealEstateMainCategoryResource::collection(RealEstateMainCategory::all(['REMC_id', 'ar_name'])),
+                        'Real Estate Main Category' => RealEstateMainCategoryResource::collection(RealEstateMainCategory::all(['REMC_id', 'ar_name'])),
                     ];
                 }
             } else if ($lang == 'en') {
                 //filter resualt
-                $filterResualt = RealEstate::where('manger_accept', 2)->ignoreRequest(['real_estate_main_category'])->filter()->paginate($per_page, ['real_estate_id', 'en_title', 'en_desc', 'phone_number', 'picture', 'is_special', 'price', 'manger_accept', 'governorate_id', 'created_at']);
+                $filterResualt = RealEstate::where('manger_accept', 2)->when(request()->query('without_picture'), function ($query) {
+                    return $query->where('picture', json_encode(['defualt.png']));
+                })->ignoreRequest(['real_estate_main_category', 'without_picture'])->filter()->paginate($per_page, ['real_estate_id', 'en_title', 'en_desc', 'phone_number', 'picture', 'is_special', 'price', 'manger_accept', 'governorate_id', 'created_at']);
                 //count ads
-                $count = RealEstate::where('manger_accept', 2)->ignoreRequest(['real_estate_main_category'])->filter()->count();
+                $count = RealEstate::where('manger_accept', 2)->when(request()->query('without_picture'), function ($query) {
+                    return $query->where('picture', json_encode(['defualt.png']));
+                })->ignoreRequest(['real_estate_main_category', 'without_picture'])->filter()->count();
                 //get the filters
                 if (request()->query('real_estate_main_category')) {
                     //filters for the first category of real estate(Lands)
@@ -204,8 +216,8 @@ class ApiFilterController extends Controller
                             'Governorate' => GovernorateResource::collection(Governorate::all(['governorate_id', 'en_name'])),
                             'Areas' => AreaResource::collection(Area::all(['area_id', 'en_name'])),
                             'Neighborhoods' => NeighborhoodResource::collection(Neighborhood::all(['neighborhood_id', 'en_name'])),
-                            'LandType' => LandTypeResource::collection(LandType::all(['land_type_id', 'en_name'])),
-                            'AdStatus' => AdStatusResource::collection(AdStatus::all(['ad_statuse_id', 'en_name'])),
+                            'Land Type' => LandTypeResource::collection(LandType::all(['land_type_id', 'en_name'])),
+                            'Ad Status' => AdStatusResource::collection(AdStatus::all(['ad_statuse_id', 'en_name'])),
                         ];
                     }
                     //filters for the first category of real estate(Villas - Farms)
@@ -214,8 +226,8 @@ class ApiFilterController extends Controller
                             'Governorate' => GovernorateResource::collection(Governorate::all(['governorate_id', 'en_name'])),
                             'Areas' => AreaResource::collection(Area::all(['area_id', 'en_name'])),
                             'Neighborhoods' => NeighborhoodResource::collection(Neighborhood::all(['neighborhood_id', 'en_name'])),
-                            'LandType' => LandTypeResource::collection(LandType::all(['land_type_id', 'en_name'])),
-                            'AdStatus' => AdStatusResource::collection(AdStatus::all(['ad_statuse_id', 'en_name'])),
+                            'Land Type' => LandTypeResource::collection(LandType::all(['land_type_id', 'en_name'])),
+                            'Ad Status' => AdStatusResource::collection(AdStatus::all(['ad_statuse_id', 'en_name'])),
                         ];
                     }
                     //filters for the first category of real estate(Apartments)
@@ -224,10 +236,10 @@ class ApiFilterController extends Controller
                             'Governorate' => GovernorateResource::collection(Governorate::all(['governorate_id', 'en_name'])),
                             'Areas' => AreaResource::collection(Area::all(['area_id', 'en_name'])),
                             'Neighborhoods' => NeighborhoodResource::collection(Neighborhood::all(['neighborhood_id', 'en_name'])),
-                            'LandType' => LandTypeResource::collection(LandType::all(['land_type_id', 'en_name'])),
-                            'ApartmentStatus' => ApartmentStatusResource::collection(ApartmentStatus::all(['apartment_status_id', 'en_name'])),
-                            'BuildingStatus' => BuildingStatusResource::collection(BuildingStatus::all(['building_statuse_id', 'en_name'])),
-                            'AdStatus' => AdStatusResource::collection(AdStatus::all(['ad_statuse_id', 'en_name'])),
+                            'Land Type' => LandTypeResource::collection(LandType::all(['land_type_id', 'en_name'])),
+                            'Apartment Status' => ApartmentStatusResource::collection(ApartmentStatus::all(['apartment_status_id', 'en_name'])),
+                            'Building Status' => BuildingStatusResource::collection(BuildingStatus::all(['building_statuse_id', 'en_name'])),
+                            'Ad Status' => AdStatusResource::collection(AdStatus::all(['ad_statuse_id', 'en_name'])),
                         ];
                     }
                     //filters for the first category of real estate(Commercial)
@@ -236,9 +248,9 @@ class ApiFilterController extends Controller
                             'Governorate' => GovernorateResource::collection(Governorate::all(['governorate_id', 'en_name'])),
                             'Areas' => AreaResource::collection(Area::all(['area_id', 'en_name'])),
                             'Neighborhoods' => NeighborhoodResource::collection(Neighborhood::all(['neighborhood_id', 'en_name'])),
-                            'LandType' => LandTypeResource::collection(LandType::all(['land_type_id', 'en_name'])),
-                            'CommercialAndArtificialType' => CommercialAndArtificialTypeResource::collection(CommercialAndArtificialType::all(['CAAT_id', 'en_name'])),
-                            'AdStatus' => AdStatusResource::collection(AdStatus::all(['ad_statuse_id', 'en_name'])),
+                            'Land Type' => LandTypeResource::collection(LandType::all(['land_type_id', 'en_name'])),
+                            'Commercial And Artificial Type' => CommercialAndArtificialTypeResource::collection(CommercialAndArtificialType::all(['CAAT_id', 'en_name'])),
+                            'Ad Status' => AdStatusResource::collection(AdStatus::all(['ad_statuse_id', 'en_name'])),
                         ];
                     }
                     //filters for the first category of real estate(Artificial)
@@ -247,14 +259,14 @@ class ApiFilterController extends Controller
                             'Governorate' => GovernorateResource::collection(Governorate::all(['governorate_id', 'en_name'])),
                             'Areas' => AreaResource::collection(Area::all(['area_id', 'en_name'])),
                             'Neighborhoods' => NeighborhoodResource::collection(Neighborhood::all(['neighborhood_id', 'en_name'])),
-                            'LandType' => LandTypeResource::collection(LandType::all(['land_type_id', 'en_name'])),
-                            'CommercialAndArtificialType' => CommercialAndArtificialTypeResource::collection(CommercialAndArtificialType::all(['CAAT_id', 'en_name'])),
-                            'AdStatus' => AdStatusResource::collection(AdStatus::all(['ad_statuse_id', 'en_name'])),
+                            'Land Type' => LandTypeResource::collection(LandType::all(['land_type_id', 'en_name'])),
+                            'Commercial And Artificial Type' => CommercialAndArtificialTypeResource::collection(CommercialAndArtificialType::all(['CAAT_id', 'en_name'])),
+                            'Ad Status' => AdStatusResource::collection(AdStatus::all(['ad_statuse_id', 'en_name'])),
                         ];
                     }
                 } else {
                     $filters = [
-                        'RealEstateMainCategory' => RealEstateMainCategoryResource::collection(RealEstateMainCategory::all(['REMC_id', 'en_name'])),
+                        'Real Estate Main Category' => RealEstateMainCategoryResource::collection(RealEstateMainCategory::all(['REMC_id', 'en_name'])),
                     ];
                 }
             }
@@ -273,31 +285,39 @@ class ApiFilterController extends Controller
             //check lang
             if ($lang == 'ar') {
                 //filter resualt
-                $filterResualt = Jobs::where('manger_accept', 2)->filter()->paginate($per_page, ['job_id', 'ar_title', 'ar_desc', 'picture', 'is_special', 'salary', 'manger_accept', 'governorate_id', 'created_at']);
+                $filterResualt = Jobs::where('manger_accept', 2)->when(request()->query('without_picture'), function ($query) {
+                    return $query->where('picture', json_encode(['defualt.png']));
+                })->ignoreRequest(['jobs_category', 'without_picture'])->filter()->paginate($per_page, ['job_id', 'ar_title', 'ar_desc', 'picture', 'is_special', 'salary', 'manger_accept', 'governorate_id', 'created_at']);
                 //count ads
-                $count = Jobs::where('manger_accept', 2)->filter()->count();
+                $count = Jobs::where('manger_accept', 2)->when(request()->query('without_picture'), function ($query) {
+                    return $query->where('picture', json_encode(['defualt.png']));
+                })->ignoreRequest(['jobs_category', 'without_picture'])->filter()->count();
                 //get the filters
                 $filters = [
-                    'JobsCategory' => JobsCategoryResource::collection(JobsCategory::all(['jobs_categorie_id', 'ar_name'])),
+                    'Job Category' => JobsCategoryResource::collection(JobsCategory::all(['jobs_categorie_id', 'ar_name'])),
                     'Governorate' => GovernorateResource::collection(Governorate::all(['governorate_id', 'ar_name'])),
                     'Areas' => AreaResource::collection(Area::all(['area_id', 'ar_name'])),
-                    'PersonLangueges' => PersonLanguegesResource::collection(PersonLangueges::all(['lang_id', 'ar_name'])),
-                    'YearsOfExperience' => YearsOfExperienceResource::collection(YearsOfExperience::all(['YOE_id', 'ar_name'])),
-                    'AdStatus' => AdStatusResource::collection(AdStatus::all(['ad_statuse_id', 'ar_name'])),
+                    'Person Langueges' => PersonLanguegesResource::collection(PersonLangueges::all(['lang_id', 'ar_name'])),
+                    'Years Of Experience' => YearsOfExperienceResource::collection(YearsOfExperience::all(['YOE_id', 'ar_name'])),
+                    'Ad Status' => AdStatusResource::collection(AdStatus::all(['ad_statuse_id', 'ar_name'])),
                 ];
             } else if ($lang == 'en') {
                 //filter resualt
-                $filterResualt = Jobs::where('manger_accept', 2)->ignoreRequest(['jobs_category'])->filter()->paginate($per_page, ['job_id', 'en_title', 'en_desc', 'picture', 'is_special', 'salary', 'manger_accept', 'governorate_id', 'created_at']);
+                $filterResualt = Jobs::where('manger_accept', 2)->when(request()->query('without_picture'), function ($query) {
+                    return $query->where('picture', json_encode(['defualt.png']));
+                })->ignoreRequest(['jobs_category', 'without_picture'])->filter()->paginate($per_page, ['job_id', 'en_title', 'en_desc', 'picture', 'is_special', 'salary', 'manger_accept', 'governorate_id', 'created_at']);
                 //count ads
-                $count = Jobs::where('manger_accept', 2)->ignoreRequest(['jobs_category'])->filter()->count();
+                $count = Jobs::where('manger_accept', 2)->when(request()->query('without_picture'), function ($query) {
+                    return $query->where('picture', json_encode(['defualt.png']));
+                })->ignoreRequest(['jobs_category', 'without_picture'])->filter()->count();
                 //get the filters
                 $filters = [
-                    'JobsCategory' => JobsCategoryResource::collection(JobsCategory::all(['jobs_categorie_id', 'en_name'])),
+                    'Job Category' => JobsCategoryResource::collection(JobsCategory::all(['jobs_categorie_id', 'en_name'])),
                     'Governorate' => GovernorateResource::collection(Governorate::all(['governorate_id', 'en_name'])),
                     'Areas' => AreaResource::collection(Area::all(['area_id', 'en_name'])),
-                    'PersonLangueges' => PersonLanguegesResource::collection(PersonLangueges::all(['lang_id', 'en_name'])),
-                    'YearsOfExperience' => YearsOfExperienceResource::collection(YearsOfExperience::all(['YOE_id', 'en_name'])),
-                    'AdStatus' => AdStatusResource::collection(AdStatus::all(['ad_statuse_id', 'en_name'])),
+                    'Person Langueges' => PersonLanguegesResource::collection(PersonLangueges::all(['lang_id', 'en_name'])),
+                    'Years Of Experience' => YearsOfExperienceResource::collection(YearsOfExperience::all(['YOE_id', 'en_name'])),
+                    'Ad Status' => AdStatusResource::collection(AdStatus::all(['ad_statuse_id', 'en_name'])),
                 ];
             }
             //return date
