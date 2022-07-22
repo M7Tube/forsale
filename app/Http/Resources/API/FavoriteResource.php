@@ -6,7 +6,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class FavoriteResource extends JsonResource
 {
-    /**
+    /**sdf
      * Transform the resource into an array.
      *
      * @param  \Illuminate\Http\Request  $request
