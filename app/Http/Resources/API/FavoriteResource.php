@@ -7,9 +7,9 @@ use Illuminate\Support\Facades\Storage;
 
 class FavoriteResource extends JsonResource
 {
-    /**sdf
+    /**
      * Transform the resource into an array.
-     *
+     *f
      * @param  \Illuminate\Http\Request  $request
      * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
      */
