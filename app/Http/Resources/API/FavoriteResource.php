@@ -16,6 +16,10 @@ class FavoriteResource extends JsonResource
     {
         if ($this->car_id != 0) {
             if (request('lang') == 'ar') {
+                $listOfPicture = [];
+                foreach (json_decode($this->car->picture) as $pic) {
+                    array_push($listOfPicture, 'https://waseetco.com/storage/app/img/' . $pic);
+                }
                 return [
                     'favorite_id' => $this->favorite_id,
                     'user' => ($this->user->first_name ?? null) . ' ' . ($this->user->last_name ?? null),
@@ -25,7 +29,7 @@ class FavoriteResource extends JsonResource
                         'title' => $this->car->ar_title ?? $this->car->en_title,
                         'desc' => $this->car->ar_desc ?? $this->car->en_desc,
                         'phone_number' => $this->car->phone_number ?? null,
-                        'picture' =>  'https://waseetco.com/storage/app/img/' . ($this->car->picture ?? null),
+                        'picture' =>  $listOfPicture,
                         'is_special' => $this->car->is_special ?? null,
                         'price' => $this->car->price ?? null,
                         'governorate' => $this->car->governorate->ar_name ?? null,
@@ -33,6 +37,10 @@ class FavoriteResource extends JsonResource
                     ]
                 ];
             } else if (request('lang') == 'en') {
+                $listOfPicture = [];
+                foreach (json_decode($this->car->picture) as $pic) {
+                    array_push($listOfPicture, 'https://waseetco.com/storage/app/img/' . $pic);
+                }
                 return [
                     'favorite_id' => $this->favorite_id,
                     'user' => ($this->user->first_name ?? null) . ' ' . ($this->user->last_name ?? null),
@@ -42,7 +50,7 @@ class FavoriteResource extends JsonResource
                         'title' => $this->car->en_title ?? $this->car->ar_title,
                         'desc' => $this->car->en_desc ?? $this->car->ar_desc,
                         'phone_number' => $this->car->phone_number ?? null,
-                        'picture' =>  'https://waseetco.com/storage/app/img/' . ($this->car->picture ?? null),
+                        'picture' =>  $listOfPicture,
                         'is_special' => $this->car->is_special ?? null,
                         'price' => $this->car->price ?? null,
                         'governorate' => $this->car->governorate->en_name ?? null,
@@ -52,6 +60,10 @@ class FavoriteResource extends JsonResource
             }
         } else if ($this->real_estate_id != 0) {
             if (request('lang') == 'ar') {
+                $listOfPicture = [];
+                foreach (json_decode($this->real_estate->picture) as $pic) {
+                    array_push($listOfPicture, 'https://waseetco.com/storage/app/img/' . $pic);
+                }
                 return [
                     'favorite_id' => $this->favorite_id,
                     'user' => ($this->user->first_name ?? null) . ' ' . ($this->user->last_name ?? null),
@@ -61,7 +73,7 @@ class FavoriteResource extends JsonResource
                         'title' => $this->real_estate->ar_title ?? $this->real_estate->en_title,
                         'desc' => $this->real_estate->ar_desc ?? $this->real_estate->en_desc,
                         'phone_number' => $this->real_estate->phone_number,
-                        'picture' => 'https://waseetco.com/storage/app/img/' . ($this->real_estate->picture ?? null),
+                        'picture' => $listOfPicture,
                         'is_special' => $this->real_estate->is_special,
                         'price' => $this->real_estate->price,
                         'governorate' => $this->real_estate->governorate->ar_name,
@@ -69,6 +81,10 @@ class FavoriteResource extends JsonResource
                     ]
                 ];
             } else if (request('lang') == 'en') {
+                $listOfPicture = [];
+                foreach (json_decode($this->real_estate->picture) as $pic) {
+                    array_push($listOfPicture, 'https://waseetco.com/storage/app/img/' . $pic);
+                }
                 return [
                     'favorite_id' => $this->favorite_id,
                     'user' => ($this->user->first_name ?? null) . ' ' . ($this->user->last_name ?? null),
@@ -78,7 +94,7 @@ class FavoriteResource extends JsonResource
                         'title' => $this->real_estate->en_title ?? $this->real_estate->ar_title,
                         'desc' => $this->real_estate->en_desc ?? $this->real_estate->ar_desc,
                         'phone_number' => $this->real_estate->phone_number,
-                        'picture' => 'https://waseetco.com/storage/app/img/' . ($this->real_estate->picture ?? null),
+                        'picture' => $listOfPicture,
                         'is_special' => $this->real_estate->is_special,
                         'price' => $this->real_estate->price,
                         'governorate' => $this->real_estate->governorate->en_name,
@@ -88,6 +104,10 @@ class FavoriteResource extends JsonResource
             }
         } else if ($this->job_id != 0) {
             if (request('lang') == 'ar') {
+                $listOfPicture = [];
+                foreach (json_decode($this->job->picture) as $pic) {
+                    array_push($listOfPicture, 'https://waseetco.com/storage/app/img/' . $pic);
+                }
                 return [
                     'favorite_id' => $this->favorite_id,
                     'user' => ($this->user->first_name ?? null) . ' ' . ($this->user->last_name ?? null),
@@ -97,7 +117,7 @@ class FavoriteResource extends JsonResource
                         'title' => $this->job->ar_title ?? $this->job->en_title,
                         'desc' => $this->job->ar_desc ?? $this->job->en_desc,
                         'phone_number' => $this->job->phone_number,
-                        'picture' => 'https://waseetco.com/storage/app/img/' . ($this->job->picture ?? null),
+                        'picture' => $listOfPicture,
                         'is_special' => $this->job->is_special,
                         'price' => $this->job->salary,
                         'governorate' => $this->job->governorate->ar_name,
@@ -105,6 +125,10 @@ class FavoriteResource extends JsonResource
                     ]
                 ];
             } else if (request('lang') == 'en') {
+                $listOfPicture = [];
+                foreach (json_decode($this->job->picture) as $pic) {
+                    array_push($listOfPicture, 'https://waseetco.com/storage/app/img/' . $pic);
+                }
                 return [
                     'favorite_id' => $this->favorite_id,
                     'user' => ($this->user->first_name ?? null) . ' ' . ($this->user->last_name ?? null),
@@ -114,7 +138,7 @@ class FavoriteResource extends JsonResource
                         'title' => $this->job->en_title ?? $this->job->ar_title,
                         'desc' => $this->job->en_desc ?? $this->job->ar_desc,
                         'phone_number' => $this->job->phone_number,
-                        'picture' => 'https://waseetco.com/storage/app/img/' . ($this->job->picture ?? null),
+                        'picture' => $listOfPicture,
                         'is_special' => $this->job->is_special,
                         'price' => $this->job->salary,
                         'governorate' => $this->job->governorate->en_name,
