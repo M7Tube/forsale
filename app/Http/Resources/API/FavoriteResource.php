@@ -33,6 +33,7 @@ class FavoriteResource extends JsonResource
                         'is_special' => $this->car->is_special ?? null,
                         'price' => $this->car->price ?? null,
                         'governorate' => $this->car->governorate->ar_name ?? null,
+                        'category' => 1,
                         'created_at' => $this->car->created_at ?? null,
                     ]
                 ];
@@ -54,6 +55,7 @@ class FavoriteResource extends JsonResource
                         'is_special' => $this->car->is_special ?? null,
                         'price' => $this->car->price ?? null,
                         'governorate' => $this->car->governorate->en_name ?? null,
+                        'category' => 1,
                         'created_at' => $this->car->created_at ?? null,
                     ]
                 ];
@@ -77,6 +79,7 @@ class FavoriteResource extends JsonResource
                         'is_special' => $this->real_estate->is_special,
                         'price' => $this->real_estate->price,
                         'governorate' => $this->real_estate->governorate->ar_name,
+                        'category' => 2,
                         'created_at' => $this->real_estate->created_at,
                     ]
                 ];
@@ -98,6 +101,7 @@ class FavoriteResource extends JsonResource
                         'is_special' => $this->real_estate->is_special,
                         'price' => $this->real_estate->price,
                         'governorate' => $this->real_estate->governorate->en_name,
+                        'category' => 2,
                         'created_at' => $this->real_estate->created_at,
                     ]
                 ];
@@ -121,6 +125,7 @@ class FavoriteResource extends JsonResource
                         'is_special' => $this->job->is_special,
                         'price' => $this->job->salary,
                         'governorate' => $this->job->governorate->ar_name,
+                        'category' => 3,
                         'created_at' => $this->job->created_at
                     ]
                 ];
@@ -142,6 +147,7 @@ class FavoriteResource extends JsonResource
                         'is_special' => $this->job->is_special,
                         'price' => $this->job->salary,
                         'governorate' => $this->job->governorate->en_name,
+                        'category' => 3,
                         'created_at' => $this->job->created_at
                     ]
                 ];
