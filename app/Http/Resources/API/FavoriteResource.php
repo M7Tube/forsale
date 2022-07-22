@@ -3,6 +3,7 @@
 namespace App\Http\Resources\API;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Storage;
 
 class FavoriteResource extends JsonResource
 {
@@ -18,7 +19,11 @@ class FavoriteResource extends JsonResource
             if (request('lang') == 'ar') {
                 $listOfPicture = [];
                 foreach (json_decode($this->car->picture) as $pic) {
-                    array_push($listOfPicture, 'https://waseetco.com/storage/app/img/' . $pic);
+                    if (Storage::exists('app/img/' . $pic)) {
+                        array_push($listOfPicture, 'https://waseetco.com/storage/app/img/' . $pic);
+                    } else {
+                        array_push($listOfPicture, 'https://waseetco.com/storage/app/img/' . $pic);
+                    }
                 }
                 return [
                     'favorite_id' => $this->favorite_id,
@@ -40,7 +45,11 @@ class FavoriteResource extends JsonResource
             } else if (request('lang') == 'en') {
                 $listOfPicture = [];
                 foreach (json_decode($this->car->picture) as $pic) {
-                    array_push($listOfPicture, 'https://waseetco.com/storage/app/img/' . $pic);
+                    if (Storage::exists('app/img/' . $pic)) {
+                        array_push($listOfPicture, 'https://waseetco.com/storage/app/img/' . $pic);
+                    } else {
+                        array_push($listOfPicture, 'https://waseetco.com/storage/app/img/' . $pic);
+                    }
                 }
                 return [
                     'favorite_id' => $this->favorite_id,
@@ -64,7 +73,11 @@ class FavoriteResource extends JsonResource
             if (request('lang') == 'ar') {
                 $listOfPicture = [];
                 foreach (json_decode($this->real_estate->picture) as $pic) {
-                    array_push($listOfPicture, 'https://waseetco.com/storage/app/img/' . $pic);
+                    if (Storage::exists('app/img/' . $pic)) {
+                        array_push($listOfPicture, 'https://waseetco.com/storage/app/img/' . $pic);
+                    } else {
+                        array_push($listOfPicture, 'https://waseetco.com/storage/app/img/' . $pic);
+                    }
                 }
                 return [
                     'favorite_id' => $this->favorite_id,
@@ -86,7 +99,11 @@ class FavoriteResource extends JsonResource
             } else if (request('lang') == 'en') {
                 $listOfPicture = [];
                 foreach (json_decode($this->real_estate->picture) as $pic) {
-                    array_push($listOfPicture, 'https://waseetco.com/storage/app/img/' . $pic);
+                    if (Storage::exists('app/img/' . $pic)) {
+                        array_push($listOfPicture, 'https://waseetco.com/storage/app/img/' . $pic);
+                    } else {
+                        array_push($listOfPicture, 'https://waseetco.com/storage/app/img/' . $pic);
+                    }
                 }
                 return [
                     'favorite_id' => $this->favorite_id,
@@ -110,7 +127,11 @@ class FavoriteResource extends JsonResource
             if (request('lang') == 'ar') {
                 $listOfPicture = [];
                 foreach (json_decode($this->job->picture) as $pic) {
-                    array_push($listOfPicture, 'https://waseetco.com/storage/app/img/' . $pic);
+                    if (Storage::exists('app/img/' . $pic)) {
+                        array_push($listOfPicture, 'https://waseetco.com/storage/app/img/' . $pic);
+                    } else {
+                        array_push($listOfPicture, 'https://waseetco.com/storage/app/img/' . $pic);
+                    }
                 }
                 return [
                     'favorite_id' => $this->favorite_id,
@@ -132,7 +153,11 @@ class FavoriteResource extends JsonResource
             } else if (request('lang') == 'en') {
                 $listOfPicture = [];
                 foreach (json_decode($this->job->picture) as $pic) {
-                    array_push($listOfPicture, 'https://waseetco.com/storage/app/img/' . $pic);
+                    if (Storage::exists('app/img/' . $pic)) {
+                        array_push($listOfPicture, 'https://waseetco.com/storage/app/img/' . $pic);
+                    } else {
+                        array_push($listOfPicture, 'https://waseetco.com/storage/app/img/' . $pic);
+                    }
                 }
                 return [
                     'favorite_id' => $this->favorite_id,
