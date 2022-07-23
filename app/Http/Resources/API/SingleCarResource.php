@@ -3,6 +3,7 @@
 namespace App\Http\Resources\API;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Storage;
 
 class SingleCarResource extends JsonResource
 {
@@ -16,7 +17,11 @@ class SingleCarResource extends JsonResource
     {
         $listOfPicture = [];
         foreach (json_decode($this->picture) as $pic) {
-            array_push($listOfPicture, 'https://waseetco.com/storage/app/img/' . $pic);
+            if (Storage::exists('img/' . $pic)) {
+                array_push($listOfPicture, 'https://waseetco.com/storage/app/img/' . $pic);
+            } else {
+                array_push($listOfPicture, 'https://waseetco.com/storage/app/img/' . $pic);
+            }
         }
         // return parent::toArray($request);
         if ($this->ar_title) {
